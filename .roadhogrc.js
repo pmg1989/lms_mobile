@@ -35,14 +35,11 @@ export default {
         ["module-resolver", {
           root: ["./src"],
           alias: {
-            // components: `${__dirname}/src/components`,
-            // utils: `${__dirname}/src/utils`,
-            // config: `${__dirname}/src/utils/config`,
-            // services: `${__dirname}/src/services`,
-            // models: `${__dirname}/src/models`,
-            // routes: `${__dirname}/src/routes`,
-            // constants: `${__dirname}/src/constants`,
-            // themes: `${__dirname}/src/themes`,
+            components: `${__dirname}/src/components`,
+            utils: `${__dirname}/src/utils`,
+            config: `${__dirname}/src/utils/config`,
+            services: `${__dirname}/src/services`,
+            constants: `${__dirname}/src/constants`,
           }
         }]
       ],
@@ -57,14 +54,11 @@ export default {
         ["module-resolver", {
           root: ["./src"],
           alias: {
-            // components: `${__dirname}/src/components`,
-            // utils: `${__dirname}/src/utils`,
-            // config: `${__dirname}/src/utils/config`,
-            // services: `${__dirname}/src/services`,
-            // models: `${__dirname}/src/models`,
-            // routes: `${__dirname}/src/routes`,
-            // constants: `${__dirname}/src/constants`,
-            // themes: `${__dirname}/src/themes`,
+            components: `${__dirname}/src/components`,
+            utils: `${__dirname}/src/utils`,
+            config: `${__dirname}/src/utils/config`,
+            services: `${__dirname}/src/services`,
+            constants: `${__dirname}/src/constants`,
           }
         }]
       ],
