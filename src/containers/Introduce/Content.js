@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import { Carousel } from 'antd-mobile'
-import { Icon } from 'components'
 import styles from './Content.less'
 
 class Banner extends Component {
@@ -19,7 +18,7 @@ class Banner extends Component {
     const heightProps = initialHeight ? { height: initialHeight } : {}
 
     const carouselProps = {
-      className: styles.list,
+      className: styles.banner_list,
       autoplay: false,
       infinite: true,
       swipeSpeed: 10,
@@ -50,9 +49,6 @@ const Content = ({ bannerList }) => {
   return (
     <div className={classnames('content', styles.content)}>
       <Banner list={bannerList} />
-      <Icon type={require('svg/enter.svg')} />
-      <Icon type={require('svg/enter.svg')} className={styles.test1} />
-      <Icon type={require('svg/enter.svg')} style={{ width: '2rem', height: '2rem' }} />
     </div>
   )
 }

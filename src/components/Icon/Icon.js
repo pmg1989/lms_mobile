@@ -17,7 +17,7 @@ class Icon extends Component {
   componentDidMount () {
     setTimeout(() => {
       this.setState({ show: true })
-    }, 150)
+    }, 100)
   }
 
   render () {
