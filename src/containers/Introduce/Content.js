@@ -45,10 +45,30 @@ Banner.propTypes = {
   list: PropTypes.array.isRequired,
 }
 
+const Intro = () => {
+  return (
+    <div className={styles.intro_box}>
+      <div className={styles.text_1}>
+        独创的教学体系，多维一体的互动式教学课程，全方位提升学员音乐综合素质，打造音乐学习生态圈。
+      </div>
+      <div className={styles.text_2}>
+        上海音乐谷校区、北京三里屯校区、深圳南山校区<br />南京艾尚校区、成都晶融汇校区
+      </div>
+      <div className={styles.text_3}>
+        线下学校咨询电话<br /><span className={styles.phone}>400-888-0717</span>
+      </div>
+      <div className={styles.bottom}>
+        <a className={styles.btn_booking} href="http://campaign2.newband.com/vshow2?showBack=true&shop=app&p=v3.1">预约参观学校</a>
+      </div>
+    </div>
+  )
+}
+
 const Content = ({ bannerList }) => {
   return (
     <div className={classnames('content', styles.content)}>
       <Banner list={bannerList} />
+      <Intro />
     </div>
   )
 }

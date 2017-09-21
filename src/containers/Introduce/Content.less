@@ -1,3 +1,5 @@
+@import "../../themes/mixin.less";
+
 .banner_list {
   .item {
     display: block;
@@ -5,6 +7,48 @@
     img {
       display: block;
       width: 100%;
+    }
+  }
+}
+
+.intro_box {
+  padding: 30px 10px;
+  text-align: center;
+
+  .text_1 {
+    text-align: left;
+    text-indent: 60px;
+    font-size: 28px;
+    color: @nb-blue;
+    line-height: 2;
+    margin-bottom: 30px;
+  }
+
+  .text_2, .text_3 {
+    color: #74797E;
+    line-height: 3;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .text_3 {
+    line-height: 2;
+
+    .phone {
+      font-size: 40px;
+      color: @nb-blue-light;
+    }
+  }
+
+  .bottom {
+    .btn_booking {
+      display: block;
+      width: 384px;
+      height: 99px;
+      line-height: 99px;
+      margin: 0 auto;
+      background: url('/images/btn_booking.png') center center no-repeat;
+      background-size: cover;
     }
   }
 }

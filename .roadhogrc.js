@@ -41,6 +41,7 @@ export default {
             services: `${__dirname}/src/services`,
             constants: `${__dirname}/src/constants`,
             svg: `${__dirname}/src/svg`,
+            themes: `${__dirname}/src/themes`,
           }
         }]
       ],
@@ -61,6 +62,7 @@ export default {
             services: `${__dirname}/src/services`,
             constants: `${__dirname}/src/constants`,
             svg: `${__dirname}/src/svg`,
+            themes: `${__dirname}/src/themes`,
           }
         }]
       ],
