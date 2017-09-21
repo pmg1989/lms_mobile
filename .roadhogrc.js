@@ -40,6 +40,7 @@ export default {
             config: `${__dirname}/src/utils/config`,
             services: `${__dirname}/src/services`,
             constants: `${__dirname}/src/constants`,
+            svg: `${__dirname}/src/svg`,
           }
         }]
       ],
@@ -59,6 +60,7 @@ export default {
             config: `${__dirname}/src/utils/config`,
             services: `${__dirname}/src/services`,
             constants: `${__dirname}/src/constants`,
+            svg: `${__dirname}/src/svg`,
           }
         }]
       ],
