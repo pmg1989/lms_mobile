@@ -2,7 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Header } from 'components'
-// import { Content } from './Content'
+import UserInfo from './UserInfo'
 
 const Home = () => {
   const headerProps = {
@@ -11,8 +11,11 @@ const Home = () => {
   }
 
   return (
-    <div className="content-inner">
+    <div className="content-box">
       <Header {...headerProps}>牛班音乐学校</Header>
+      <div className="content">
+        <UserInfo />
+      </div>
     </div>
   )
 }

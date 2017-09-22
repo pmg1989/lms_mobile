@@ -1,0 +1,44 @@
+.user_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  color: #fff;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .thumb_box {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 6px solid #fff;
+    }
+
+    .name {
+      font-size: 34px;
+    }
+  }
+
+  .area_name {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    text-align: right;
+  }
+}
