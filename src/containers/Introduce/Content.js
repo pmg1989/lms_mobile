@@ -19,7 +19,7 @@ class Banner extends Component {
 
     const carouselProps = {
       className: styles.banner_list,
-      autoplay: false,
+      autoplay: true,
       infinite: true,
       swipeSpeed: 10,
     }

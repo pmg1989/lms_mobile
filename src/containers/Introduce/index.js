@@ -20,7 +20,7 @@ const Introduce = () => {
 
   return (
     <div className="content-inner">
-      <Header>更多回复</Header>
+      <Header>牛班音乐学校</Header>
       <Content {...contentProps} />
     </div>
   )
