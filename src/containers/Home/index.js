@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Header } from 'components'
 import UserInfo from './UserInfo'
+import Notice from './Notice'
 
 const Home = () => {
   const headerProps = {
@@ -15,6 +16,7 @@ const Home = () => {
       <Header {...headerProps}>牛班音乐学校</Header>
       <div className="content">
         <UserInfo />
+        <Notice />
       </div>
     </div>
   )
