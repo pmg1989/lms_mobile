@@ -3,12 +3,11 @@ import { NoticeBar } from 'antd-mobile'
 import styles from './Notice.less'
 
 const Notice = () => {
-
   const noticeBarProps = {
     className: styles.content,
     icon: null,
     marqueeProps: { loop: true, trailing: 0 },
-    style: { backgroundColor: 'transparent' }
+    style: { backgroundColor: 'transparent' },
   }
 
   return (
