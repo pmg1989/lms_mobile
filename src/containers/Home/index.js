@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Header } from 'components'
 import UserInfo from './UserInfo'
 import Notice from './Notice'
+import StudyList from './StudyList'
 
 const Home = () => {
   const headerProps = {
@@ -17,6 +18,8 @@ const Home = () => {
       <div className="content">
         <UserInfo />
         <Notice />
+        <StudyList />
+        <StudyList />
       </div>
     </div>
   )

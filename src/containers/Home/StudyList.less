@@ -1,0 +1,112 @@
+@import "../../themes/mixin.less";
+
+.title_box {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 30px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background-color: @nb-blue-light;
+  }
+
+  .title {
+    color: #999;
+  }
+}
+
+.title_image_box {
+  color: #fff;
+  font-size: 36px;
+  padding: 50px 30px;
+  position: relative;
+
+  .tips {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px 30px;
+    font-size: 28px;
+
+    &.start {
+      background-color: orange;
+    }
+
+    &.end {
+      background-color: red;
+    }
+  }
+}
+
+.list_box {
+  padding: 30px;
+
+  .list {
+    padding: 30px 0;
+
+    .item {
+      font-size: 24px;
+      color: @nb-gray;
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 0;
+      border-bottom: 2px solid #ddd;
+
+      .left, .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .left {
+        flex: 1;
+
+        .title {
+          font-size: 32px;
+          color: @nb-primary-color;
+          margin-bottom: 40px;
+        }
+      }
+
+      .right {
+        text-align: right;
+
+        .btn {
+          display: inline-block;
+          border: 2px solid currentColor;
+          border-radius: 6px;
+          color: @nb-gray;
+          padding: 10px 30px;
+          text-align: center;
+
+          &.btn_blue {
+            color: @nb-blue-light;
+          }
+        }
+      }
+    }
+  }
+
+  .btn_box {
+    text-align: center;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      border: 2px solid currentColor;
+      border-radius: 10px;
+      color: @nb-gray;
+      padding: 15px 100px;
+      text-align: center;
+
+      .icon {
+        margin-right: 10px;
+      }
+    }
+  }
+}
