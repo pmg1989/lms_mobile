@@ -6,7 +6,10 @@ class Icon extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    type: PropTypes.object.isRequired,
+    type: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]).isRequired,
     style: PropTypes.object,
   }
 
@@ -21,17 +24,12 @@ class Icon extends Component {
   }
 
   render () {
-    const { className, style } = this.props
-    let { type } = this.props
+    const { className, style, type } = this.props
     const { show } = this.state
 
-    if (type.default) {
-      type = type.default
-    }
-
     return (
-      <svg className={`am-icon am-icon-${type.id} ${className || ''}`} style={style}>
-        {show && <use xlinkHref={`#${type.id}`} />}
+      <svg className={`am-icon am-icon-${type.default ? type.default.id : type} ${className || ''}`} style={style}>
+        {show && <use xlinkHref={`#${type.default ? type.default.id : type}`} />}
       </svg>
     )
   }

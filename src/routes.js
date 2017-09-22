@@ -7,7 +7,7 @@ import App from './containers/App'
 
 const Routes = (
   <Route path="/" component={App}>
-    <IndexRoute component={require('./containers/Introduce')} />
+    <IndexRoute component={require('./containers/Home')} />
     <Route path="/introduce" component={require('./containers/Introduce')} />
   </Route>
 )
