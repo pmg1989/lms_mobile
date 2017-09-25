@@ -1,0 +1,55 @@
+@import "../../themes/mixin.less";
+
+.bottom_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #e3e3e3;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  // height: auto;
+
+  .left {
+    display: flex;
+    flex: 1;
+
+    .thumb {
+      width: 88px;
+      height: 88px;
+      display: block;
+    }
+
+    .info {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-around;
+      padding-left: 20px;
+
+      .title {
+        .ellipsis-flex(50vw);
+      }
+
+      .author {
+        color: @nb-gray;
+      }
+    }
+
+  }
+
+  .right {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+
+    :global {
+      .am-icon-pause, .am-icon-play {
+        margin: 0 30px;
+      }
+    }
+  }
+}

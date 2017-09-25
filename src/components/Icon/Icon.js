@@ -24,11 +24,11 @@ class Icon extends Component {
   }
 
   render () {
-    const { className, style, type } = this.props
+    const { className, style, type, ...props } = this.props
     const { show } = this.state
 
     return (
-      <svg className={`am-icon am-icon-${type.default ? type.default.id : type} ${className || ''}`} style={style}>
+      <svg className={`am-icon am-icon-${type.default ? type.default.id : type} ${className || ''}`} style={style} {...props}>
         {show && <use xlinkHref={`#${type.default ? type.default.id : type}`} />}
       </svg>
     )
