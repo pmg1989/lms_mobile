@@ -1,10 +1,10 @@
 import React from 'react'
-import { Icon, AudioPlay } from 'components'
+import { Icon, AudioPlayer } from 'components'
 import { Title } from './StudyList'
 import styles from './RecordList.less'
 
 const RecordList = () => {
-  const audioPlayProps = {
+  const audioPlayerProps = {
     list: [{
       title: '测试音频文件1测试音频文件1测试音频',
       author: 'felix1',
@@ -42,7 +42,7 @@ const RecordList = () => {
           </li>
         </ul>
       </div>
-      <AudioPlay {...audioPlayProps} />
+      <AudioPlayer {...audioPlayerProps} />
     </div>
   )
 }

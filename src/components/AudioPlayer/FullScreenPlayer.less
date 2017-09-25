@@ -1,0 +1,50 @@
+@import "../../themes/mixin.less";
+
+.full_screen_box {
+  // display: none;
+  position: fixed;
+  top: 88px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 999;
+
+  .back {
+    text-align: center;
+    padding: 15px;
+  }
+
+  .info {
+    padding: 30px;
+    text-align: center;
+
+    .title {
+      font-size: 36px;
+      display: inline-block;
+      line-height: 2;
+    }
+
+    .author {
+      color: @nb-gray;
+    }
+  }
+
+  .image_bg {
+    width: 80vw;
+    height: 80vw;
+    margin: 0 auto;
+  }
+
+  .opt_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 50px 0;
+
+    .pause_o, .play_o {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
