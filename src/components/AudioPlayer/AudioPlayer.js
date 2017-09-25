@@ -11,7 +11,7 @@ class AudioPlayer extends Component {
       title: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
       thumb: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
+      source: PropTypes.string.isRequired,
     })),
     index: PropTypes.number.isRequired,
   }
@@ -50,6 +50,7 @@ class AudioPlayer extends Component {
             <Icon type={require('svg/next.svg')} />
           </div>
         </div>
+        <audio id="audio" src={current.source} autoPlay="autoplay">audio not supported :(</audio>
         <FullScreenPlayer {...current} />
       </div>
     )
