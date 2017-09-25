@@ -19,11 +19,11 @@ class AudioPlay extends Component {
     loop: true,
   }
 
-  handleLoop() {
+  handleLoop () {
     this.setState(prevState => ({ loop: !prevState.loop }))
   }
 
-  handlePlayPause() {
+  handlePlayPause () {
     this.setState(prevState => ({ play: !prevState.play }))
   }
 
