@@ -5,11 +5,20 @@ import { Icon, AudioPlayer } from 'components'
 import { Title } from './StudyList'
 import styles from './RecordList.less'
 
-const RecordList = ({ list, index, playing }) => {
+const RecordList = ({ list, index, playing, onAudioPlayer }) => {
   const audioPlayerProps = {
     list: list.toJS(),
     index,
     playing,
+  }
+
+  const handlePlayPause = (cur) => {
+    if (index === cur) {
+      onAudioPlayer.changePlaying(!playing)
+    } else {
+      onAudioPlayer.changePlaying(true)
+      onAudioPlayer.changeIndex(cur)
+    }
   }
 
   return (
@@ -23,7 +32,10 @@ const RecordList = ({ list, index, playing }) => {
                 <span>{list.size - key}</span><span className={styles.title}>{item.get('title')}</span>
               </div>
               <div className={styles.opt_box}>
-                {key === index && playing ? <Icon type={require('svg/pause.svg')} /> : <Icon type={require('svg/play.svg')} />}
+                {key === index && playing ?
+                  <Icon type={require('svg/pause.svg')} onClick={() => handlePlayPause(key)} /> :
+                  <Icon type={require('svg/play.svg')} onClick={() => handlePlayPause(key)} />
+                }
               </div>
             </li>
           ))}
@@ -38,6 +50,7 @@ RecordList.propTypes = {
   list: PropTypes.instanceOf(Immutable.List).isRequired,
   index: PropTypes.number.isRequired,
   playing: PropTypes.bool.isRequired,
+  onAudioPlayer: PropTypes.object.isRequired,
 }
 
 export default RecordList

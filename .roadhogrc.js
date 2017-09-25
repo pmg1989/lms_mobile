@@ -40,6 +40,7 @@ export default {
             config: `${__dirname}/src/utils/config`,
             services: `${__dirname}/src/services`,
             constants: `${__dirname}/src/constants`,
+            actions: `${__dirname}/src/actions`,
             svg: `${__dirname}/src/svg`,
             themes: `${__dirname}/src/themes`,
           }
@@ -61,6 +62,7 @@ export default {
             config: `${__dirname}/src/utils/config`,
             services: `${__dirname}/src/services`,
             constants: `${__dirname}/src/constants`,
+            actions: `${__dirname}/src/actions`,
             svg: `${__dirname}/src/svg`,
             themes: `${__dirname}/src/themes`,
           }
