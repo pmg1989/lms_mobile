@@ -1,7 +1,7 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
 import { combineReducers } from 'redux-immutable'
-import { AUDIO_SWITCH_INDEX, AUDIO_SWITCH_PLAYING } from 'constants/audioPlayer'
+import { AUDIO_SWITCH_INDEX, AUDIO_SWITCH_PLAYING } from 'constants/home-constants'
 
 const $list = Immutable.fromJS([{
   title: '测试音频文件1测试音频文件1测试音频',

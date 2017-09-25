@@ -1,1 +1,1 @@
-export { AUDIO_SWITCH_INDEX } from './audioPlayer'
+export * as homeConstants from './home'

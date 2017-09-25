@@ -1,8 +1,1 @@
-export {
-  taskAdd,
-  taskDone,
-  taskUndone,
-  taskRemove,
-  taskEdit,
-  taskFilter,
-} from './tasks'
+export * as homeActions from './home'

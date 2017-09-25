@@ -1,1 +1,1 @@
-export * as audioPlayerActions from './audioPlayer'
+export * as audioPlayerActions from './audio-player-actions'

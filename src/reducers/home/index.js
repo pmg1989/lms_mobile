@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux-immutable'
-import audioPlayer from './audioPlayer'
+import audioPlayer from './audio-player-reducers'
 
 export default combineReducers({
   audioPlayer,
