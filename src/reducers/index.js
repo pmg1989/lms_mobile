@@ -1,7 +1,7 @@
 import routerReducer from './routeReducer'
-import tasks from './tasks'
+import home from './home'
 
 export default {
-  tasks,
+  home,
   routing: routerReducer,
 }
