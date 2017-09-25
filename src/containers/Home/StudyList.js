@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import { Icon } from 'components'
 import styles from './StudyList.less'
 
-const Title = ({ title }) => (
+export const Title = ({ title }) => (
   <div className={styles.title_box}>
     <span className={styles.title}>{title}</span>
   </div>

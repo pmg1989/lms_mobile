@@ -5,6 +5,7 @@ import { Header } from 'components'
 import UserInfo from './UserInfo'
 import Notice from './Notice'
 import StudyList from './StudyList'
+import RecordList from './RecordList'
 
 const Home = () => {
   const headerProps = {
@@ -19,7 +20,8 @@ const Home = () => {
         <UserInfo />
         <Notice />
         <StudyList />
-        <StudyList />
+        {/*<StudyList />*/}
+        <RecordList />
       </div>
     </div>
   )
