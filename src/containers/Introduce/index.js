@@ -19,7 +19,7 @@ const Introduce = () => {
   }
 
   return (
-    <div className="content-inner">
+    <div className="content-box">
       <Header>牛班音乐学校</Header>
       <Content {...contentProps} />
     </div>

@@ -13,9 +13,9 @@ const Home = () => {
   }
 
   return (
-    <div className="content-box">
+    <div className='content-box'>
       <Header {...headerProps}>牛班音乐学校</Header>
-      <div className="content">
+      <div className='content'>
         <UserInfo />
         <Notice />
         <StudyList />

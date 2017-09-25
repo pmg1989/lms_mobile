@@ -67,8 +67,10 @@ const Intro = () => {
 const Content = ({ bannerList }) => {
   return (
     <div className={classnames('content', styles.content)}>
-      <Banner list={bannerList} />
-      <Intro />
+      <div className={styles.fill_color_box}>
+        <Banner list={bannerList} />
+        <Intro />
+      </div>
     </div>
   )
 }
