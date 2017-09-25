@@ -14,10 +14,11 @@ class AudioPlayer extends Component {
       source: PropTypes.string.isRequired,
     })),
     index: PropTypes.number.isRequired,
+    playing: PropTypes.bool.isRequired,
+    onAudioPlayer: PropTypes.object.isRequired,
   }
 
   state = {
-    play: true,
     loop: true,
   }
 
@@ -26,12 +27,18 @@ class AudioPlayer extends Component {
   }
 
   handlePlayPause () {
-    this.setState(prevState => ({ play: !prevState.play }))
+    const { onAudioPlayer, playing } = this.props
+    onAudioPlayer.changePlaying(!playing)
+  }
+
+  handleNext () {
+    const { onAudioPlayer } = this.props
+    onAudioPlayer.toNext()
   }
 
   render () {
-    const { list, index } = this.props
-    const { play, loop } = this.state
+    const { list, index, playing } = this.props
+    const { loop } = this.state
     const current = list[index]
 
     return (
@@ -46,12 +53,12 @@ class AudioPlayer extends Component {
           </div>
           <div className={styles.right}>
             {loop ? <Icon onClick={::this.handleLoop} type={require('svg/loop.svg')} /> : <Icon onClick={::this.handleLoop} type={require('svg/loop-no.svg')} />}
-            {play ? <Icon onClick={::this.handlePlayPause} type={require('svg/pause.svg')} /> : <Icon onClick={::this.handlePlayPause} type={require('svg/play.svg')} />}
-            <Icon type={require('svg/next.svg')} />
+            {playing ? <Icon onClick={::this.handlePlayPause} type={require('svg/pause.svg')} /> : <Icon onClick={::this.handlePlayPause} type={require('svg/play.svg')} />}
+            <Icon type={require('svg/next.svg')} onClick={::this.handleNext} />
           </div>
         </div>
-        <audio id="audio" src={current.source} autoPlay="autoplay">audio not supported :(</audio>
         <FullScreenPlayer {...current} />
+        <audio id="audio" src={current.source} autoPlay="autoplay">audio not supported :(</audio>
       </div>
     )
   }

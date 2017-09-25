@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
+import classnames from 'classnames'
 import { Icon, AudioPlayer } from 'components'
 import { Title } from './StudyList'
 import styles from './RecordList.less'
@@ -10,11 +11,16 @@ const RecordList = ({ list, index, playing, onAudioPlayer }) => {
     list: list.toJS(),
     index,
     playing,
+    onAudioPlayer,
   }
 
   const handlePlayPause = (cur) => {
     if (index === cur) {
       onAudioPlayer.changePlaying(!playing)
+    } else if (cur === index - 1) {
+      onAudioPlayer.toPrev()
+    } else if (cur === index + 1) {
+      onAudioPlayer.toNext()
     } else {
       onAudioPlayer.changePlaying(true)
       onAudioPlayer.changeIndex(cur)
@@ -23,7 +29,7 @@ const RecordList = ({ list, index, playing, onAudioPlayer }) => {
 
   return (
     <div>
-      <div className={styles.list_box}>
+      <div className={classnames(styles.list_box, playing && styles.playing)}>
         <Title title="我的录音作品" />
         <ul className={styles.list}>
           {list.map((item, key) => (

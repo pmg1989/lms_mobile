@@ -1,7 +1,7 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
 import { combineReducers } from 'redux-immutable'
-import { AUDIO_SWITCH_INDEX, AUDIO_SWITCH_PLAYING } from 'constants/home-constants'
+import { AUDIO_CHANGE_INDEX, AUDIO_CHANGE_PLAYING, AUDIO_CHANGE_PREV, AUDIO_CHANGE_NEXT } from 'constants/home-constants'
 
 const $list = Immutable.fromJS([{
   title: '测试音频文件1测试音频文件1测试音频',
@@ -25,14 +25,27 @@ const list = createReducer($list, {
 })
 
 const index = createReducer(0, {
-  [AUDIO_SWITCH_INDEX] (state, action) {
+  [AUDIO_CHANGE_INDEX] (state, action) {
     return action.index
+  },
+  [AUDIO_CHANGE_PREV] (state, action) {
+    const cur = state - 1
+    return cur < 0 ? action.listSize - 1 : cur
+  },
+  [AUDIO_CHANGE_NEXT] (state, action) {
+    return (state + 1) % action.listSize
   },
 })
 
 const playing = createReducer(false, {
-  [AUDIO_SWITCH_PLAYING] (state, action) {
+  [AUDIO_CHANGE_PLAYING] (state, action) {
     return action.playing
+  },
+  [AUDIO_CHANGE_PREV] () {
+    return true
+  },
+  [AUDIO_CHANGE_NEXT] () {
+    return true
   },
 })
 
