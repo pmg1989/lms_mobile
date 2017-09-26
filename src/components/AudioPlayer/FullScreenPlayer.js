@@ -38,7 +38,11 @@ class FullScreenPlayer extends Component {
     })
 
     $audio.addEventListener('ended', () => {
-
+      if(this.props.loop) {
+        this.$audio.play()
+      } else {
+        this.props.handleNext()
+      }
     })
 
     $audio.addEventListener('timeupdate', (e) => {

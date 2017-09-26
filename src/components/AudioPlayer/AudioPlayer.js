@@ -21,7 +21,7 @@ class AudioPlayer extends Component {
   }
 
   state = {
-    loop: true,
+    loop: false,
     isFullScreen: false,
   }
 
