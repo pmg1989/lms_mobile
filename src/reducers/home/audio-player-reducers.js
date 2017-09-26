@@ -26,7 +26,7 @@ const $audioPlayer = Immutable.fromJS({
 
 const audioPlayer = createReducer($audioPlayer, {
   [AUDIO_CHANGE_INDEX] (state, action) {
-    return state.set('index', action.index).set('playing', true)
+    return state.set('index', action.index).set('playing', false).set('switching', true)
   },
   [AUDIO_CHANGE_PLAYING] (state) {
     return state.set('playing', !state.get('playing')).set('switching', false)
