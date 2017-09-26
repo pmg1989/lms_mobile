@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { Slider } from 'antd-mobile'
 import { Icon } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './FullScreenPlayer.less'
@@ -8,6 +9,34 @@ import styles from './FullScreenPlayer.less'
 const FullScreenPlayer = ({
   title, thumb, author, playing, loop, isFullScreen,
   hideFullScreen, handleLoop, handlePlayPause, handlePrev, handleNext }) => {
+  const slideProps = {
+    step: 0.1,
+    value: 10,
+    // onChange: (per) => {
+    //
+    // },
+    // onAfterChange: (per) => {
+    //
+    // },
+    trackStyle: {
+      backgroundColor: '#666',
+      height: '3px',
+    },
+    railStyle: {
+      backgroundColor: '#cfcbd0',
+      height: '3px',
+    },
+    handleStyle: {
+      borderColor: '#999',
+      height: '16px',
+      width: '16px',
+      marginLeft: '-7px',
+      marginTop: '-7px',
+      backgroundColor: '#999',
+      boxShadow: '0 0 1px 1px #e3e3e3',
+    },
+  }
+
   return (
     <div className={classnames(styles.full_screen_box, isFullScreen && styles.active)}>
       <div className={styles.back} onClick={hideFullScreen}>
@@ -18,6 +47,11 @@ const FullScreenPlayer = ({
         <span className={styles.author}>{author}</span>
       </div>
       <div className={styles.image_bg} style={renderBgImage(thumb)} />
+      <div className={styles.slider_box}>
+        <span className={styles.curtime}>00:00</span>
+        <Slider {...slideProps} />
+        <span className={styles.duration}>04:30</span>
+      </div>
       <div className={styles.opt_box}>
         {loop ?
           <Icon onClick={handleLoop} type={require('svg/loop.svg')} /> :

@@ -40,6 +40,32 @@
     margin: 0 auto;
   }
 
+  .slider_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+
+    :global {
+      .am-slider-wrapper {
+        flex: 1;
+      }
+
+      .am-slider {
+        margin: 0;
+      }
+    }
+
+    .curtime, .duration {
+      display: block;
+      padding-top: 6px;
+      font-size: 24px;
+      min-width: 64px;
+      color: #999;
+    }
+
+  }
+
   .opt_box {
     display: flex;
     justify-content: space-between;
