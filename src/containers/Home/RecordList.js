@@ -14,7 +14,7 @@ const RecordList = ({ list, index, playing, onAudioPlayer }) => {
     index,
     playing,
     onAudioPlayer,
-    setAudioElement($el) {
+    setAudioElement ($el) {
       $audio = $el
     },
   }
