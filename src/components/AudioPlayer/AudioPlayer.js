@@ -31,7 +31,7 @@ class AudioPlayer extends Component {
 
   handlePlayPause () {
     const { onAudioPlayer, playing } = this.props
-    onAudioPlayer.changePlaying(!playing)
+    onAudioPlayer.changePlaying()
     playing ? this.$audio.pause() : this.$audio.play()
   }
 
@@ -45,13 +45,22 @@ class AudioPlayer extends Component {
   }
 
   render () {
-    const { list, index, playing, setAudioElement } = this.props
+    const { list, index, playing, setAudioElement, onAudioPlayer } = this.props
     const { loop, isFullScreen } = this.state
     const current = list[index]
 
     const fullScreenPlayerProps = {
       ...current,
+      loop,
+      playing,
       isFullScreen,
+      $audio: this.$audio,
+      handleLoop: ::this.handleLoop,
+      handlePlayPause: ::this.handlePlayPause,
+      handleNext: ::this.handleNext,
+      handlePrev: () => {
+        onAudioPlayer.toPrev()
+      },
       hideFullScreen: () => {
         this.setState({ isFullScreen: false })
       },
