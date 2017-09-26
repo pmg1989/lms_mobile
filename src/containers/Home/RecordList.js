@@ -16,13 +16,12 @@ const RecordList = ({ list, index, playing, onAudioPlayer }) => {
 
   const handlePlayPause = (cur) => {
     if (index === cur) {
-      onAudioPlayer.changePlaying(!playing)
+      onAudioPlayer.changePlaying()
     } else if (cur === index - 1) {
       onAudioPlayer.toPrev()
     } else if (cur === index + 1) {
       onAudioPlayer.toNext()
     } else {
-      onAudioPlayer.changePlaying(true)
       onAudioPlayer.changeIndex(cur)
     }
   }
