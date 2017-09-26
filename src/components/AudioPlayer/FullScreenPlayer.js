@@ -43,7 +43,7 @@ class FullScreenPlayer extends Component {
 
     $audio.addEventListener('timeupdate', (e) => {
       const { currentTime, duration } = e.target
-      if(!this.state.isSliding && !isNaN(duration)) {
+      if (!this.state.isSliding && !isNaN(duration)) {
         this.setState({ currentTime, percent: (currentTime / duration) * 100 })
       }
     })
@@ -55,7 +55,7 @@ class FullScreenPlayer extends Component {
       setAudioElement, hideFullScreen, handleLoop, handlePlayPause, handlePrev, handleNext } = this.props
 
     const { currentTime, totalTime, percent } = this.state
-    
+
     const slideProps = {
       step: 0.1,
       value: percent,
