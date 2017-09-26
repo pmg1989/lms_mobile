@@ -51,7 +51,7 @@ class AudioPlayer extends Component {
     const current = list[index]
 
     const fullScreenPlayerProps = {
-      ...current,
+      current,
       loop,
       playing,
       switching,

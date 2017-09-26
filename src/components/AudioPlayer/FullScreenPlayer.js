@@ -8,10 +8,12 @@ import styles from './FullScreenPlayer.less'
 
 class FullScreenPlayer extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    thumb: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
+    current: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      thumb: PropTypes.string.isRequired,
+      source: PropTypes.string.isRequired,
+    }).isRequired,
     loop: PropTypes.bool.isRequired,
     playing: PropTypes.bool.isRequired,
     switching: PropTypes.bool.isRequired,
@@ -57,7 +59,7 @@ class FullScreenPlayer extends Component {
 
   render () {
     const {
-      title, thumb, author, source, playing, loop, isFullScreen,
+      current, playing, loop, isFullScreen,
       setAudioElement, hideFullScreen, handleLoop, handlePlayPause, handlePrev, handleNext } = this.props
 
     const { currentTime, totalTime, percent } = this.state
@@ -93,7 +95,7 @@ class FullScreenPlayer extends Component {
 
     const audioProps = {
       autoPlay: playing,
-      src: source,
+      src: current.source,
       ref: (c) => {
         this.$audio = c
         setAudioElement(c)
@@ -106,10 +108,10 @@ class FullScreenPlayer extends Component {
           <Icon type={require('svg/arrow-down.svg')} />
         </div>
         <div className={styles.info}>
-          <span className={styles.title}>{title}</span><br />
-          <span className={styles.author}>{author}</span>
+          <span className={styles.title}>{current.title}</span><br />
+          <span className={styles.author}>{current.author}</span>
         </div>
-        <div className={styles.image_bg} style={renderBgImage(thumb)} />
+        <div className={styles.image_bg} style={renderBgImage(current.thumb)} />
         <div className={styles.slider_box}>
           <span className={styles.curtime}>{parseTime(currentTime)}</span>
           <Slider {...slideProps} />
