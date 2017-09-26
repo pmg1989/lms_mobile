@@ -7,16 +7,22 @@ import { Title } from './StudyList'
 import styles from './RecordList.less'
 
 const RecordList = ({ list, index, playing, onAudioPlayer }) => {
+  let $audio
+
   const audioPlayerProps = {
     list: list.toJS(),
     index,
     playing,
     onAudioPlayer,
+    setAudioElement($el) {
+      $audio = $el
+    },
   }
 
   const handlePlayPause = (cur) => {
     if (index === cur) {
       onAudioPlayer.changePlaying()
+      playing ? $audio.pause() : $audio.play()
     } else if (cur === index - 1) {
       onAudioPlayer.toPrev()
     } else if (cur === index + 1) {
@@ -46,7 +52,7 @@ const RecordList = ({ list, index, playing, onAudioPlayer }) => {
           ))}
         </ul>
       </div>
-      {playing && <AudioPlayer {...audioPlayerProps} />}
+      <AudioPlayer {...audioPlayerProps} />
     </div>
   )
 }

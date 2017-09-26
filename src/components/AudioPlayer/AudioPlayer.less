@@ -1,7 +1,7 @@
 @import "../../themes/mixin.less";
 
 .bottom_box {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
@@ -11,6 +11,10 @@
   left: 0;
   right: 0;
   height: auto;
+
+  &.active {
+    display: flex;
+  }
 
   .left {
     display: flex;

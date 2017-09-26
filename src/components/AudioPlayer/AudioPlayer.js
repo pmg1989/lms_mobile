@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { Icon } from 'components'
 import { renderBgImage } from 'utils/tools'
 import FullScreenPlayer from './FullScreenPlayer'
@@ -16,6 +17,7 @@ class AudioPlayer extends Component {
     index: PropTypes.number.isRequired,
     playing: PropTypes.bool.isRequired,
     onAudioPlayer: PropTypes.object.isRequired,
+    setAudioElement: PropTypes.func,
   }
 
   state = {
@@ -29,6 +31,7 @@ class AudioPlayer extends Component {
   handlePlayPause () {
     const { onAudioPlayer, playing } = this.props
     onAudioPlayer.changePlaying(!playing)
+    playing ? this.$audio.pause() : this.$audio.play()
   }
 
   handleNext () {
@@ -37,13 +40,22 @@ class AudioPlayer extends Component {
   }
 
   render () {
-    const { list, index, playing } = this.props
+    const { list, index, playing, setAudioElement } = this.props
     const { loop } = this.state
     const current = list[index]
 
+    const audioProps = {
+      autoPlay: playing,
+      src: current.source,
+      ref: (c) => {
+        this.$audio = c
+        setAudioElement(c)
+      },
+    }
+
     return (
       <div className={styles.player_box}>
-        <div className={styles.bottom_box}>
+        <div className={classnames(styles.bottom_box, playing && styles.active)}>
           <div className={styles.left}>
             <div className={styles.thumb} style={renderBgImage(current.thumb)} />
             <div className={styles.info}>
@@ -58,7 +70,7 @@ class AudioPlayer extends Component {
           </div>
         </div>
         <FullScreenPlayer {...current} />
-        <audio id="audio" src={current.source} autoPlay="autoplay">audio not supported :(</audio>
+        <audio {...audioProps}>audio not supported :(</audio>
       </div>
     )
   }
