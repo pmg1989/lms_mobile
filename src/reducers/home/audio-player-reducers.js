@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
-import { AUDIO_CHANGE_INDEX, AUDIO_CHANGE_PLAYING, AUDIO_CHANGE_PREV, AUDIO_CHANGE_NEXT } from 'constants/home-constants'
+import { AUDIO_CHANGE_INDEX, AUDIO_CHANGE_PLAYING, AUDIO_CHANGE_PREV, AUDIO_CHANGE_NEXT, AUDIO_CHANGE_SWITCH } from 'constants/home-constants'
 
 const $audioPlayer = Immutable.fromJS({
   list: [{
@@ -21,6 +21,7 @@ const $audioPlayer = Immutable.fromJS({
   }],
   index: 0,
   playing: false,
+  switching: false, // 切换状态
 })
 
 const audioPlayer = createReducer($audioPlayer, {
@@ -28,17 +29,20 @@ const audioPlayer = createReducer($audioPlayer, {
     return state.set('index', action.index).set('playing', true)
   },
   [AUDIO_CHANGE_PLAYING] (state) {
-    return state.set('playing', !state.get('playing'))
+    return state.set('playing', !state.get('playing')).set('switching', false)
   },
   [AUDIO_CHANGE_PREV] (state) {
     const size = state.get('list').size
     const cur = state.get('index') - 1
-    return state.set('index', cur < 0 ? size - 1 : cur).set('playing', true)
+    return state.set('index', cur < 0 ? size - 1 : cur).set('playing', false).set('switching', true)
   },
   [AUDIO_CHANGE_NEXT] (state) {
     const size = state.get('list').size
     const cur = state.get('index') + 1
-    return state.set('index', cur % size).set('playing', true)
+    return state.set('index', cur % size).set('playing', false).set('switching', true)
+  },
+  [AUDIO_CHANGE_SWITCH] (state) {
+    return state.set('switching', !state.get('switching')).set('playing', false)
   },
 })
 

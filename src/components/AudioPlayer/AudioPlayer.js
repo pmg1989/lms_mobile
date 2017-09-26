@@ -16,6 +16,7 @@ class AudioPlayer extends Component {
     })),
     index: PropTypes.number.isRequired,
     playing: PropTypes.bool.isRequired,
+    switching: PropTypes.bool.isRequired,
     onAudioPlayer: PropTypes.object.isRequired,
     setAudioElement: PropTypes.func,
   }
@@ -45,7 +46,7 @@ class AudioPlayer extends Component {
   }
 
   render () {
-    const { list, index, playing, setAudioElement, onAudioPlayer } = this.props
+    const { list, index, playing, switching, setAudioElement, onAudioPlayer } = this.props
     const { loop, isFullScreen } = this.state
     const current = list[index]
 
@@ -53,12 +54,16 @@ class AudioPlayer extends Component {
       ...current,
       loop,
       playing,
+      switching,
       isFullScreen,
       handleLoop: ::this.handleLoop,
       handlePlayPause: ::this.handlePlayPause,
       handleNext: ::this.handleNext,
       handlePrev: () => {
         onAudioPlayer.toPrev()
+      },
+      handleSwitch: () => {
+        onAudioPlayer.changeSwitching()
       },
       hideFullScreen: () => {
         this.setState({ isFullScreen: false })
@@ -71,7 +76,7 @@ class AudioPlayer extends Component {
 
     return (
       <div className={styles.player_box}>
-        <div className={classnames(styles.bottom_box, playing && styles.active)} onClick={::this.handleShowFullScreen}>
+        <div className={classnames(styles.bottom_box, (playing || switching) && styles.active)} onClick={::this.handleShowFullScreen}>
           <div className={styles.left}>
             <div className={styles.thumb} style={renderBgImage(current.thumb)} />
             <div className={styles.info}>

@@ -14,6 +14,7 @@ class FullScreenPlayer extends Component {
     source: PropTypes.string.isRequired,
     loop: PropTypes.bool.isRequired,
     playing: PropTypes.bool.isRequired,
+    switching: PropTypes.bool.isRequired,
     isFullScreen: PropTypes.bool.isRequired,
     hideFullScreen: PropTypes.func.isRequired,
     handleLoop: PropTypes.func.isRequired,
@@ -34,6 +35,7 @@ class FullScreenPlayer extends Component {
     const { $audio } = this
 
     $audio.addEventListener('canplay', (e) => {
+      this.props.switching && this.props.handlePlayPause()
       this.setState({ totalTime: e.target.duration })
     })
 

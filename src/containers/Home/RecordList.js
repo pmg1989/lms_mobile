@@ -6,13 +6,14 @@ import { Icon, AudioPlayer } from 'components'
 import { Title } from './StudyList'
 import styles from './RecordList.less'
 
-const RecordList = ({ list, index, playing, onAudioPlayer }) => {
+const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
   let $audio
 
   const audioPlayerProps = {
     list: list.toJS(),
     index,
     playing,
+    switching,
     onAudioPlayer,
     setAudioElement ($el) {
       $audio = $el
@@ -34,7 +35,7 @@ const RecordList = ({ list, index, playing, onAudioPlayer }) => {
 
   return (
     <div>
-      <div className={classnames(styles.list_box, playing && styles.playing)}>
+      <div className={classnames(styles.list_box, (playing || switching) && styles.playing)}>
         <Title title="我的录音作品" />
         <ul className={styles.list}>
           {list.map((item, key) => (
@@ -61,6 +62,7 @@ RecordList.propTypes = {
   list: PropTypes.instanceOf(Immutable.List).isRequired,
   index: PropTypes.number.isRequired,
   playing: PropTypes.bool.isRequired,
+  switching: PropTypes.bool.isRequired,
   onAudioPlayer: PropTypes.object.isRequired,
 }
 

@@ -20,6 +20,7 @@ const Home = ({ audioPlayer, onAudioPlayer }) => {
     list: audioPlayer.get('list'),
     index: audioPlayer.get('index'),
     playing: audioPlayer.get('playing'),
+    switching: audioPlayer.get('switching'),
     onAudioPlayer,
   }
 
