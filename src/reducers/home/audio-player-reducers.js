@@ -17,7 +17,7 @@ const $audioPlayer = Immutable.fromJS({
     title: '爱如潮水',
     author: 'felix3',
     thumb: 'https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg',
-    source: 'https://o9u2lnvze.qnssl.com/FnAsnwL0e3ex-doU_0iCttbP0zIh',
+    source: 'http://fs.open.kugou.com/fc960047bd6044f1349127ab15cea1f1/59ca124d/G008/M01/06/13/qIYBAFUJNimAIZMqABSnadS-_3w266.m4a',
   }],
   index: 0,
   playing: false,

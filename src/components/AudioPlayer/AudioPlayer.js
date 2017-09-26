@@ -54,7 +54,6 @@ class AudioPlayer extends Component {
       loop,
       playing,
       isFullScreen,
-      $audio: this.$audio,
       handleLoop: ::this.handleLoop,
       handlePlayPause: ::this.handlePlayPause,
       handleNext: ::this.handleNext,
@@ -64,14 +63,9 @@ class AudioPlayer extends Component {
       hideFullScreen: () => {
         this.setState({ isFullScreen: false })
       },
-    }
-
-    const audioProps = {
-      autoPlay: playing,
-      src: current.source,
-      ref: (c) => {
-        this.$audio = c
-        setAudioElement(c)
+      setAudioElement: ($el) => {
+        this.$audio = $el
+        setAudioElement($el)
       },
     }
 
@@ -92,7 +86,6 @@ class AudioPlayer extends Component {
           </div>
         </div>
         <FullScreenPlayer {...fullScreenPlayerProps} />
-        <audio {...audioProps}>audio not supported :(</audio>
       </div>
     )
   }
