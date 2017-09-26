@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { Icon } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './FullScreenPlayer.less'
@@ -10,6 +11,8 @@ class FullScreenPlayer extends Component {
     author: PropTypes.string.isRequired,
     thumb: PropTypes.string.isRequired,
     // url: PropTypes.string.isRequired,
+    isFullScreen: PropTypes.bool.isRequired,
+    hideFullScreen: PropTypes.func.isRequired,
   }
 
   state = {
@@ -26,12 +29,12 @@ class FullScreenPlayer extends Component {
   }
 
   render () {
-    const { title, thumb, author } = this.props
+    const { title, thumb, author, isFullScreen, hideFullScreen } = this.props
     const { play, loop } = this.state
 
     return (
-      <div className={styles.full_screen_box}>
-        <div className={styles.back}>
+      <div className={classnames(styles.full_screen_box, isFullScreen && styles.active)}>
+        <div className={styles.back} onClick={hideFullScreen}>
           <Icon type={require('svg/arrow-down.svg')} />
         </div>
         <div className={styles.info}>

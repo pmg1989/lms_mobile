@@ -1,14 +1,18 @@
 @import "../../themes/mixin.less";
 
 .full_screen_box {
-  display: none;
   position: fixed;
-  top: 88px;
+  top: 100vh;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: #fff;
   z-index: 999;
+  transition: all .3s ease-in;
+
+  &.active {
+    top: 88px;
+  }
 
   .back {
     text-align: center;

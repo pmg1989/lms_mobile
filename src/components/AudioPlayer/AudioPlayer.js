@@ -22,6 +22,7 @@ class AudioPlayer extends Component {
 
   state = {
     loop: true,
+    isFullScreen: false,
   }
 
   handleLoop () {
@@ -39,10 +40,22 @@ class AudioPlayer extends Component {
     onAudioPlayer.toNext()
   }
 
+  handleShowFullScreen () {
+    this.setState({ isFullScreen: true })
+  }
+
   render () {
     const { list, index, playing, setAudioElement } = this.props
-    const { loop } = this.state
+    const { loop, isFullScreen } = this.state
     const current = list[index]
+
+    const fullScreenPlayerProps = {
+      ...current,
+      isFullScreen,
+      hideFullScreen: () => {
+        this.setState({ isFullScreen: false })
+      },
+    }
 
     const audioProps = {
       autoPlay: playing,
@@ -55,7 +68,7 @@ class AudioPlayer extends Component {
 
     return (
       <div className={styles.player_box}>
-        <div className={classnames(styles.bottom_box, playing && styles.active)}>
+        <div className={classnames(styles.bottom_box, playing && styles.active)} onClick={::this.handleShowFullScreen}>
           <div className={styles.left}>
             <div className={styles.thumb} style={renderBgImage(current.thumb)} />
             <div className={styles.info}>
@@ -69,7 +82,7 @@ class AudioPlayer extends Component {
             <Icon type={require('svg/next.svg')} onClick={::this.handleNext} />
           </div>
         </div>
-        <FullScreenPlayer {...current} />
+        <FullScreenPlayer {...fullScreenPlayerProps} />
         <audio {...audioProps}>audio not supported :(</audio>
       </div>
     )
