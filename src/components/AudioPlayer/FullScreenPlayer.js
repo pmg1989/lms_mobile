@@ -23,6 +23,7 @@ class FullScreenPlayer extends Component {
     handlePlayPause: PropTypes.func.isRequired,
     handlePrev: PropTypes.func.isRequired,
     handleNext: PropTypes.func.isRequired,
+    handleSwitch: PropTypes.func.isRequired,
     setAudioElement: PropTypes.func.isRequired,
   }
 
@@ -43,7 +44,8 @@ class FullScreenPlayer extends Component {
 
     $audio.addEventListener('ended', () => {
       if (this.props.loop) {
-        this.$audio.play()
+        this.props.handleSwitch()
+        setTimeout(() => { this.props.handlePlayPause() }, 0)
       } else {
         this.props.handleNext()
       }
