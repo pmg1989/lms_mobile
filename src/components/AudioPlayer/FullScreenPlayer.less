@@ -72,9 +72,17 @@
     align-items: center;
     padding: 50px 50px 0;
 
+    svg {
+      transition: transform .25s ease-in-out;
+    }
+
     .pause_o, .play_o {
       width: 100px;
       height: 100px;
+    }
+
+    .pause_o {
+      transform: rotateZ(180deg);
     }
   }
 }

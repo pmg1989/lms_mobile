@@ -52,6 +52,11 @@
     :global {
       .am-icon-pause, .am-icon-play {
         margin: 0 30px;
+        transition: transform .25s ease-in-out;
+      }
+
+      .am-icon-pause {
+        transform: rotateZ(180deg);
       }
     }
   }
