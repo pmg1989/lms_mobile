@@ -16,10 +16,11 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root" style="display: none;"></div>
   <script type="text/javascript" src="/js/fastclick.js?v=1"></script>
   <script>
     FastClick.attach(document.body)
+    setTimeout(() => { document.getElementById('root').removeAttribute("style") }, 500)
   </script>
   <% for (item of htmlWebpackPlugin.options.headScripts) { %>
     <script src="<%= item %>"></script>
