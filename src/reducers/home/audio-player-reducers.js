@@ -4,20 +4,20 @@ import { AUDIO_CHANGE_INDEX, AUDIO_CHANGE_PLAY, AUDIO_CHANGE_PAUSE, AUDIO_CHANGE
 
 const $audioPlayer = Immutable.fromJS({
   list: [{
-    title: '时间都去哪了',
+    title: '测试音频文件1',
     author: 'felix1',
     thumb: 'https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg',
-    source: 'https://o9u2lnvze.qnssl.com/music/songs/uhsAAJfW61DnhdgU-0d9493b8-3e01-48f3-b0fb-60901a32eec6',
+    source: 'https://ompdghfd0.qnssl.com/lms_stagingsz01/recording/student/jl/1980-145-1499755427.mp3?e=1521860480&token=fl6A1F9KHk0raN9TIv9kr4mZRnd1KovppmqGTET_:GBWNR_1_34Fqs5wFgoqkfrsZZW0=',
   }, {
-    title: '测试音频文件2',
+    title: '时间都去哪了',
     author: 'felix2',
     thumb: 'https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg',
-    source: 'https://ompdghfd0.qnssl.com/lms_stagingsz01/recording/student/jl/1980-145-1499755427.mp3?e=1521860480&token=fl6A1F9KHk0raN9TIv9kr4mZRnd1KovppmqGTET_:GBWNR_1_34Fqs5wFgoqkfrsZZW0=',
+    source: 'https://o9u2lnvze.qnssl.com/music/songs/uhsAAJfW61DnhdgU-0d9493b8-3e01-48f3-b0fb-60901a32eec6',
   }, {
     title: '爱如潮水',
     author: 'felix3',
     thumb: 'https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg',
-    source: 'https://o9u2lnvze.qnssl.com/FnMlw72HVhViprwu8CwTG0EqWN4R',
+    source: 'https://ompdghfd0.qnssl.com/lms_stagingsz01/recording/student/jl/1980-145-1499755427.mp3?e=1522055089&token=fl6A1F9KHk0raN9TIv9kr4mZRnd1KovppmqGTET_:5vK-QEKGPbXxQ5K_p5qxs5_tGMk=',
   }],
   index: 0,
   playing: false,
