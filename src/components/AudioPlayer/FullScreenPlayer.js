@@ -39,8 +39,11 @@ class FullScreenPlayer extends Component {
 
     $audio.addEventListener('canplay', (e) => {
       !this.props.playing && $audio.pause()
-      this.props.switching && this.props.handlePlayPause()
       this.setState({ totalTime: e.target.duration })
+    })
+
+    $audio.addEventListener('loadstart', () => {
+      setTimeout(() => { this.props.switching && this.props.handlePlayPause() }, 250)
     })
 
     $audio.addEventListener('ended', () => {
