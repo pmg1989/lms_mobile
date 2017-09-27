@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import './Icon.less'
+import styles from './Icon.less'
 
 class Icon extends Component {
 
@@ -11,6 +11,7 @@ class Icon extends Component {
       PropTypes.object,
     ]).isRequired,
     style: PropTypes.object,
+    onClick: PropTypes.func,
   }
 
   state = {
@@ -24,13 +25,15 @@ class Icon extends Component {
   }
 
   render () {
-    const { className, style, type, ...props } = this.props
+    const { className, style, type, onClick, ...props } = this.props
     const { show } = this.state
 
     return (
-      <svg className={`am-icon am-icon-${type.default ? type.default.id : type} ${className || ''}`} style={style} {...props}>
-        {show && <use xlinkHref={`#${type.default ? type.default.id : type}`} />}
-      </svg>
+      <span className={styles.icon_wrap} onClick={onClick}>
+        <svg className={`am-icon am-icon-${type.default ? type.default.id : type} ${className || ''}`} style={style} {...props}>
+          {show && <use xlinkHref={`#${type.default ? type.default.id : type}`} />}
+        </svg>
+      </span>
     )
   }
 }
