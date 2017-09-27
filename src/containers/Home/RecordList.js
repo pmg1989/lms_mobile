@@ -45,8 +45,8 @@ const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
               </div>
               <div className={styles.opt_box}>
                 {key === index && playing ?
-                  <Icon type={require('svg/pause.svg')} onClick={() => handlePlayPause(key)} /> :
-                  <Icon type={require('svg/play.svg')} onClick={() => handlePlayPause(key)} />
+                  <Icon className={styles.pause} type={require('svg/pause.svg')} onClick={() => handlePlayPause(key)} /> :
+                  <Icon className={styles.play} type={require('svg/play.svg')} onClick={() => handlePlayPause(key)} />
                 }
               </div>
             </li>
