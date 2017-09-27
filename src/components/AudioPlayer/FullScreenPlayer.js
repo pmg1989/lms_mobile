@@ -38,7 +38,7 @@ class FullScreenPlayer extends Component {
     const { $audio } = this
 
     $audio.addEventListener('canplay', (e) => {
-      //等待css动画完成后播放
+      // 等待css动画完成后播放
       setTimeout(() => {
         this.props.switching && this.props.handlePlayPause()
       }, 250)

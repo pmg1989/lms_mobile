@@ -22,7 +22,7 @@ const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
 
   const handlePlayPause = (cur) => {
     if (index === cur) {
-      onAudioPlayer.changePlaying()
+      playing ? onAudioPlayer.changePause() : onAudioPlayer.changePlay()
       playing ? $audio.pause() : $audio.play()
     } else if (cur === index - 1) {
       onAudioPlayer.toPrev()

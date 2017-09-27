@@ -32,7 +32,7 @@ class AudioPlayer extends Component {
 
   handlePlayPause () {
     const { onAudioPlayer, playing } = this.props
-    onAudioPlayer.changePlaying()
+    playing ? onAudioPlayer.changePause() : onAudioPlayer.changePlay()
     playing ? this.$audio.pause() : this.$audio.play()
   }
 

@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
-import { AUDIO_CHANGE_INDEX, AUDIO_CHANGE_PLAYING, AUDIO_CHANGE_PREV, AUDIO_CHANGE_NEXT, AUDIO_CHANGE_SWITCH } from 'constants/home-constants'
+import { AUDIO_CHANGE_INDEX, AUDIO_CHANGE_PLAY, AUDIO_CHANGE_PAUSE, AUDIO_CHANGE_PREV, AUDIO_CHANGE_NEXT, AUDIO_CHANGE_SWITCH } from 'constants/home-constants'
 
 const $audioPlayer = Immutable.fromJS({
   list: [{
@@ -17,7 +17,7 @@ const $audioPlayer = Immutable.fromJS({
     title: '爱如潮水',
     author: 'felix3',
     thumb: 'https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg',
-    source: 'http://fs.open.kugou.com/fc960047bd6044f1349127ab15cea1f1/59ca124d/G008/M01/06/13/qIYBAFUJNimAIZMqABSnadS-_3w266.m4a',
+    source: 'https://o9u2lnvze.qnssl.com/FnMlw72HVhViprwu8CwTG0EqWN4R',
   }],
   index: 0,
   playing: false,
@@ -28,8 +28,11 @@ const audioPlayer = createReducer($audioPlayer, {
   [AUDIO_CHANGE_INDEX] (state, action) {
     return state.set('index', action.index).set('playing', false).set('switching', true)
   },
-  [AUDIO_CHANGE_PLAYING] (state) {
-    return state.set('playing', !state.get('playing')).set('switching', false)
+  [AUDIO_CHANGE_PLAY] (state) {
+    return state.set('playing', true).set('switching', false)
+  },
+  [AUDIO_CHANGE_PAUSE] (state) {
+    return state.set('playing', false).set('switching', false)
   },
   [AUDIO_CHANGE_PREV] (state) {
     const size = state.get('list').size
