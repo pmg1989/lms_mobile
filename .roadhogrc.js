@@ -13,7 +13,8 @@ export default {
   theme: "./theme.config.js",
   hash: true,
   publicPath : `/${version}/`,
-  outputPath : `./dist/${version}`,
+  // outputPath : `./dist/${version}`,
+  outputPath : `./dist/deploy`,
   autoprefixer : {
     browsers : [
       "iOS >= 8" ,

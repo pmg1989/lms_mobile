@@ -4,7 +4,7 @@
   "version": "2.0.1",
   "scripts": {
     "dev": "cross-env BROWSER=none HOST=test.newband.com PORT=8002 roadhog server",
-    "build": "roadhog build",
+    "build": "roadhog build && node deploy",
     "build:analyze": "roadhog build --analyze",
     "build:dll": "roadhog buildDll",
     "build:new": "node version && roadhog build",
@@ -40,6 +40,7 @@
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.9.2",
+    "copy-dir": "^0.3.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.5",
     "ejs-loader": "^0.3.0",
