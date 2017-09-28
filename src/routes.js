@@ -9,6 +9,7 @@ const Routes = (
   <Route path="/" component={App}>
     <IndexRoute component={require('./containers/Home')} />
     <Route path="/introduce" component={require('./containers/Introduce')} />
+    <Route path="/demo/:id/:detail" component={require('./containers/Demo')} />
   </Route>
 )
 
