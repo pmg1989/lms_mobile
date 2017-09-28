@@ -1,12 +1,15 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
+import { goBack } from 'react-router-redux'
+// import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile'
 import styles from './Header.less'
 
 const Header = ({ dispatch, children, ...headerProps }) => {
   const handleBack = () => {
-    // router.goBack()
+    // browserHistory.goBack()
+    dispatch(goBack())
   }
 
   const navBarProps = {
