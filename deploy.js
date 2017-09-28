@@ -3,7 +3,7 @@ const path = require('path')
 const copydir = require('copy-dir')
 const { version } = require('./package.json')
 
-const removeFolder = (folderPath) => {
+const removeFolder = (folderPath, removeDirectory = true) => {
   let files = []
   if (fs.existsSync(folderPath)) {
     files = fs.readdirSync(folderPath)
@@ -15,7 +15,7 @@ const removeFolder = (folderPath) => {
         fs.unlinkSync(curPath)
       }
     })
-    fs.rmdirSync(folderPath)
+    removeDirectory && fs.rmdirSync(folderPath)
   }
 }
 
@@ -25,6 +25,8 @@ const start = () => {
   const dist = path.join(`${__dirname}/dist/${version}`)
   if (!fs.existsSync(dist)) {
     fs.mkdirSync(dist)
+  } else {
+    removeFolder(dist, false)
   }
 
   copydir.sync(from, dist)
