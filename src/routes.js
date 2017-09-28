@@ -1,28 +1,31 @@
-import React from 'react'
-import { Route, IndexRoute } from 'react-router'
-
-/* containers */
-import App from './containers/App'
-
-
-const Routes = (
-  <Route path="/" component={App}>
-    <IndexRoute component={require('./containers/Home')} />
-    <Route path="/introduce" component={require('./containers/Introduce')} />
-    <Route path="/demo/:id/:detail" component={require('./containers/Demo')} />
-  </Route>
-)
-
-// const Routes = [{
-//   path: '/',
-//   component: App,
-//   indexRoute: {
-//     component: require('./containers/Introduce'),
-//   },
-//   childRoutes: [{
-//       path: 'introduce',
-//       component: require('./containers/Introduce')
-//   }]
-// }]
+const Routes = [
+  {
+    path: '/',
+    component: require('./containers/App'),
+    getIndexRoute (location, cb) {
+      require.ensure([], (require) => {
+        cb(null, { component: require('./containers/Home') })
+      }, 'home')
+    },
+    childRoutes: [
+      {
+        path: 'introduce',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Introduce'))
+          }, 'introduce')
+        },
+      },
+      {
+        path: 'demo/:id/:detail',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Demo'))
+          }, 'demo')
+        },
+      },
+    ],
+  },
+]
 
 export default Routes
