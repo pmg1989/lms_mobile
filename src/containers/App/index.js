@@ -8,12 +8,18 @@ class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     location: PropTypes.object.isRequired,
-    onApp: PropTypes.func.isRequired,
+    onApp: PropTypes.object.isRequired,
   }
 
   componentDidMount () {
-    const { location: { query }, onApp } = this.props
-    onApp.authLogin(query.mobile, query.token)
+    const { location: { query: { mobile, token } }, onApp } = this.props
+    if (!!mobile && !!token) {
+      onApp.authLogin(mobile, token).then((res) => {
+        console.log(res)
+      })
+    } else {
+      console.log('to login')
+    }
   }
 
   render () {
