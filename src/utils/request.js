@@ -2,7 +2,7 @@
 import fetch from 'isomorphic-fetch'
 import NProgress from 'nprogress'
 
-const baseURL = newband.lms.AUTH_HOST
+const baseURL = NEWBAND.LMS.AUTH_HOST
 
 function checkStatus (res) {
   if (res.status >= 200 && res.status < 300) {
@@ -24,7 +24,7 @@ function handleError (error) {
   console.error(error.stack)
 }
 
-export function post (url, data) {
+export function request (url, data) {
   NProgress.start()
   let body = new FormData()
   for (let key in data) {
@@ -41,6 +41,15 @@ export function post (url, data) {
 export function get (url) {
   NProgress.start()
   return fetch(baseURL + url)
+         .then(checkStatus)
+         .then(handelData)
+         .catch(handleError)
+}
+
+export function auth (phone, token) {
+  NProgress.start()
+  const url = `${NEWBAND.LMS.AUTH_HOST}/apptoken/${token}/phone/${phone}`
+  return fetch(url, { method: 'post' })
          .then(checkStatus)
          .then(handelData)
          .catch(handleError)

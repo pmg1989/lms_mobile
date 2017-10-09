@@ -48,8 +48,7 @@ export default {
         }]
       ],
       define: {
-        'newband.lms.ISMOCK': true,
-        'newband.lms.AUTH_HOST': 'http://school.newband.com:8082/moodle/webservice/rest/server.php',
+        'NEWBAND.LMS.AUTH_HOST': 'http://school.newband.com:8083/v1/Login/phonelogin',
       },
     },
     production: {
@@ -71,8 +70,7 @@ export default {
         }]
       ],
       define: {
-        'newband.lms.ISMOCK': true,
-        'newband.lms.AUTH_HOST': 'http://school.newband.com:8082/moodle/webservice/rest/server.php',
+        'NEWBAND.LMS.AUTH_HOST': 'http://school.newband.com:8083/v1/Login/phonelogin',
       },
     }
   },

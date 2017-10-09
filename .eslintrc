@@ -55,6 +55,6 @@
     "location": true,
     "localStorage": true,
     "document": true,
-    "newband": true,
+    "NEWBAND": true,
   }
 }
