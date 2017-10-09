@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { appActions } from 'actions'
+import { Icon } from 'components'
+import styles from './App.less'
 
 class App extends Component {
   static propTypes = {
@@ -13,25 +15,33 @@ class App extends Component {
     goTo: PropTypes.func.isRequired,
   }
 
-  componentDidMount () {
+  state = {
+    loading: true,
+  }
+
+  componentWillMount () {
     const { location: { query: { mobile, token } }, onApp, goTo } = this.props
     if (!!mobile && !!token) {
       onApp.authLogin(mobile, token).then((res) => {
+        this.setState({ loading: false })
         if (!res.app.authorized) {
           goTo('/login')
         }
       })
     } else {
+      this.setState({ loading: false })
       goTo('/login')
     }
   }
 
   render () {
     const { children } = this.props
+    const { loading } = this.state
 
     return (
       <div>
-        {React.Children.map(children, (child) => {
+        {loading && <Icon className={styles.loading} type={require('svg/loading.svg')} />}
+        {!loading && React.Children.map(children, (child) => {
           return React.cloneElement(child, {})
         })}
       </div>
