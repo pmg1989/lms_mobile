@@ -6,7 +6,7 @@ export const authLoginSuccess = app => ({ app: Immutable.fromJS(app), type: appC
 
 export const authLogin = (mobile, token) => (
   dispatch => (
-    auth(mobile, token).then(json => {
+    auth(mobile, token).then((json) => {
       const data = json.data
       data.mobile = mobile
       data.authorized = json.status === 10000
