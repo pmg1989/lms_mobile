@@ -1,8 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import Immutable from 'immutable'
 import { NoticeBar } from 'antd-mobile'
 import styles from './Notice.less'
 
-const Notice = () => {
+const Notice = ({ notice }) => {
   const noticeBarProps = {
     className: styles.content,
     icon: null,
@@ -13,9 +15,13 @@ const Notice = () => {
   return (
     <div className={styles.notice_box}>
       <span className={styles.title}>牛班公告：</span>
-      <NoticeBar {...noticeBarProps}>本周将有神秘嘉宾来到牛班教室！本周将有神秘嘉宾来到牛班教室！点击查看</NoticeBar>
+      <NoticeBar {...noticeBarProps}>{notice.get('title')}</NoticeBar>
     </div>
   )
+}
+
+Notice.propTypes = {
+  notice: PropTypes.instanceOf(Immutable.Map).isRequired
 }
 
 export default Notice

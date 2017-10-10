@@ -10,6 +10,17 @@ const studyList = createReducer($studyList, {
   },
 })
 
+const $notice = Immutable.fromJS({
+  title: '',
+})
+
+const notice = createReducer($notice, {
+  [homeConstants.FETCH_NOTICE_SUCCESS] (state, action) {
+    return state.set('title', action.item.get('title'))
+  },
+})
+
 export {
+  notice,
   studyList,
 }

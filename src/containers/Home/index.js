@@ -13,18 +13,20 @@ import RecordList from './RecordList'
 class Home extends Component {
   static propTypes = {
     app: PropTypes.instanceOf(Immutable.Map).isRequired,
-    audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
+    home: PropTypes.instanceOf(Immutable.Map).isRequired,
     onHome: PropTypes.object.isRequired,
     onAudioPlayer: PropTypes.object.isRequired,
   }
 
   componentWillMount () {
     const { app, onHome } = this.props
+    onHome.getNotice()
     onHome.getRecordList(app.get('userid'), app.get('image'))
   }
 
   render () {
-    const { app, audioPlayer, onAudioPlayer } = this.props
+    const { app, home, onAudioPlayer } = this.props
+    const audioPlayer = home.get('audioPlayer')
 
     const headerProps = {
       leftContent: null,
@@ -35,6 +37,10 @@ class Home extends Component {
       avatar: app.get('image'),
       firstName: app.get('firstname'),
       school: app.get('school'),
+    }
+
+    const noticeProps = {
+      notice: home.get('notice')
     }
 
     const recordListProps = {
@@ -50,7 +56,7 @@ class Home extends Component {
         <Header {...headerProps}>牛班音乐学校</Header>
         <div className="content">
           <UserInfo {...userInfoProps} />
-          <Notice />
+          <Notice {...noticeProps}/>
           <StudyList />
           <RecordList {...recordListProps} />
         </div>
@@ -62,7 +68,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     app: state.get('app'),
-    audioPlayer: state.getIn(['home', 'audioPlayer']),
+    home: state.get('home'),
   }
 }
 
