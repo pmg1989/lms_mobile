@@ -23,7 +23,7 @@ const Header = ({ dispatch, children, ...headerProps }) => {
   return (
     <div className={styles['fixed-top']}>
       <NavBar {...navBarProps}>
-        {children.length > 8 ? `${children.substr(0, 8)}...` : children}
+        {children.length > 12 ? `${children.substr(0, 12)}...` : children}
       </NavBar>
     </div>
   )
