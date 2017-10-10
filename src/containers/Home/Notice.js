@@ -16,7 +16,7 @@ const Notice = ({ notice }) => {
     <div className={styles.notice_box}>
       <span className={styles.title}>牛班公告：</span>
       <NoticeBar {...noticeBarProps}>
-        { !!notice.get('link') ? <a href={notice.get('link')}>{notice.get('title')}</a> : notice.get('title') }
+        { notice.get('link') ? <a href={notice.get('link')}>{notice.get('title')}</a> : notice.get('title') }
       </NoticeBar>
     </div>
   )
