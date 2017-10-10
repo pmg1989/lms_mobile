@@ -1,8 +1,7 @@
 /* global FormData */
 import fetch from 'isomorphic-fetch'
 import NProgress from 'nprogress'
-
-const baseURL = NEWBAND.LMS.AUTH_HOST
+import { appConstants } from 'constants'
 
 function checkStatus (res) {
   if (res.status >= 200 && res.status < 300) {
@@ -24,7 +23,7 @@ function handleError (error) {
   console.error(error.stack)
 }
 
-export function request (url, data) {
+export function request (url, data, method = 'POST') {
   NProgress.start()
   let body = new FormData()
   for (let key in data) {
@@ -32,7 +31,8 @@ export function request (url, data) {
       body.append(key, data[key])
     }
   }
-  return fetch(baseURL + url, { body, method: 'post' })
+  const baseURL = sessionStorage.getItem(appConstants.API_DOMAIN)
+  return fetch(baseURL + url, { body, method })
          .then(checkStatus)
          .then(handelData)
          .catch(handleError)
@@ -40,6 +40,7 @@ export function request (url, data) {
 
 export function get (url) {
   NProgress.start()
+  const baseURL = sessionStorage.getItem(appConstants.API_DOMAIN)
   return fetch(baseURL + url)
          .then(checkStatus)
          .then(handelData)

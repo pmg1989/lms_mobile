@@ -54,6 +54,7 @@
     "window": true,
     "location": true,
     "localStorage": true,
+    "sessionStorage": true,
     "document": true,
     "NEWBAND": true,
   }
