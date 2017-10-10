@@ -18,9 +18,9 @@ export const getNotice = () => (
 
 const receiveCourseList = list => ({ list: Immutable.fromJS(list), type: homeConstants.FETCH_COURSE_LIST })
 
-export const getCourseList = (userid) => (
+export const getCourseList = userid => (
   dispatch => (
-    fetchCourseList({ userid }).then((res) => ({
+    fetchCourseList({ userid }).then(res => ({
       commingList: res.data.comminglist,
       studingList: res.data.studinglist,
       passedList: res.data.passedlist,
