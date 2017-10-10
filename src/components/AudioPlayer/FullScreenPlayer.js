@@ -9,10 +9,10 @@ import styles from './FullScreenPlayer.less'
 class FullScreenPlayer extends Component {
   static propTypes = {
     current: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      thumb: PropTypes.string.isRequired,
-      source: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      author: PropTypes.string,
+      thumb: PropTypes.string,
+      source: PropTypes.string,
     }).isRequired,
     loop: PropTypes.bool.isRequired,
     playing: PropTypes.bool.isRequired,

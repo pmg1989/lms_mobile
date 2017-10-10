@@ -23,16 +23,18 @@ function handleError (error) {
   console.error(error.stack)
 }
 
-export function request (url, data, method = 'POST') {
+export function request (data, method = 'POST') {
   NProgress.start()
   let body = new FormData()
+  body.append('wstoken', sessionStorage.getItem(appConstants.UTOKEN))
+  body.append('moodlewsrestformat', 'json')
   for (let key in data) {
     if (Object.prototype.hasOwnProperty.call(data, key)) {
       body.append(key, data[key])
     }
   }
   const baseURL = sessionStorage.getItem(appConstants.API_DOMAIN)
-  return fetch(baseURL + url, { body, method })
+  return fetch(baseURL, { body, method })
          .then(checkStatus)
          .then(handelData)
          .catch(handleError)

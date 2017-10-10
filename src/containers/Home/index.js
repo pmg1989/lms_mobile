@@ -1,45 +1,56 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Header } from 'components'
-import { audioPlayerActions } from 'actions/home'
+import { audioPlayerActions, homeActions } from 'actions/home'
 import UserInfo from './UserInfo'
 import Notice from './Notice'
 import StudyList from './StudyList'
 import RecordList from './RecordList'
 
-const Home = ({ audioPlayer, onAudioPlayer }) => {
-  const headerProps = {
-    leftContent: null,
-    iconName: null,
+class Home extends Component {
+  static propTypes = {
+    app: PropTypes.instanceOf(Immutable.Map).isRequired,
+    audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
+    onHome: PropTypes.object.isRequired,
+    onAudioPlayer: PropTypes.object.isRequired,
   }
 
-  const recordListProps = {
-    list: audioPlayer.get('list'),
-    index: audioPlayer.get('index'),
-    playing: audioPlayer.get('playing'),
-    switching: audioPlayer.get('switching'),
-    onAudioPlayer,
+  componentWillMount () {
+    const { app, onHome } = this.props
+    onHome.getRecordList(app.get('userId'), app.get('avatar'))
   }
 
-  return (
-    <div className="content-box">
-      <Header {...headerProps}>牛班音乐学校</Header>
-      <div className="content">
-        <UserInfo />
-        <Notice />
-        <StudyList />
-        <RecordList {...recordListProps} />
+  render () {
+    const { audioPlayer, onAudioPlayer } = this.props
+
+    const headerProps = {
+      leftContent: null,
+      iconName: null,
+    }
+
+    const recordListProps = {
+      list: audioPlayer.get('list'),
+      index: audioPlayer.get('index'),
+      playing: audioPlayer.get('playing'),
+      switching: audioPlayer.get('switching'),
+      onAudioPlayer,
+    }
+
+    return (
+      <div className="content-box">
+        <Header {...headerProps}>牛班音乐学校</Header>
+        <div className="content">
+          <UserInfo />
+          <Notice />
+          <StudyList />
+          <RecordList {...recordListProps} />
+        </div>
       </div>
-    </div>
-  )
-}
-
-Home.propTypes = {
-  audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
-  onAudioPlayer: PropTypes.object.isRequired,
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -49,6 +60,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
+  onHome: bindActionCreators(homeActions, dispatch),
   onAudioPlayer: bindActionCreators(audioPlayerActions, dispatch),
 })
 

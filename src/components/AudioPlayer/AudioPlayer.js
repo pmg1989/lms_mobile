@@ -9,10 +9,10 @@ import styles from './AudioPlayer.less'
 class AudioPlayer extends Component {
   static propTypes = {
     list: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      thumb: PropTypes.string.isRequired,
-      source: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      author: PropTypes.string,
+      thumb: PropTypes.string,
+      source: PropTypes.string,
     })),
     index: PropTypes.number.isRequired,
     playing: PropTypes.bool.isRequired,
@@ -48,8 +48,7 @@ class AudioPlayer extends Component {
   render () {
     const { list, index, playing, switching, setAudioElement, onAudioPlayer } = this.props
     const { loop, isFullScreen } = this.state
-    const current = list[index]
-
+    const current = list[index] || {}
     const fullScreenPlayerProps = {
       current,
       loop,
