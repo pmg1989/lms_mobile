@@ -21,7 +21,7 @@ const Notice = ({ notice }) => {
 }
 
 Notice.propTypes = {
-  notice: PropTypes.instanceOf(Immutable.Map).isRequired
+  notice: PropTypes.instanceOf(Immutable.Map).isRequired,
 }
 
 export default Notice

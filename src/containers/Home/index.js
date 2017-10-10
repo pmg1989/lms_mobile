@@ -40,7 +40,7 @@ class Home extends Component {
     }
 
     const noticeProps = {
-      notice: home.get('notice')
+      notice: home.get('notice'),
     }
 
     const recordListProps = {
@@ -56,7 +56,7 @@ class Home extends Component {
         <Header {...headerProps}>牛班音乐学校</Header>
         <div className="content">
           <UserInfo {...userInfoProps} />
-          <Notice {...noticeProps}/>
+          <Notice {...noticeProps} />
           <StudyList />
           <RecordList {...recordListProps} />
         </div>
