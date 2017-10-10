@@ -21,6 +21,7 @@ class Home extends Component {
   componentWillMount () {
     const { app, onHome } = this.props
     onHome.getNotice()
+    onHome.getCourseList(app.get('userid'))
     onHome.getRecordList(app.get('userid'), app.get('image'))
   }
 

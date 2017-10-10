@@ -4,14 +4,6 @@ import { combineReducers } from 'redux-immutable'
 import { homeConstants } from 'constants'
 import audioPlayer from './audio-player-reducers'
 
-const $studyList = Immutable.fromJS([])
-
-const studyList = createReducer($studyList, {
-  [homeConstants.FETCH_STUDYLIST] (state, action) {
-    return state.merge(action.list)
-  },
-})
-
 const $notice = Immutable.fromJS({
   title: '',
 })
@@ -22,8 +14,20 @@ const notice = createReducer($notice, {
   },
 })
 
+const $course = Immutable.fromJS({
+  commingList: [],
+  studingList: [],
+  passedList: [],
+})
+
+const course = createReducer($course, {
+  [homeConstants.FETCH_COURSE_LIST] (state, action) {
+    return state.merge(action.list)
+  },
+})
+
 export default combineReducers({
   notice,
-  studyList,
+  course,
   audioPlayer,
 })
