@@ -50,7 +50,6 @@ export function get (url) {
 }
 
 export function auth (phone, token) {
-  NProgress.start()
   const url = `${NEWBAND.LMS.AUTH_HOST}/apptoken/${token}/phone/${phone}`
   return fetch(url, { method: 'post' })
          .then(checkStatus)

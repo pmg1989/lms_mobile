@@ -24,11 +24,17 @@ class Home extends Component {
   }
 
   render () {
-    const { audioPlayer, onAudioPlayer } = this.props
+    const { app, audioPlayer, onAudioPlayer } = this.props
 
     const headerProps = {
       leftContent: null,
       iconName: null,
+    }
+
+    const userInfoProps = {
+      avatar: app.get('image'),
+      firstName: app.get('firstname'),
+      school: app.get('school'),
     }
 
     const recordListProps = {
@@ -43,7 +49,7 @@ class Home extends Component {
       <div className="content-box">
         <Header {...headerProps}>牛班音乐学校</Header>
         <div className="content">
-          <UserInfo />
+          <UserInfo {...userInfoProps} />
           <Notice />
           <StudyList />
           <RecordList {...recordListProps} />

@@ -1,19 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './UserInfo.less'
 
-const UserInfo = () => {
+const UserInfo = ({ avatar, firstName, school }) => {
   return (
     <div className={styles.user_box} style={{
-      background: 'url(\'https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg\') no-repeat center center',
+      background: `url('${avatar}') no-repeat center center`,
       backgroundSize: 'cover' }}
     >
       <div className={styles.thumb_box}>
-        <img src="https://o9u2lnvze.qnssl.com/teachers/profile/teacher2.jpg" alt="thumb" />
-        <span className={styles.name}>李霞霞</span>
+        <img src={avatar} alt="thumb" />
+        <span className={styles.name}>{firstName}</span>
       </div>
-      <div className={styles.area_name}>上海校区01</div>
+      <div className={styles.area_name}>{school}</div>
     </div>
   )
+}
+
+UserInfo.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  school: PropTypes.string.isRequired,
 }
 
 export default UserInfo
