@@ -1,12 +1,12 @@
 import Immutable from 'immutable'
 import { homeConstants } from 'constants'
-import { request } from 'utils/request'
+import { fetchNotice, fetchRecordList } from 'services/home'
 
 const getNoticeSuccess = item => ({ item: Immutable.fromJS(item), type: homeConstants.FETCH_NOTICE_SUCCESS })
 
 export const getNotice = () => (
   dispatch => (
-    request({ wsfunction: 'mod_frontservice_get_ads' }).then((res) => {
+    fetchNotice().then((res) => {
       const item = res.data
       return {
         title: item.name,
@@ -19,7 +19,7 @@ const getRecordListSuccess = list => ({ list: Immutable.fromJS(list), type: home
 
 export const getRecordList = (userid, avatar) => (
   dispatch => (
-    request({ wsfunction: 'mod_frontservice_get_student_recordings', userid }).then((res) => {
+    fetchRecordList({ userid }).then((res) => {
       const list = res.data
       return list.map(item => ({
         title: item.name,
