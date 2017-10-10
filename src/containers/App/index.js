@@ -24,7 +24,7 @@ class App extends Component {
     if (!!mobile && !!token) {
       onApp.authLogin(mobile, token).then((res) => {
         this.setState({ loading: false })
-        if (!res.app.authorized) {
+        if (!res.app.get('authorized')) {
           goTo('/login')
         }
       })
