@@ -5,7 +5,7 @@ import { appConstants } from 'constants'
 const $app = Immutable.fromJS({})
 
 const app = createReducer($app, {
-  [appConstants.AUTH_LOGIN_SUCCESS] (state, action) {
+  [appConstants.AUTH_LOGIN] (state, action) {
     return state.merge(action.app)
   },
 })

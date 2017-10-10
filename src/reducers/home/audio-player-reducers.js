@@ -10,7 +10,7 @@ const $audioPlayer = Immutable.fromJS({
 })
 
 const audioPlayer = createReducer($audioPlayer, {
-  [homeConstants.FETCH_RECORDLIST_SUCCESS] (state, action) {
+  [homeConstants.FETCH_RECORDLIST] (state, action) {
     return state.set('list', action.list)
   },
   [homeConstants.AUDIO_CHANGE_INDEX] (state, action) {

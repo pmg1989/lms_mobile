@@ -2,7 +2,7 @@ import Immutable from 'immutable'
 import { homeConstants } from 'constants'
 import { fetchNotice, fetchRecordList } from 'services/home'
 
-const getNoticeSuccess = item => ({ item: Immutable.fromJS(item), type: homeConstants.FETCH_NOTICE_SUCCESS })
+const receiveNotice = item => ({ item: Immutable.fromJS(item), type: homeConstants.FETCH_NOTICE })
 
 export const getNotice = () => (
   dispatch => (
@@ -11,11 +11,11 @@ export const getNotice = () => (
       return {
         title: item.name,
       }
-    }).then(item => dispatch(getNoticeSuccess(item)))
+    }).then(item => dispatch(receiveNotice(item)))
   )
 )
 
-const getRecordListSuccess = list => ({ list: Immutable.fromJS(list), type: homeConstants.FETCH_RECORDLIST_SUCCESS })
+const receiveRecordList = list => ({ list: Immutable.fromJS(list), type: homeConstants.FETCH_RECORDLIST })
 
 export const getRecordList = (userid, avatar) => (
   dispatch => (
@@ -27,6 +27,6 @@ export const getRecordList = (userid, avatar) => (
         thumb: avatar,
         source: item.url,
       }))
-    }).then(list => dispatch(getRecordListSuccess(list)))
+    }).then(list => dispatch(receiveRecordList(list)))
   )
 )

@@ -7,7 +7,7 @@ import audioPlayer from './audio-player-reducers'
 const $studyList = Immutable.fromJS([])
 
 const studyList = createReducer($studyList, {
-  [homeConstants.FETCH_STUDYLIST_SUCCESS] (state, action) {
+  [homeConstants.FETCH_STUDYLIST] (state, action) {
     return state.merge(action.list)
   },
 })
@@ -17,7 +17,7 @@ const $notice = Immutable.fromJS({
 })
 
 const notice = createReducer($notice, {
-  [homeConstants.FETCH_NOTICE_SUCCESS] (state, action) {
+  [homeConstants.FETCH_NOTICE] (state, action) {
     return state.set('title', action.item.get('title'))
   },
 })

@@ -2,7 +2,7 @@ import Immutable from 'immutable'
 import { auth } from 'utils/request'
 import { appConstants } from 'constants'
 
-export const authLoginSuccess = app => ({ app: Immutable.fromJS(app), type: appConstants.AUTH_LOGIN_SUCCESS })
+export const authLoginSuccess = app => ({ app: Immutable.fromJS(app), type: appConstants.AUTH_LOGIN })
 
 export const authLogin = (mobile, token) => (
   dispatch => (
