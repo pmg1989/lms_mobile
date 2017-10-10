@@ -20,7 +20,7 @@ class Home extends Component {
 
   componentWillMount () {
     const { app, onHome } = this.props
-    onHome.getRecordList(app.get('userId'), app.get('avatar'))
+    onHome.getRecordList(app.get('userid'), app.get('image'))
   }
 
   render () {
@@ -55,6 +55,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    app: state.get('app'),
     audioPlayer: state.getIn(['home', 'audioPlayer']),
   }
 }

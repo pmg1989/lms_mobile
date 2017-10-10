@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Immutable from 'immutable'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
@@ -11,7 +10,6 @@ import styles from './App.less'
 class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
-    app: PropTypes.instanceOf(Immutable.Map).isRequired,
     location: PropTypes.object.isRequired,
     onApp: PropTypes.object.isRequired,
     goTo: PropTypes.func.isRequired,
@@ -37,28 +35,21 @@ class App extends Component {
   }
 
   render () {
-    const { children, app } = this.props
+    const { children } = this.props
     const { loading } = this.state
 
     return (
       <div>
         {loading && <Icon className={styles.loading} type={require('svg/loading.svg')} />}
         {!loading && React.Children.map(children, (child) => {
-          return React.cloneElement(child, {
-            app: Immutable.fromJS({
-              userId: app.get('userid'),
-              avatar: app.get('image'),
-            }),
-          })
+          return React.cloneElement(child, {})
         })}
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  app: state.get('app'),
-})
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = dispatch => ({
   onApp: bindActionCreators(appActions, dispatch),

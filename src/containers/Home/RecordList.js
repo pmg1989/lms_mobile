@@ -41,7 +41,7 @@ const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
           {list.map((item, key) => (
             <li className={styles.item} key={key}>
               <div className={styles.left}>
-                <span>{list.size - key}</span><span className={styles.title}>{item.get('title')}</span>
+                <span>{key + 1}</span><span className={styles.title}>{item.get('title')}</span>
               </div>
               <div className={styles.opt_box}>
                 {key === index && playing ?
