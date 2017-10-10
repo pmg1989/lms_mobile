@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Icon, AudioPlayer } from 'components'
-import { Title } from './StudyList'
+import { Title } from './CourseList'
 import styles from './RecordList.less'
 
 const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {

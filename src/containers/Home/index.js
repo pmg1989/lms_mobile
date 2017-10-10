@@ -7,7 +7,7 @@ import { Header } from 'components'
 import { audioPlayerActions, homeActions } from 'actions/home'
 import UserInfo from './UserInfo'
 import Notice from './Notice'
-import StudyList from './StudyList'
+import CourseList from './CourseList'
 import RecordList from './RecordList'
 
 class Home extends Component {
@@ -58,7 +58,7 @@ class Home extends Component {
         <div className="content">
           <UserInfo {...userInfoProps} />
           <Notice {...noticeProps} />
-          <StudyList />
+          <CourseList />
           <RecordList {...recordListProps} />
         </div>
       </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Link } from 'react-router'
 import { Icon } from 'components'
-import styles from './StudyList.less'
+import styles from './CourseList.less'
 
 export const Title = ({ title }) => (
   <div className={styles.title_box}>
@@ -36,7 +36,7 @@ TitleBanner.propTypes = {
   status: PropTypes.number.isRequired,
 }
 
-const StudyList = () => {
+const CourseList = () => {
   return (
     <div className={styles.list_box}>
       <Title title="声乐课" />
@@ -81,4 +81,4 @@ const StudyList = () => {
   )
 }
 
-export default StudyList
+export default CourseList
