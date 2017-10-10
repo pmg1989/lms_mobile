@@ -1,6 +1,8 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
+import { combineReducers } from 'redux-immutable'
 import { homeConstants } from 'constants'
+import audioPlayer from './audio-player-reducers'
 
 const $studyList = Immutable.fromJS([])
 
@@ -20,7 +22,8 @@ const notice = createReducer($notice, {
   },
 })
 
-export {
+export default combineReducers({
   notice,
   studyList,
-}
+  audioPlayer,
+})
