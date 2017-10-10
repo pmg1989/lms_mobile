@@ -10,6 +10,7 @@ export const getNotice = () => (
       const item = res.data
       return {
         title: item.name,
+        link: item.content,
       }
     }).then(item => dispatch(receiveNotice(item)))
   )
