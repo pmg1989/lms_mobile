@@ -8,15 +8,6 @@ import { Icon, LinkToken } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './CourseList.less'
 
-export const Title = ({ title }) => (
-  <div className={styles.title_box}>
-    <span className={styles.title}>{title}</span>
-  </div>
-)
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-}
-
 const TitleBanner = ({ title, image, status }) => {
   const dic = {
     0: { css: 'start', text: '待开课' },
@@ -72,10 +63,9 @@ Course.propTypes = {
   type: PropTypes.string.isRequired,
 }
 
-const CourseList = ({ title, status, list }) => {
+const CourseList = ({ status, list }) => {
   return (
     <div className={styles.list_box}>
-      <Title title={title} />
       {list.map((item, key) => {
         const courseType = (item.getIn(['profession', 'category_idnumber']) || '').split('-')[0]
 
@@ -99,7 +89,6 @@ const CourseList = ({ title, status, list }) => {
   )
 }
 CourseList.propTypes = {
-  title: PropTypes.string.isRequired,
   status: PropTypes.number.isRequired,
   list: PropTypes.instanceOf(Immutable.List).isRequired,
 }

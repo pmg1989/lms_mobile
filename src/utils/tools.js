@@ -16,7 +16,14 @@ export function renderBgImage (url) {
 }
 
 export function parseTime (time) {
-  const min = parseInt(time / 60, 10).toString()
-  const sec = parseInt(time % 60, 10).toString()
-  return `${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
+  let min = parseInt(time / 60, 10).toString()
+  let sec = parseInt(time % 60, 10).toString()
+  if (min.length === 1) {
+    min = `0${min}`
+  }
+  if (sec.length === 1) {
+    sec = `0${sec}`
+  }
+  return `${min}:${sec}`
+  // return `${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
 }

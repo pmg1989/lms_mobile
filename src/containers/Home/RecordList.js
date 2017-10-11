@@ -3,8 +3,16 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Icon, AudioPlayer } from 'components'
-import { Title } from './CourseList'
 import styles from './RecordList.less'
+
+const Title = ({ title }) => (
+  <div className={styles.title_box}>
+    <span className={styles.title}>{title}</span>
+  </div>
+)
+Title.propTypes = {
+  title: PropTypes.string.isRequired,
+}
 
 const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
   let $audio

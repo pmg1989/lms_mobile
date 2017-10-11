@@ -61,15 +61,15 @@ class Home extends Component {
         <div className="content">
           <UserInfo {...userInfoProps} />
           <Notice {...noticeProps} />
-          <Tabs defaultActiveKey="1" swipeable>
+          <Tabs defaultActiveKey="2" swipeable={false}>
             <TabPane tab="待开课" key="1">
-              <CourseList title="待开课" status={0} list={home.getIn(['course', 'commingList'])} />
+              <CourseList status={0} list={home.getIn(['course', 'commingList'])} />
             </TabPane>
             <TabPane tab="正在学习" key="2">
-              <CourseList title="正在学习" status={1} list={home.getIn(['course', 'studingList'])} />
+              <CourseList status={1} list={home.getIn(['course', 'studingList'])} />
             </TabPane>
             <TabPane tab="已结课" key="3">
-              <CourseList title="已结课" status={2} list={home.getIn(['course', 'passedList'])} />
+              <CourseList status={2} list={home.getIn(['course', 'passedList'])} />
             </TabPane>
           </Tabs>
           <RecordList {...recordListProps} />
