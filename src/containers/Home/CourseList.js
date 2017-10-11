@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
+import moment from 'moment'
 import { Link } from 'react-router'
 import { Icon } from 'components'
 import styles from './CourseList.less'
@@ -38,20 +39,23 @@ TitleBanner.propTypes = {
 }
 
 const Course = ({ title, status, item }) => {
+  const hasNext = !!item.get('current_lesson_available')
+  const isVip = item.get('category_idnumber').includes('-vip-')
   return (
     <div className={styles.item}>
       <div className={styles.left}>
         <span className={styles.title}>{title}</span>
         <span className={styles.content}>
           {status === 0 && '待开课'}
-          {status === 1 && '下节课 11-26 13:30 (即将开课)'}
+          {status === 1 && !hasNext && '下节课 未预约'}
+          {status === 1 && hasNext && `下节课 ${moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)`}
           {status === 2 && '已结课'}
         </span>
       </div>
       <div className={styles.right}>
         <span>已完成 · {item.get('attended_lesson_cnt')} / {item.get('constract_lesson_cnt')}</span>
-        {status !== 0 && <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>}
-        {/* <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>*/}
+        {status !== 0 && !isVip && <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>}
+        {status !== 0 && isVip && <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>}
       </div>
     </div>
   )
@@ -73,11 +77,13 @@ const CourseList = ({ title, status, list }) => {
             <Course title="专业课" status={status} item={item.get('profession')} />
             {item.getIn(['hd', 'hdid']) && <Course title="互动课" status={status} item={item.get('hd')} />}
             {item.getIn(['jl', 'jlid']) && <Course title="交流课" status={status} item={item.get('jl')} />}
-            <div className={styles.btn_box}>
-              <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
-                <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
-              </Link>
-            </div>
+            {status !== 0 &&
+              <div className={styles.btn_box}>
+                <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
+                  <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
+                </Link>
+              </div>
+            }
           </div>
         )
       })}
