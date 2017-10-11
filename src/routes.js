@@ -38,6 +38,22 @@ const Routes = [
           }, 'introduce')
         },
       },
+      {
+        path: 'progress/:courseType/:contractId',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Progress'))
+          }, 'progress')
+        },
+      },
+      {
+        path: 'reserve/:courseType/:contractId',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Reserve'))
+          }, 'reserve')
+        },
+      },
     ],
   },
   {
@@ -61,7 +77,7 @@ const Routes = [
     name: 'error',
     getComponent (nextState, cb) {
       require.ensure([], (require) => {
-        cb(null, require('./containers/Demo'))
+        cb(null, require('./containers/Error'))
       }, 'error')
     },
   },

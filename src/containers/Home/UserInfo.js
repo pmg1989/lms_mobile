@@ -1,13 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { renderBgImage } from 'utils/tools'
 import styles from './UserInfo.less'
 
 const UserInfo = ({ avatar, firstName, school }) => {
   return (
-    <div className={styles.user_box} style={{
-      background: `url('${avatar}') no-repeat center center`,
-      backgroundSize: 'cover' }}
-    >
+    <div className={styles.user_box} style={renderBgImage(avatar)}>
       <div className={styles.thumb_box}>
         <img src={avatar} alt="thumb" />
         <span className={styles.name}>{firstName}</span>
