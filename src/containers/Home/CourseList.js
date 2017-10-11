@@ -73,7 +73,7 @@ const CourseList = ({ title, status, list }) => {
       <Title title={title} />
       {list.map((item, key) => {
         const courseType = (item.getIn(['profession', 'category_idnumber']) || '').split('-')[0]
-        
+
         return (
           <div key={key} className={styles.list}>
             <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image={`./images/course-type/${courseType}.png`} />
