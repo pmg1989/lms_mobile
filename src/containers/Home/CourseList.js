@@ -4,7 +4,7 @@ import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
 import { Link } from 'react-router'
-import { Icon } from 'components'
+import { Icon, LinkToken } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './CourseList.less'
 
@@ -59,8 +59,8 @@ const Course = ({ title, status, type, item }) => {
       </div>
       <div className={styles.right}>
         <span>已完成 · {item.get('attended_lesson_cnt')} / {item.get('constract_lesson_cnt')}</span>
-        {status === 1 && isVip && <span><Link className={classnames(styles.btn, styles.btn_blue)} to={linkDic[type]}>预约</Link></span>}
-        {((status === 1 && !isVip) || status === 2) && <span><Link className={styles.btn} to={linkDic[type]}>查看</Link></span>}
+        {status === 1 && isVip && <span><LinkToken className={classnames(styles.btn, styles.btn_blue)} to={linkDic[type]}>预约</LinkToken></span>}
+        {((status === 1 && !isVip) || status === 2) && <span><LinkToken className={styles.btn} to={linkDic[type]}>查看</LinkToken></span>}
       </div>
     </div>
   )
