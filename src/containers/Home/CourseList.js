@@ -54,8 +54,8 @@ const Course = ({ title, status, item }) => {
       </div>
       <div className={styles.right}>
         <span>已完成 · {item.get('attended_lesson_cnt')} / {item.get('constract_lesson_cnt')}</span>
-        {status !== 0 && !isVip && <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>}
-        {status !== 0 && isVip && <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>}
+        {status === 1 && isVip && <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>}
+        {((status === 1 && !isVip) || status === 2) && <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>}
       </div>
     </div>
   )
