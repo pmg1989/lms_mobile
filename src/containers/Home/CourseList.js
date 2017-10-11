@@ -41,6 +41,7 @@ TitleBanner.propTypes = {
 const Course = ({ title, status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const isVip = item.get('category_idnumber').includes('-vip-')
+
   return (
     <div className={styles.item}>
       <div className={styles.left}>
@@ -71,9 +72,11 @@ const CourseList = ({ title, status, list }) => {
     <div className={styles.list_box}>
       <Title title={title} />
       {list.map((item, key) => {
+        const courseType = (item.getIn(['profession', 'category_idnumber']) || '').split('-')[0]
+        
         return (
           <div key={key} className={styles.list}>
-            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image="https://o9u2lnvze.qnssl.com/upload/599f44feb33e6ef97b00efc2cea28e41.png?1495444468" />
+            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image={`./images/course-type/${courseType}.png`} />
             <Course title="专业课" status={status} item={item.get('profession')} />
             {item.getIn(['hd', 'hdid']) && <Course title="互动课" status={status} item={item.get('hd')} />}
             {item.getIn(['jl', 'jlid']) && <Course title="交流课" status={status} item={item.get('jl')} />}
