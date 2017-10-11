@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
+import { Tabs } from 'antd-mobile'
 import { Header } from 'components'
 import { audioPlayerActions, homeActions } from 'actions/home'
 import UserInfo from './UserInfo'
 import Notice from './Notice'
 import CourseList from './CourseList'
 import RecordList from './RecordList'
+
+const TabPane = Tabs.TabPane
 
 class Home extends Component {
   static propTypes = {
@@ -58,9 +61,17 @@ class Home extends Component {
         <div className="content">
           <UserInfo {...userInfoProps} />
           <Notice {...noticeProps} />
-          <CourseList title="待开课" status={0} list={home.getIn(['course', 'commingList'])} />
-          <CourseList title="正在学习" status={1} list={home.getIn(['course', 'studingList'])} />
-          <CourseList title="已结课" status={2} list={home.getIn(['course', 'passedList'])} />
+          <Tabs defaultActiveKey="1" swipeable>
+            <TabPane tab="待开课" key="1">
+              <CourseList title="待开课" status={0} list={home.getIn(['course', 'commingList'])} />
+            </TabPane>
+            <TabPane tab="正在学习" key="2">
+              <CourseList title="正在学习" status={1} list={home.getIn(['course', 'studingList'])} />
+            </TabPane>
+            <TabPane tab="已结课" key="3">
+              <CourseList title="已结课" status={2} list={home.getIn(['course', 'passedList'])} />
+            </TabPane>
+          </Tabs>
           <RecordList {...recordListProps} />
         </div>
       </div>
