@@ -58,7 +58,9 @@ class Home extends Component {
         <div className="content">
           <UserInfo {...userInfoProps} />
           <Notice {...noticeProps} />
-          <CourseList />
+          <CourseList title="待开课" status={0} list={home.getIn(['course', 'commingList'])} />
+          <CourseList title="正在学习" status={1} list={home.getIn(['course', 'studingList'])} />
+          <CourseList title="已结课" status={2} list={home.getIn(['course', 'passedList'])} />
           <RecordList {...recordListProps} />
         </div>
       </div>

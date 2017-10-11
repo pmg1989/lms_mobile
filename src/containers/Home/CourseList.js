@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Link } from 'react-router'
 import { Icon } from 'components'
@@ -17,7 +18,7 @@ Title.propTypes = {
 const TitleBanner = ({ title, image, status }) => {
   const dic = {
     0: { css: 'start', text: '待开课' },
-    1: { css: 'end', text: '已节课' },
+    2: { css: 'end', text: '已节课' },
   }
 
   return (
@@ -26,7 +27,7 @@ const TitleBanner = ({ title, image, status }) => {
       backgroundSize: 'cover' }}
     >
       <span>{title}</span>
-      {status < 2 && <span className={classnames(styles.tips, styles[dic[status].css])}>{dic[status].text}</span>}
+      {status !== 1 && <span className={classnames(styles.tips, styles[dic[status].css])}>{dic[status].text}</span>}
     </div>
   )
 }
@@ -36,49 +37,60 @@ TitleBanner.propTypes = {
   status: PropTypes.number.isRequired,
 }
 
-const CourseList = () => {
+const Course = ({ title, status, item }) => {
+  return (
+    <li className={styles.item}>
+      <div className={styles.left}>
+        <span className={styles.title}>{title}</span>
+        <span className={styles.content}>
+          {status === 0 && '待开课'}
+          {status === 1 && '下节课 11-26 13:30 (即将开课)'}
+          {status === 2 && '已结课'}
+        </span>
+      </div>
+      <div className={styles.right}>
+        <span>已完成 · {item.get('attended_lesson_cnt')} / {item.get('constract_lesson_cnt')}</span>
+        {status !== 0 && <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>}
+        {/* <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>*/}
+      </div>
+    </li>
+  )
+}
+Course.propTypes = {
+  title: PropTypes.string.isRequired,
+  status: PropTypes.number.isRequired,
+  item: PropTypes.object.isRequired,
+}
+
+const CourseList = ({ title, status, list }) => {
   return (
     <div className={styles.list_box}>
-      <Title title="声乐课" />
-      <TitleBanner title="声乐VIP第一阶段" status={0} image="https://o9u2lnvze.qnssl.com/upload/599f44feb33e6ef97b00efc2cea28e41.png?1495444468" />
+      <Title title={title} />
+
       <ul className={styles.list}>
-        <li className={styles.item}>
-          <div className={styles.left}>
-            <span className={styles.title}>专业课</span>
-            <span className={styles.content}>下节课 11-26 13:30 (即将开课)</span>
-          </div>
-          <div className={styles.right}>
-            <span>已完成 · 12 / 36</span>
-            <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>
-          </div>
-        </li>
-        <li className={styles.item}>
-          <div className={styles.left}>
-            <span className={styles.title}>专业课</span>
-            <span>下节课 未预约</span>
-          </div>
-          <div className={styles.right}>
-            <span>已完成 · 0 / 16</span>
-            <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>
-          </div>
-        </li>
-        <li className={styles.item}>
-          <div className={styles.left}>
-            <span className={styles.title}>专业课</span>
-            <span>待开课</span>
-          </div>
-          <div className={styles.right}>
-            <span>已完成 · 0 / 16</span>
-          </div>
-        </li>
+        {list.map((item, key) => {
+          return (
+            <div key={key}>
+              <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image="https://o9u2lnvze.qnssl.com/upload/599f44feb33e6ef97b00efc2cea28e41.png?1495444468" />
+              <Course title="专业课" status={status} item={item.get('profession')} />
+              {item.getIn(['hd', 'hdid']) && <Course title="互动课" status={status} item={item.get('hd')} />}
+              {item.getIn(['jl', 'jlid']) && <Course title="交流课" status={status} item={item.get('jl')} />}
+              <div className={styles.btn_box}>
+                <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
+                  <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
+                </Link>
+              </div>
+            </div>
+          )
+        })}
       </ul>
-      <div className={styles.btn_box}>
-        <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
-          <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
-        </Link>
-      </div>
     </div>
   )
+}
+CourseList.propTypes = {
+  title: PropTypes.string.isRequired,
+  status: PropTypes.number.isRequired,
+  list: PropTypes.instanceOf(Immutable.List).isRequired,
 }
 
 export default CourseList
