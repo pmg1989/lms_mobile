@@ -1,9 +1,9 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
-const Icon = ({ className, style, type, onClick, ...props }) => {
+const Icon = ({ type, className = '', size = 'md', ...props }) => {
   return (
-    <svg onClick={onClick} className={`am-icon am-icon-${type.default ? type.default.id : type} ${className || ''}`} style={style} {...props}>
+    <svg className={`am-icon am-icon-${type.default ? type.default.id : type} am-icon-${size} ${className}`} {...props}>
       <use xlinkHref={`#${type.default ? type.default.id : type}`} />
     </svg>
   )
@@ -15,8 +15,7 @@ Icon.propTypes = {
     PropTypes.string,
     PropTypes.object,
   ]).isRequired,
-  style: PropTypes.object,
-  onClick: PropTypes.func,
+  size: PropTypes.object,
 }
 
 export default Icon
