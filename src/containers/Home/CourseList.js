@@ -39,7 +39,7 @@ TitleBanner.propTypes = {
 
 const Course = ({ title, status, item }) => {
   return (
-    <li className={styles.item}>
+    <div className={styles.item}>
       <div className={styles.left}>
         <span className={styles.title}>{title}</span>
         <span className={styles.content}>
@@ -53,7 +53,7 @@ const Course = ({ title, status, item }) => {
         {status !== 0 && <span><Link className={styles.btn} to={'/introduce'}>查看</Link></span>}
         {/* <span><Link className={classnames(styles.btn, styles.btn_blue)} to={'/introduce'}>预约</Link></span>*/}
       </div>
-    </li>
+    </div>
   )
 }
 Course.propTypes = {
@@ -66,24 +66,21 @@ const CourseList = ({ title, status, list }) => {
   return (
     <div className={styles.list_box}>
       <Title title={title} />
-
-      <ul className={styles.list}>
-        {list.map((item, key) => {
-          return (
-            <div key={key}>
-              <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image="https://o9u2lnvze.qnssl.com/upload/599f44feb33e6ef97b00efc2cea28e41.png?1495444468" />
-              <Course title="专业课" status={status} item={item.get('profession')} />
-              {item.getIn(['hd', 'hdid']) && <Course title="互动课" status={status} item={item.get('hd')} />}
-              {item.getIn(['jl', 'jlid']) && <Course title="交流课" status={status} item={item.get('jl')} />}
-              <div className={styles.btn_box}>
-                <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
-                  <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
-                </Link>
-              </div>
+      {list.map((item, key) => {
+        return (
+          <div key={key} className={styles.list}>
+            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image="https://o9u2lnvze.qnssl.com/upload/599f44feb33e6ef97b00efc2cea28e41.png?1495444468" />
+            <Course title="专业课" status={status} item={item.get('profession')} />
+            {item.getIn(['hd', 'hdid']) && <Course title="互动课" status={status} item={item.get('hd')} />}
+            {item.getIn(['jl', 'jlid']) && <Course title="交流课" status={status} item={item.get('jl')} />}
+            <div className={styles.btn_box}>
+              <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
+                <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
+              </Link>
             </div>
-          )
-        })}
-      </ul>
+          </div>
+        )
+      })}
     </div>
   )
 }
