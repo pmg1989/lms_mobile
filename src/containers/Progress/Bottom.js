@@ -12,13 +12,8 @@ const Bottom = () => {
     visible: true,
     placement: 'top',
     overlayClassName: styles.feedback_box,
-    overlayStyle: { color: 'currentColor' },
-    align: {
-      offset: [20, -10],
-    },
-    overlay: [
-      (<Item key="1" value="tips">有课程未反馈</Item>),
-    ],
+    align: { offset: [20, -10] },
+    overlay: [<Item key="1" value="tips">有课程未反馈</Item>],
   }
 
   return (
