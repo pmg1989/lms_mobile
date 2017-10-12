@@ -44,7 +44,10 @@ const Course = ({ title, status, type, item }) => {
         <span className={styles.content}>
           {status === 0 && '待开课'}
           {status === 1 && !hasNext && '下节课 未预约'}
-          {status === 1 && hasNext && `下节课 ${moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)`}
+          {status === 1 && hasNext &&
+            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)
+              {true && <Icon className={styles.icon_minus} type={require('svg/minus.svg')} />}
+            </span>}
           {status === 2 && '已结课'}
         </span>
       </div>
