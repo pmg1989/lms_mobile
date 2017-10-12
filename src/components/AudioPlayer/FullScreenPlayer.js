@@ -110,33 +110,37 @@ class FullScreenPlayer extends Component {
 
     return (
       <div className={classnames(styles.full_screen_box, isFullScreen && styles.active)}>
-        <div className={styles.back} onClick={hideFullScreen}>
-          <Icon type={require('svg/arrow-down.svg')} />
-        </div>
-        <div className={styles.info}>
-          <span className={styles.title}>{current.title}</span><br />
-          <span className={styles.author}>{current.author}</span>
+        <div className={styles.top_box}>
+          <div className={styles.back} onClick={hideFullScreen}>
+            <Icon type={require('svg/arrow-down.svg')} />
+          </div>
+          <div className={styles.info}>
+            <span className={styles.title}>{current.title}</span><br />
+            <span className={styles.author}>{current.author}</span>
+          </div>
         </div>
         <div className={styles.image_bg}>
           <img src={current.thumb} alt="thumb" />
         </div>
-        <div className={styles.slider_box}>
-          <span className={styles.curtime}>{parseTime(currentTime)}</span>
-          <Slider {...slideProps} />
-          <span className={styles.duration}>{parseTime(totalTime)}</span>
-        </div>
-        <div className={styles.opt_box}>
-          {loop ?
-            <Icon onClick={handleLoop} type={require('svg/loop.svg')} /> :
-            <Icon onClick={handleLoop} type={require('svg/loop-no.svg')} />
-          }
-          <Icon type={require('svg/prev.svg')} onClick={handlePrev} />
-          {playing ?
-            <Icon className={styles.pause_o} onClick={handlePlayPause} type={require('svg/pause-o.svg')} /> :
-            <Icon className={styles.play_o} onClick={handlePlayPause} type={require('svg/play-o.svg')} />
-          }
-          <Icon type={require('svg/next.svg')} onClick={handleNext} />
-          <Icon type={require('svg/share.svg')} />
+        <div className={styles.bottom_box}>
+          <div className={styles.slider_box}>
+            <span className={styles.curtime}>{parseTime(currentTime)}</span>
+            <Slider {...slideProps} />
+            <span className={styles.duration}>{parseTime(totalTime)}</span>
+          </div>
+          <div className={styles.opt_box}>
+            {loop ?
+              <Icon onClick={handleLoop} type={require('svg/loop.svg')} /> :
+              <Icon onClick={handleLoop} type={require('svg/loop-no.svg')} />
+            }
+            <Icon type={require('svg/prev.svg')} onClick={handlePrev} />
+            {playing ?
+              <Icon className={styles.pause_o} onClick={handlePlayPause} type={require('svg/pause-o.svg')} /> :
+              <Icon className={styles.play_o} onClick={handlePlayPause} type={require('svg/play-o.svg')} />
+            }
+            <Icon type={require('svg/next.svg')} onClick={handleNext} />
+            <Icon type={require('svg/share.svg')} />
+          </div>
         </div>
         <audio {...audioProps}>audio not supported :(</audio>
       </div>
