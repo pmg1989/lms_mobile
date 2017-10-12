@@ -1,0 +1,48 @@
+@import "../../themes/mixin.less";
+
+.list_box {
+  padding: 40px;
+
+  .list {
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      .title {
+        padding-left: 20px;
+      }
+    }
+
+    .right {
+      text-align: right;
+
+      .btn {
+        color: @nb-gray-light;
+        font-size: 28px;
+
+        &.border {
+          border: 2px solid currentColor;
+          padding: 8px 30px;
+          font-size: 24px;
+          border-radius: 6px;
+        }
+
+        &.undo {
+          color: #FF7871;
+        }
+
+        &.blue {
+          color: @nb-blue;
+        }
+      }
+    }
+  }
+
+}

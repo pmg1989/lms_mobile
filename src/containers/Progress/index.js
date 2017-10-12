@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Header } from 'components'
 import Top from './Top'
+import Content from './Content'
 import Bottom from './Bottom'
 
 const Progress = ({ params }) => {
@@ -19,6 +20,7 @@ const Progress = ({ params }) => {
       <Header {...headerProps}>hahaha</Header>
       <div className="content">
         <Top />
+        <Content />
         <Bottom />
       </div>
     </div>
