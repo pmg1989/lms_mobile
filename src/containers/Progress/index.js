@@ -1,34 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import { Header } from 'components'
+import Bottom from './Bottom'
 
-const Progress = ({ courseType, contractId }) => {
-  console.log('ownProps params id detail', courseType, contractId)
+const Progress = ({ params }) => {
+  console.log('params', params)
+
+  const headerProps = {
+    rightContent: (
+      <span>练习</span>
+    ),
+  }
 
   return (
     <div className="content-box">
-      <Header>demo</Header>
+      <Header {...headerProps}>hahaha</Header>
       <div className="content">
-        <Link to={'/introduce'}>
-          link to introduce
-        </Link>
+        <Bottom />
       </div>
     </div>
   )
 }
 
 Progress.propTypes = {
-  courseType: PropTypes.string.isRequired,
-  contractId: PropTypes.string.isRequired,
+  params: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = () => {
   return {
-    courseType: ownProps.params.courseType,
-    contractId: ownProps.params.contractId,
+
   }
 }
 
-export default connect(mapStateToProps)(Progress)
+const mapDispatchToProps = () => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Progress)
