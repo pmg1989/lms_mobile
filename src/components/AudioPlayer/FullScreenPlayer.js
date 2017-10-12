@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Slider } from 'antd-mobile'
 import { Icon } from 'components'
-import { renderBgImage, parseTime } from 'utils/tools'
+import { parseTime } from 'utils/tools'
 import styles from './FullScreenPlayer.less'
 
 class FullScreenPlayer extends Component {
@@ -81,7 +81,7 @@ class FullScreenPlayer extends Component {
         this.$audio.currentTime = this.$audio.duration * (per / 100)
       },
       trackStyle: {
-        backgroundColor: '#666',
+        backgroundColor: '#00CD23',
         height: '3px',
       },
       railStyle: {
@@ -89,13 +89,13 @@ class FullScreenPlayer extends Component {
         height: '3px',
       },
       handleStyle: {
-        borderColor: '#999',
+        borderColor: '#00CD23',
         height: '16px',
         width: '16px',
         marginLeft: '-7px',
         marginTop: '-7px',
-        backgroundColor: '#999',
-        boxShadow: '0 0 1px 1px #e3e3e3',
+        backgroundColor: '#00CD23',
+        boxShadow: '0 0 1px 1px #00CD23',
       },
     }
 
@@ -117,7 +117,9 @@ class FullScreenPlayer extends Component {
           <span className={styles.title}>{current.title}</span><br />
           <span className={styles.author}>{current.author}</span>
         </div>
-        <div className={styles.image_bg} style={renderBgImage(current.thumb)} />
+        <div className={styles.image_bg}>
+          <img src={current.thumb} alt="thumb" />
+        </div>
         <div className={styles.slider_box}>
           <span className={styles.curtime}>{parseTime(currentTime)}</span>
           <Slider {...slideProps} />
