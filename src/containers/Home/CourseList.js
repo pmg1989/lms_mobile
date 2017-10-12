@@ -62,7 +62,7 @@ const HDCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const courseType = item.get('category_idnumber')
   const isVip = courseType.includes('-vip-')
-  const linkTo = `/reserve/${courseType}/${encodeURIComponent(item.get('hdid'))}`
+  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('hdid'))}`
 
   return (
     <div className={styles.item}>
@@ -72,9 +72,7 @@ const HDCourse = ({ status, item }) => {
           {status === 0 && '待开课'}
           {status === 1 && !hasNext && '下节课 未预约'}
           {status === 1 && hasNext &&
-            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)
-              {true && <Icon className={styles.icon_minus} type={require('svg/minus.svg')} />}
-            </span>}
+            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)</span>}
           {status === 2 && '已结课'}
         </span>
       </div>
@@ -95,7 +93,7 @@ const JLCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const courseType = item.get('category_idnumber')
   const isVip = courseType.includes('-vip-')
-  const linkTo = `/reserve/${courseType}/${encodeURIComponent(item.get('jlid'))}`
+  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('jlid'))}`
 
   return (
     <div className={styles.item}>
@@ -105,9 +103,7 @@ const JLCourse = ({ status, item }) => {
           {status === 0 && '待开课'}
           {status === 1 && !hasNext && '下节课 未预约'}
           {status === 1 && hasNext &&
-            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)
-              {true && <Icon className={styles.icon_minus} type={require('svg/minus.svg')} />}
-            </span>}
+            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)</span>}
           {status === 2 && '已结课'}
         </span>
       </div>
