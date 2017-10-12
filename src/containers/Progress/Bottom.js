@@ -7,19 +7,14 @@ import styles from './Bottom.less'
 
 const Item = Popover.Item
 
-let offsetX = 20
-// if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
-//   offsetX = 36
-// }
-
 const Bottom = () => {
   const popoverProps = {
     visible: true,
-    placement: "top",
+    placement: 'top',
     overlayClassName: styles.feedback_box,
     overlayStyle: { color: 'currentColor' },
     align: {
-      offset: [offsetX, -10],
+      offset: [20, -10],
     },
     overlay: [
       (<Item key="1" value="tips">有课程未反馈</Item>),
