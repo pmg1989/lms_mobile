@@ -11,7 +11,7 @@ import styles from './CourseList.less'
 const TitleBanner = ({ title, image, status }) => {
   const dic = {
     0: { css: 'start', text: '待开课' },
-    2: { css: 'end', text: '已节课' },
+    2: { css: 'end', text: '已结课' },
   }
 
   return (
