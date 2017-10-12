@@ -2,7 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Modal } from 'antd-mobile'
-import { Icon, LinkToken } from 'components'
+import { Icon } from 'components'
 import styles from './Content.less'
 
 const alert = Modal.alert
@@ -59,9 +59,9 @@ const Content = () => {
             <span className={styles.title}>1-30 19:00 2017</span>
           </div>
           <div className={styles.right}>
-            <LinkToken className={classnames(styles.btn, styles.border, styles.blue)} to={'/demo/123/456?name=felix&token=abc'}>
+            <span className={classnames(styles.btn, styles.border, styles.blue)} onClick={handleCancel}>
               取消预约
-            </LinkToken>
+            </span>
           </div>
         </li>
       </ul>
