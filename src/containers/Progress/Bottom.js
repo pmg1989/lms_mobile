@@ -1,14 +1,37 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { Popover } from 'antd-mobile'
 import { Icon, LinkToken } from 'components'
 import styles from './Bottom.less'
 
+const Item = Popover.Item
+
+let offsetX = 20
+// if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+//   offsetX = 36
+// }
+
 const Bottom = () => {
+  const popoverProps = {
+    visible: true,
+    placement: "top",
+    overlayClassName: styles.feedback_box,
+    overlayStyle: { color: 'currentColor' },
+    align: {
+      offset: [offsetX, -10],
+    },
+    overlay: [
+      (<Item key="1" value="tips">有课程未反馈</Item>),
+    ],
+  }
+
   return (
     <div className={styles.box}>
       <div className={styles.left}>
-        <Icon type={require('svg/feedback.svg')} />
+        <Popover {...popoverProps}>
+          <Icon type={require('svg/feedback.svg')} />
+        </Popover>
         <span>我的反馈</span>
       </div>
       <div className={styles.right}>
