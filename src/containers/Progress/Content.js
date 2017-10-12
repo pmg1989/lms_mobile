@@ -26,7 +26,7 @@ const Content = () => {
       <ul className={styles.list}>
         <li>
           <div className={styles.left}>
-            <Icon type={require('svg/complete.svg')} />
+            <Icon type={require('svg/cry.svg')} />
             <span className={styles.title}>1-30 19:00 2017</span>
           </div>
           <div className={styles.right}>
@@ -35,7 +35,7 @@ const Content = () => {
         </li>
         <li>
           <div className={styles.left}>
-            <Icon type={require('svg/complete.svg')} />
+            <Icon type={require('svg/cry.svg')} />
             <span className={styles.title}>1-30 19:00 2017</span>
           </div>
           <div className={styles.right}>
