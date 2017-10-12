@@ -1,0 +1,31 @@
+@import "../../themes/mixin.less";
+
+.box {
+  background-color: #fff;
+  padding: 30px;
+  text-align: center;
+
+  .title {
+    color: @nb-blue;
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .text {
+    color: @nb-gray-light;
+    font-size: 12px;
+  }
+
+  :global {
+    .am-progress-outer {
+      background-color: #EDEFF1;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .am-progress-bar {
+      border-color: @nb-blue;
+      border-radius: 4px;
+    }
+  }
+}
