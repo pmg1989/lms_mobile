@@ -1,1 +1,10 @@
-<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1506314002380" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6932" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M290.986667 833.962667l98.218667 0L389.205333 173.653333 290.986667 173.653333 290.986667 833.962667zM641.109333 173.653333l0 660.394667 98.133333 0L739.242667 173.653333 641.109333 173.653333z" p-id="6933"></path></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_panse</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <image id="icon_panse" x="0" y="0" width="200" height="200" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABGdBTUEAALGPC/xhBQAAAbVJREFUeAHt3LFRQgEURFFhjO1Gq7Idm1KqsQEkML0EqMuMc0h34H3Ozf/Dgw8BAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQI/FeBw+KPPV8+5/P57Qe33k+n0+ut37/3/WvP/Xht/MXt6RLg+dbfOxwOn7d+9/t7976fj3/MxTAREGDC3EcEaJvJIsCEuY8I0DaTRYAJcx8RoG0miwAT5j4iQNtMFgEmzH1EgLaZLAJMmPuIAG0zWQSYMPcRAdpmsggwYe4jArTNZBFgwtxHBGibySLAhLmPCNA2k0WACXMfEaBtJosAE+Y+IkDbTBYBJsx9RIC2mSwCTJj7iABtM1kEmDD3EQHaZrIIMGHuIwK0zWQRYMLcRwRom8kiwIS5jwjQNpNFgAlzHxGgbSaLABPmPiJA20wWASbMfUSAtpksAkyY+4gAbTNZBJgw9xEB2mayCDBh7iMCtM1kEWDC3EcEaJvJIsCEuY8I0DaTRYAJcx+ZvLbyeDx+XB7hpR/j+nJ55eWPXlt57/vX/52VAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECfybwBWqhIsz1DAWAAAAAAElFTkSuQmCC"></image>
+    </g>
+</svg>

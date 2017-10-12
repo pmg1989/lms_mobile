@@ -78,7 +78,7 @@ const CourseList = ({ status, list }) => {
             {status !== 0 &&
               <div className={styles.btn_box}>
                 <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
-                  <Icon className={styles.icon} type={require('svg/cry.svg')} /> 练习歌曲
+                  <Icon className={styles.icon} type={require('svg/microphone.svg')} /> 练习歌曲
                 </Link>
               </div>
             }
