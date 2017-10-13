@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Router, browserHistory } from 'react-router'
 import 'utils/rem'
+import 'utils/locale'
 import './themes/index.less'
 
 import routes from './routes'

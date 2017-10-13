@@ -10,7 +10,6 @@ import styles from './Content.less'
 const alert = Modal.alert
 
 const Content = ({ category, lessons }) => {
-  console.log(lessons.toJS())
   const hasLessions = lessons.size > 0
   const isVip = category.includes('-vip-')
 
@@ -56,23 +55,26 @@ const Content = ({ category, lessons }) => {
               Link: LinkToReview,
               Icon: <Icon type={require('svg/status_present.svg')} />,
             }, // 上过课但教师尚未考勤
+            '': {
+              Link: (
+                <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
+                  取消预约
+                </span>
+              ),
+              Icon: <Icon type={require('svg/status_acronym.svg')} />,
+            },
           }
-
+          console.log(item.get('acronym'))
           return (
             <li key={key}>
               <div className={styles.left}>
-                {dicAcronym[item.get('dicAcronym')].Icon}
+                {dicAcronym[item.get('acronym')].Icon}
                 <span className={styles.title}>
                   {moment.unix(item.get('available')).format('MM-DD HH:mm YYYY')}
                 </span>
               </div>
               <div className={styles.right}>
-                {!!item.get('dicAcronym') && dicAcronym[item.get('dicAcronym')].Link}
-                {!item.get('dicAcronym') &&
-                  <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
-                    取消预约
-                  </span>
-                }
+                {dicAcronym[item.get('acronym')].Link}
                 {/* <span className={styles.btn}>即将开课</span>
                   <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
                     取消预约
