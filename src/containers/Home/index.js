@@ -79,7 +79,7 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   app: state.get('app'),
   home: state.get('home'),
 })

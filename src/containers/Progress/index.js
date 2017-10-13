@@ -58,7 +58,7 @@ const mapStateToProps = (state, ownProps) => ({
   params: {
     ...ownProps.params,
     contractId: decodeURIComponent(ownProps.params.contractId),
-  }
+  },
 })
 
 const mapDispatchToProps = dispatch => ({
