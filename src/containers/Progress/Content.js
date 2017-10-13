@@ -11,19 +11,26 @@ const alert = Modal.alert
 
 const now = new Date()
 
-const Content = ({ category, lessons }) => {
+const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) => {
   const hasLessions = lessons.size > 0
   const isVip = category.includes('-vip-')
 
-  const handleCancel = () => {
+  const handleCancel = (title, available, lessonid, index) => {
     alert(
       <span className={styles.modal_title}>取消预定课程</span>,
       <div>
-        <span>键盘VIP第一阶段(上)</span><br /><span>2016-11-20 10:00</span>
+        <span>{title}</span><br /><span>{moment.unix(available).format('YYYY-MM-DD HH:mm')}</span>
       </div>,
       [
-        { text: '取消', onPress: () => console.log('cancel') },
-        { text: '确定', onPress: () => console.log('ok') },
+        { text: '取消' },
+        {
+          text: '确定',
+          onPress: () => {
+            onProgress.receiveCancelLession(index)
+            console.log(userid, rolename);
+            // onProgress.cancelLession(lessonid, userid, rolename, index)
+          },
+        },
       ],
     )
   }
@@ -64,7 +71,7 @@ const Content = ({ category, lessons }) => {
               Link: (
                 <span>
                   {moment.unix(available).isAfter(new Date()) && isCancel &&
-                    <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
+                    <span className={classnames(styles.btn, styles.border)} onClick={() => handleCancel(item.get('category_summary'), available, item.get('id'), key)}>
                       取消预约
                     </span>
                   }
@@ -87,15 +94,6 @@ const Content = ({ category, lessons }) => {
               </div>
               <div className={styles.right}>
                 {dicAcronym[item.get('acronym')].Link}
-                {/* <span className={styles.btn}>即将开课</span>
-                  <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
-                    取消预约
-                  </span>
-                  <span className={classnames(styles.btn, styles.undo)}>缺席</span>
-                  <span className={classnames(styles.btn, styles.border, styles.blue)} onClick={handleCancel}>
-                    查看评语
-                  </span>
-                */}
               </div>
             </li>
           )
@@ -113,8 +111,10 @@ const Content = ({ category, lessons }) => {
 }
 
 Content.propTypes = {
+  user: PropTypes.object.isRequired,
   category: PropTypes.string.isRequired,
   lessons: PropTypes.instanceOf(Immutable.List).isRequired,
+  onProgress: PropTypes.object.isRequired,
 }
 
 export default Content

@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { progressConstants } from 'constants'
-import { fetchProgressInfo } from 'services/progress'
+import { fetchProgressInfo, fetchCancelLession } from 'services/progress'
 
 const receiveProgressInfo = data => ({
   info: Immutable.fromJS(data.info),
@@ -22,5 +22,17 @@ export const getProgressInfo = (ccid, courseType) => (
       },
       lessons: res.data.lessons,
     })).then(data => dispatch(receiveProgressInfo(data)))
+  )
+)
+
+export const receiveCancelLession = index => ({
+  index,
+  type: progressConstants.FETCH_CANCEL_LESSION,
+})
+
+export const cancelLession = (lessonid, userid, rolename, index) => (
+  dispatch => (
+    fetchCancelLession({ lessonid, userid, rolename })
+    .then(() => dispatch(receiveCancelLession(index)))
   )
 )

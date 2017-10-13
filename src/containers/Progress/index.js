@@ -12,6 +12,7 @@ import Bottom from './Bottom'
 class Progress extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
     progress: PropTypes.instanceOf(Immutable.Map).isRequired,
     onProgress: PropTypes.object.isRequired,
   }
@@ -22,7 +23,7 @@ class Progress extends Component {
   }
 
   render () {
-    const { progress } = this.props
+    const { progress, user, onProgress } = this.props
     const info = progress.get('info')
     const lessons = progress.get('lessons')
 
@@ -33,8 +34,10 @@ class Progress extends Component {
     }
 
     const contentProps = {
+      user,
       lessons,
       category: info.get('category_idnumber'),
+      onProgress,
     }
 
     const bottomProps = {
@@ -56,6 +59,10 @@ class Progress extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   progress: state.get('progress'),
+  user: {
+    rolename: state.getIn(['app', 'rolename']),
+    userid: state.getIn(['app', 'userid']),
+  },
   params: {
     ...ownProps.params,
     contractId: decodeURIComponent(ownProps.params.contractId),
