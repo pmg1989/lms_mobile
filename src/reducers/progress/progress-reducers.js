@@ -5,6 +5,7 @@ import { progressConstants } from 'constants'
 const $progress = Immutable.fromJS({
   info: {
     title: '',
+    category_idnumber: '',
     hasFeedback: false,
   },
   lessons: [],

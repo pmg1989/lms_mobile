@@ -34,6 +34,7 @@ class Progress extends Component {
 
     const contentProps = {
       lessons,
+      category: info.get('category_idnumber'),
     }
 
     const bottomProps = {
