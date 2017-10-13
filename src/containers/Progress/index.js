@@ -41,12 +41,12 @@ class Progress extends Component {
     }
 
     const bottomProps = {
-      hasFeedback: info.get('hasFeedback'),
+      tofeedback: info.get('tofeedback'),
     }
 
     return (
       <div className="content-box">
-        <Header {...headerProps}>{info.get('title')}</Header>
+        <Header {...headerProps}>{info.get('category_summary')}</Header>
         <div className="content">
           <Top info={info} />
           <Content {...contentProps} />

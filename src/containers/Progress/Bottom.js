@@ -7,9 +7,9 @@ import styles from './Bottom.less'
 
 const Item = Popover.Item
 
-const Bottom = ({ hasFeedback }) => {
+const Bottom = ({ tofeedback }) => {
   const popoverProps = {
-    visible: hasFeedback,
+    visible: tofeedback,
     placement: 'top',
     overlayClassName: styles.feedback_box,
     align: { offset: [20, -10] },
@@ -38,7 +38,7 @@ const Bottom = ({ hasFeedback }) => {
 }
 
 Bottom.propTypes = {
-  hasFeedback: PropTypes.bool.isRequired,
+  tofeedback: PropTypes.bool.isRequired,
 }
 
 export default Bottom
