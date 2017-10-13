@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
-import { Modal } from 'antd-mobile'
+import { Modal, Toast } from 'antd-mobile'
 import { Icon, LinkToken } from 'components'
 import styles from './Content.less'
 
@@ -26,9 +26,9 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
         {
           text: '确定',
           onPress: () => {
-            onProgress.receiveCancelLession(index)
-            console.log(userid, rolename)
-            // onProgress.cancelLession(lessonid, userid, rolename, index)
+            onProgress.cancelLession(lessonid, userid, rolename, index).then(() => {
+              Toast.info('您已成功取消预定课程！')
+            })
           },
         },
       ],

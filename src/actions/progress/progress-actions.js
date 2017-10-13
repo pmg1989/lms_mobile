@@ -28,7 +28,7 @@ export const getProgressInfo = (ccid, courseType) => (
   )
 )
 
-export const receiveCancelLession = index => ({
+const receiveCancelLession = index => ({
   index,
   type: progressConstants.FETCH_CANCEL_LESSION,
 })
