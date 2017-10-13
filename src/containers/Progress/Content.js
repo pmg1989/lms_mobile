@@ -27,7 +27,7 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
           text: '确定',
           onPress: () => {
             onProgress.receiveCancelLession(index)
-            console.log(userid, rolename);
+            console.log(userid, rolename)
             // onProgress.cancelLession(lessonid, userid, rolename, index)
           },
         },
