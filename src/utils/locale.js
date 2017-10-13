@@ -72,7 +72,7 @@ moment.locale('zh-cn', {
     }
   },
   relativeTime: {
-    future: '%s', //'%s内',
+    future: '%s', // '%s内',
     past: '%s前',
     s: '几秒',
     m: '1 分钟',
