@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-moment.defineLocale('zh-cn', {
+moment.locale('zh-cn', {
   months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
   monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
   weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
@@ -72,8 +72,8 @@ moment.defineLocale('zh-cn', {
     }
   },
   relativeTime: {
-    future: '还剩 %s',
-    past: '已超过 %s',
+    future: '%s', //'%s内',
+    past: '%s前',
     s: '几秒',
     m: '1 分钟',
     mm: '%d 分钟',
