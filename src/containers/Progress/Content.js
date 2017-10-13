@@ -1,5 +1,6 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
+import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Modal } from 'antd-mobile'
 import { Icon } from 'components'
@@ -7,7 +8,9 @@ import styles from './Content.less'
 
 const alert = Modal.alert
 
-const Content = () => {
+const Content = ({ lessons }) => {
+  console.log(lessons.toJS())
+
   const handleCancel = () => {
     alert(
       <span className={styles.modal_title}>取消预定课程</span>,
@@ -67,6 +70,10 @@ const Content = () => {
       </ul>
     </div>
   )
+}
+
+Content.propTypes = {
+  lessons: PropTypes.instanceOf(Immutable.List).isRequired,
 }
 
 export default Content

@@ -23,20 +23,30 @@ class Progress extends Component {
 
   render () {
     const { progress } = this.props
-    console.log(progress.toJS())
+    const info = progress.get('info')
+    const lessons = progress.get('lessons')
+
     const headerProps = {
       rightContent: (
         <span>练习</span>
       ),
     }
 
+    const contentProps = {
+      lessons,
+    }
+
+    const bottomProps = {
+      hasFeedback: info.get('hasFeedback'),
+    }
+
     return (
       <div className="content-box">
-        <Header {...headerProps}>hahaha</Header>
+        <Header {...headerProps}>{info.get('title')}</Header>
         <div className="content">
-          <Top />
-          <Content />
-          <Bottom />
+          <Top info={info} />
+          <Content {...contentProps} />
+          <Bottom {...bottomProps} />
         </div>
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Popover } from 'antd-mobile'
 import { Icon, LinkToken } from 'components'
@@ -7,9 +7,9 @@ import styles from './Bottom.less'
 
 const Item = Popover.Item
 
-const Bottom = () => {
+const Bottom = ({ hasFeedback }) => {
   const popoverProps = {
-    visible: true,
+    visible: hasFeedback,
     placement: 'top',
     overlayClassName: styles.feedback_box,
     align: { offset: [20, -10] },
@@ -35,6 +35,10 @@ const Bottom = () => {
     </div>
 
   )
+}
+
+Bottom.propTypes = {
+  hasFeedback: PropTypes.bool.isRequired,
 }
 
 export default Bottom
