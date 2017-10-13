@@ -79,12 +79,10 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    app: state.get('app'),
-    home: state.get('home'),
-  }
-}
+const mapStateToProps = (state) => ({
+  app: state.get('app'),
+  home: state.get('home'),
+})
 
 const mapDispatchToProps = dispatch => ({
   onHome: bindActionCreators(homeActions, dispatch),

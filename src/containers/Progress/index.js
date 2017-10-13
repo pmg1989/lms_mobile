@@ -53,11 +53,13 @@ class Progress extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    progress: state.get('progress'),
+const mapStateToProps = (state, ownProps) => ({
+  progress: state.get('progress'),
+  params: {
+    ...ownProps.params,
+    contractId: decodeURIComponent(ownProps.params.contractId),
   }
-}
+})
 
 const mapDispatchToProps = dispatch => ({
   onProgress: bindActionCreators(progressActions, dispatch),

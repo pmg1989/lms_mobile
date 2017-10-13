@@ -2,7 +2,10 @@ import Immutable from 'immutable'
 import { homeConstants } from 'constants'
 import { fetchNotice, fetchCourseList, fetchRecordList } from 'services/home'
 
-const receiveNotice = item => ({ item: Immutable.fromJS(item), type: homeConstants.FETCH_NOTICE })
+const receiveNotice = item => ({
+  item: Immutable.fromJS(item),
+  type: homeConstants.FETCH_NOTICE,
+})
 
 export const getNotice = () => (
   dispatch => (
@@ -16,7 +19,10 @@ export const getNotice = () => (
   )
 )
 
-const receiveCourseList = list => ({ list: Immutable.fromJS(list), type: homeConstants.FETCH_COURSE_LIST })
+const receiveCourseList = list => ({
+  list: Immutable.fromJS(list),
+  type: homeConstants.FETCH_COURSE_LIST,
+})
 
 export const getCourseList = userid => (
   dispatch => (
@@ -28,7 +34,10 @@ export const getCourseList = userid => (
   )
 )
 
-const receiveRecordList = list => ({ list: Immutable.fromJS(list), type: homeConstants.FETCH_RECORD_LIST })
+const receiveRecordList = list => ({
+  list: Immutable.fromJS(list),
+  type: homeConstants.FETCH_RECORD_LIST,
+})
 
 export const getRecordList = (userid, avatar) => (
   dispatch => (
