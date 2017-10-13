@@ -9,6 +9,8 @@ import styles from './Content.less'
 
 const alert = Modal.alert
 
+const now = new Date()
+
 const Content = ({ category, lessons }) => {
   const hasLessions = lessons.size > 0
   const isVip = category.includes('-vip-')
@@ -30,6 +32,9 @@ const Content = ({ category, lessons }) => {
     <div className={styles.list_box}>
       <ul className={styles.list}>
         {lessons.map((item, key) => {
+          const available = item.get('available')
+          const isCancel = available - (now.getTime() / 1000) > 60 * 60 * 24
+
           const LinkToReview = (
             <LinkToken to={`/review/${item.get('id')}`} className={classnames(styles.btn, styles.border, styles.blue)}>查看评语</LinkToken>
           )
@@ -53,24 +58,31 @@ const Content = ({ category, lessons }) => {
             }, // 迟到 late
             O: {
               Link: LinkToReview,
-              Icon: <Icon type={require('svg/status_present.svg')} />,
+              Icon: <Icon type={require('svg/status_occured.svg')} />,
             }, // 上过课但教师尚未考勤
             '': {
               Link: (
-                <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
-                  取消预约
+                <span>
+                  {moment.unix(available).isAfter(new Date()) && isCancel &&
+                    <span className={classnames(styles.btn, styles.border)} onClick={handleCancel}>
+                      取消预约
+                    </span>
+                  }
+                  {moment.unix(available).isAfter(new Date()) && !isCancel &&
+                    <span className={styles.btn}>即将开课</span>
+                  }
                 </span>
               ),
               Icon: <Icon type={require('svg/status_acronym.svg')} />,
             },
           }
-          console.log(item.get('acronym'))
+
           return (
             <li key={key}>
               <div className={styles.left}>
                 {dicAcronym[item.get('acronym')].Icon}
                 <span className={styles.title}>
-                  {moment.unix(item.get('available')).format('MM-DD HH:mm YYYY')}
+                  {moment.unix(available).format('MM-DD HH:mm YYYY')}
                 </span>
               </div>
               <div className={styles.right}>

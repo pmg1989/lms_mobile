@@ -31,7 +31,7 @@ const Demo = ({ params, location, id, detail, query }) => {
       <div className="content">
         <p>{moment.locale()}</p>
         {timeList.map((time, key) => (
-          <p key={key}>{moment.unix(time).format('YYYY-MM-DD HH:mm')} - {moment.unix(time).fromNow()}</p>
+          <p key={key}>{moment.unix(time).format('YYYY-MM-DD HH:mm')} - {moment.unix(time).fromNow()} - {`${moment.unix(time).isAfter(new Date().getTime())}`}</p>
         ))}
       </div>
     </div>
