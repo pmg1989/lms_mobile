@@ -21,7 +21,7 @@ class FeedbackModal extends Component {
     console.log('remember to set localStroage')
   }
 
-  render() {
+  render () {
     const { visible } = this.state
 
     const modalProps = {
@@ -32,8 +32,8 @@ class FeedbackModal extends Component {
       maskClosable: false,
       footer: [
         {
-          text: '关闭' ,
-          onPress: () => this.handleClose()
+          text: '关闭',
+          onPress: () => this.handleClose(),
         },
         {
           text: <span className={styles.btn}>课后反馈</span>,
