@@ -9,6 +9,7 @@ import { audioPlayerActions, homeActions } from 'actions/home'
 import UserInfo from './UserInfo'
 import CourseList from './CourseList'
 import RecordList from './RecordList'
+import FeedbackModal from './FeedbackModal'
 
 const TabPane = Tabs.TabPane
 
@@ -54,6 +55,12 @@ class Home extends Component {
       onAudioPlayer,
     }
 
+    const feedbackModalProps = {
+      feedback: Immutable.fromJS({
+        visible: true,
+      })
+    }
+
     return (
       <div className="content-box">
         <Header {...headerProps}>牛班音乐学校</Header>
@@ -72,6 +79,7 @@ class Home extends Component {
             </TabPane>
           </Tabs>
           <RecordList {...recordListProps} />
+          <FeedbackModal {...feedbackModalProps} />
         </div>
       </div>
     )
