@@ -37,30 +37,44 @@ class FullScreenPlayer extends Component {
   componentDidMount () {
     const { $audio } = this
 
-    $audio.addEventListener('canplay', (e) => {
-      !this.props.playing && $audio.pause()
-      this.setState({ totalTime: e.target.duration })
-    })
+    $audio.addEventListener('canplay', this.onCanplay)
+    $audio.addEventListener('loadstart', this.onLoadstart)
+    $audio.addEventListener('ended', this.onDnded)
+    $audio.addEventListener('timeupdate', this.onTimeupdate)
+  }
 
-    $audio.addEventListener('loadstart', () => {
-      setTimeout(() => { this.props.switching && this.props.handlePlayPause() }, 250)
-    })
+  componentWillUnmount () {
+    const { $audio } = this
 
-    $audio.addEventListener('ended', () => {
-      if (this.props.loop) {
-        this.props.handleSwitch()
-        setTimeout(() => { this.props.handlePlayPause() }, 0)
-      } else {
-        this.props.handleNext()
-      }
-    })
+    $audio.removeEventListener('canplay', this.onCanplay)
+    $audio.removeEventListener('loadstart', this.onLoadstart)
+    $audio.removeEventListener('ended', this.onDnded)
+    $audio.removeEventListener('timeupdate', this.onTimeupdate)
+  }
 
-    $audio.addEventListener('timeupdate', (e) => {
-      const { currentTime, duration } = e.target
-      if (!this.state.isSliding && !isNaN(duration)) {
-        this.setState({ currentTime, percent: (currentTime / duration) * 100 })
-      }
-    })
+  onCanplay = (e) => {
+    !this.props.playing && this.$audio.pause()
+    this.setState({ totalTime: e.target.duration })
+  }
+
+  onLoadstart = () => {
+    setTimeout(() => { this.props.switching && this.props.handlePlayPause() }, 250)
+  }
+
+  onDnded = () => {
+    if (this.props.loop) {
+      this.props.handleSwitch()
+      setTimeout(() => { this.props.handlePlayPause() }, 0)
+    } else {
+      this.props.handleNext()
+    }
+  }
+
+  onTimeupdate = (e) => {
+    const { currentTime, duration } = e.target
+    if (!this.state.isSliding && !isNaN(duration)) {
+      this.setState({ currentTime, percent: (currentTime / duration) * 100 })
+    }
   }
 
   render () {
