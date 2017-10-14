@@ -32,7 +32,7 @@ Feedback.propTypes = {
   home: PropTypes.instanceOf(Immutable.Map).isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   home: state.get('home'),
 })
 
