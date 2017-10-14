@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { browserHistory } from 'react-router'
 import { Popover } from 'antd-mobile'
 import { Icon, LinkToken } from 'components'
 import styles from './Bottom.less'
@@ -16,9 +17,13 @@ const Bottom = ({ tofeedback }) => {
     overlay: [<Item key="1" value="tips">有课程未反馈</Item>],
   }
 
+  const goToFeedBack = () => {
+    browserHistory.push('/feedback')
+  }
+
   return (
     <div className={styles.box}>
-      <div className={styles.left}>
+      <div className={styles.left} onClick={goToFeedBack}>
         <Popover {...popoverProps}>
           <Icon type={require('svg/feedback.svg')} />
         </Popover>

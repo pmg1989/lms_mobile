@@ -12,7 +12,7 @@ export const getNotice = () => (
     fetchNotice().then((res) => {
       const item = res.data
       return {
-        title: item.name,
+        content: item.name,
         link: item.content,
       }
     }).then(item => dispatch(receiveNotice(item)))

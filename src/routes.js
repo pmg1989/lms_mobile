@@ -54,6 +54,14 @@ const Routes = [
           }, 'reserve')
         },
       },
+      {
+        path: 'feedback',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Feedback'))
+          }, 'feedback')
+        },
+      },
     ],
   },
   {

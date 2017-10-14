@@ -5,7 +5,8 @@ import { homeConstants } from 'constants'
 import audioPlayer from './audio-player-reducers'
 
 const $notice = Immutable.fromJS({
-  title: '',
+  title: '牛班公告',
+  content: '',
 })
 
 const notice = createReducer($notice, {
