@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { browserHistory } from 'react-router'
+import { queryString } from 'utils/tools'
 import { Popover } from 'antd-mobile'
 import { Icon, LinkToken } from 'components'
 import styles from './Bottom.less'
@@ -18,7 +19,13 @@ const Bottom = ({ tofeedback }) => {
   }
 
   const goToFeedBack = () => {
-    browserHistory.push('/feedback')
+    browserHistory.push({
+      pathname: '/feedback',
+      query: {
+        mobile: queryString('mobile'),
+        token: queryString('token'),
+      },
+    })
   }
 
   return (

@@ -42,7 +42,7 @@ class FeedbackModal extends Component {
             browserHistory.push({
               pathname: '/feedback',
               query: {
-                mobile: queryString('queryString'),
+                mobile: queryString('mobile'),
                 token: queryString('token'),
               },
             })
