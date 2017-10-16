@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Slider } from 'antd-mobile'
 import { Icon } from 'components'
@@ -8,12 +9,13 @@ import styles from './FullScreenPlayer.less'
 
 class FullScreenPlayer extends Component {
   static propTypes = {
-    current: PropTypes.shape({
-      title: PropTypes.string,
-      author: PropTypes.string,
-      thumb: PropTypes.string,
-      source: PropTypes.string,
-    }).isRequired,
+    // current: PropTypes.shape({
+    //   title: PropTypes.string,
+    //   author: PropTypes.string,
+    //   thumb: PropTypes.string,
+    //   source: PropTypes.string,
+    // }).isRequired,
+    current: PropTypes.instanceOf(Immutable.Map).isRequired,
     loop: PropTypes.bool.isRequired,
     playing: PropTypes.bool.isRequired,
     switching: PropTypes.bool.isRequired,
@@ -115,7 +117,7 @@ class FullScreenPlayer extends Component {
 
     const audioProps = {
       autoPlay: 'autoplay',
-      src: current.source,
+      src: current.get('source'),
       ref: (c) => {
         this.$audio = c
         setAudioElement(c)
@@ -129,12 +131,12 @@ class FullScreenPlayer extends Component {
             <Icon type={require('svg/arrow-down.svg')} />
           </div>
           <div className={styles.info}>
-            <span className={styles.title}>{current.title}</span><br />
-            <span className={styles.author}>{current.author}</span>
+            <span className={styles.title}>{current.get('title')}</span><br />
+            <span className={styles.author}>{current.get('author')}</span>
           </div>
         </div>
         <div className={styles.image_bg}>
-          <img src={current.thumb} alt="thumb" />
+          <img src={current.get('thumb')} alt="thumb" />
         </div>
         <div className={styles.bottom_box}>
           <div className={styles.slider_box}>

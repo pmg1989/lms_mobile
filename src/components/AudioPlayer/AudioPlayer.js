@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Icon } from 'components'
 import { renderBgImage } from 'utils/tools'
@@ -8,12 +9,13 @@ import styles from './AudioPlayer.less'
 
 class AudioPlayer extends Component {
   static propTypes = {
-    list: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string,
-      author: PropTypes.string,
-      thumb: PropTypes.string,
-      source: PropTypes.string,
-    })),
+    // list: PropTypes.arrayOf(PropTypes.shape({
+    //   title: PropTypes.string,
+    //   author: PropTypes.string,
+    //   thumb: PropTypes.string,
+    //   source: PropTypes.string,
+    // })),
+    list: PropTypes.instanceOf(Immutable.List).isRequired,
     index: PropTypes.number.isRequired,
     playing: PropTypes.bool.isRequired,
     switching: PropTypes.bool.isRequired,
@@ -48,7 +50,7 @@ class AudioPlayer extends Component {
   render () {
     const { list, index, playing, switching, setAudioElement, onAudioPlayer } = this.props
     const { loop, isFullScreen } = this.state
-    const current = list[index] || {}
+    const current = list.get(index) || Immutable.fromJS({})
     const fullScreenPlayerProps = {
       current,
       loop,
@@ -77,10 +79,10 @@ class AudioPlayer extends Component {
       <div className={styles.player_box}>
         <div className={classnames(styles.bottom_box, (playing || switching) && styles.active)} onClick={::this.handleShowFullScreen}>
           <div className={styles.left}>
-            <div className={styles.thumb} style={renderBgImage(current.thumb)} />
+            <div className={styles.thumb} style={renderBgImage(current.get('thumb'))} />
             <div className={styles.info}>
-              <span className={styles.title}>{current.title}</span>
-              <span className={styles.author}>{current.author}</span>
+              <span className={styles.title}>{current.get('title')}</span>
+              <span className={styles.author}>{current.get('author')}</span>
             </div>
           </div>
           <div className={styles.right} onClick={(e) => { e.stopPropagation() }}>

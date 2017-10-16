@@ -18,7 +18,7 @@ const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
   let $audio
 
   const audioPlayerProps = {
-    list: list.toJS(),
+    list,
     index,
     playing,
     switching,
