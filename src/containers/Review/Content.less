@@ -1,0 +1,40 @@
+@import "../../themes/mixin.less";
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: e('calc(100vh - 88px - 120px)');
+  padding: 60px 60px;
+  text-align: center;
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 60px;
+  }
+
+  .content {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 60px 40px;
+    line-height: 2;
+    color: @nb-gray-light;
+
+    hr {
+      width: 60px;
+      border: 2px solid @nb-blue;
+    }
+
+    .text {
+      color: @nb-gray;
+      margin-bottom: 30px;
+    }
+
+    .bottom {
+      border: 2px solid currentColor;
+      display: inline-block;
+      padding: 0 30px;
+    }
+  }
+}

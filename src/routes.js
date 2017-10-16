@@ -55,6 +55,14 @@ const Routes = [
         },
       },
       {
+        path: 'review/:lessonId',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Review'))
+          }, 'review')
+        },
+      },
+      {
         path: 'feedback',
         getComponent (location, cb) {
           require.ensure([], (require) => {
