@@ -10,12 +10,12 @@ const receiveReviewInfo = data => ({
 
 export const getReviewInfo = (lessonid, userid) => (
   dispatch => (
-    fetchReviewInfo({ lessonid, userid }).then(res => ({
+    fetchReviewInfo({ lessonid, userid }).then(({ data }) => ({
       info: {
-        ...res.data.lesson_info,
-        gradetime: res.data.gradetime,
+        ...data.lesson_info,
+        gradetime: data.gradetime,
       },
-      comment: res.data.commenttext,
+      comment: data.commenttext,
     })).then(data => dispatch(receiveReviewInfo(data)))
   )
 )

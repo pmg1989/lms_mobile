@@ -2,20 +2,19 @@ import Immutable from 'immutable'
 import { homeConstants } from 'constants'
 import { fetchNotice, fetchCourseList, fetchRecordList } from 'services/home'
 
-const receiveNotice = item => ({
-  item: Immutable.fromJS(item),
+const receiveNotice = data => ({
+  data: Immutable.fromJS(data),
   type: homeConstants.FETCH_NOTICE,
 })
 
 export const getNotice = () => (
   dispatch => (
-    fetchNotice().then((res) => {
-      const item = res.data
+    fetchNotice().then(({ data }) => {
       return {
-        content: item.name,
-        link: item.content,
+        content: data.name,
+        link: data.content,
       }
-    }).then(item => dispatch(receiveNotice(item)))
+    }).then(data => dispatch(receiveNotice(data)))
   )
 )
 
@@ -26,10 +25,10 @@ const receiveCourseList = list => ({
 
 export const getCourseList = userid => (
   dispatch => (
-    fetchCourseList({ userid }).then(res => ({
-      commingList: res.data.comminglist,
-      studingList: res.data.studinglist,
-      passedList: res.data.passedlist,
+    fetchCourseList({ userid }).then(({ data }) => ({
+      commingList: data.comminglist,
+      studingList: data.studinglist,
+      passedList: data.passedlist,
     })).then(list => dispatch(receiveCourseList(list)))
   )
 )
@@ -41,9 +40,8 @@ const receiveRecordList = list => ({
 
 export const getRecordList = (userid, avatar) => (
   dispatch => (
-    fetchRecordList({ userid }).then((res) => {
-      const list = res.data
-      return list.map(item => ({
+    fetchRecordList({ userid }).then(({ data }) => {
+      return data.map(item => ({
         title: item.name,
         author: item.owner,
         thumb: avatar,

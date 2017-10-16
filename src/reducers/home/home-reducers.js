@@ -11,7 +11,7 @@ const $notice = Immutable.fromJS({
 
 const notice = createReducer($notice, {
   [homeConstants.FETCH_NOTICE] (state, action) {
-    return state.merge(action.item)
+    return state.merge(action.data)
   },
 })
 

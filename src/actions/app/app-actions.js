@@ -9,9 +9,8 @@ export const authLoginSuccess = app => ({
 
 export const authLogin = (mobile, token) => (
   dispatch => (
-    auth(mobile, token).then((json) => {
-      const data = json.data
-      const authorized = json.status === 10000
+    auth(mobile, token).then(({ status, data }) => {
+      const authorized = status === 10000
       data.authorized = authorized
       data.mobile = mobile
       if (authorized) {
