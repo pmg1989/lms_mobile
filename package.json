@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "cross-env BROWSER=none HOST=test.newband.com PORT=8002 roadhog server",
     "build": "roadhog build && node deploy",
+    "build-staging": "roadhog build && node deploy",
+    "build-release": "roadhog build && node deploy",
     "build:analyze": "roadhog build --analyze",
     "build:dll": "roadhog buildDll",
     "build:new": "node version && roadhog build",
