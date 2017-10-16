@@ -31,7 +31,7 @@ const PFCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const courseType = item.get('category_idnumber')
   const isVip = courseType.includes('-vip-')
-  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('contractid'))}`
+  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('contractid'))}?type=profession`
 
   return (
     <div className={styles.item}>
@@ -62,7 +62,7 @@ const HDCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const courseType = item.get('category_idnumber')
   const isVip = courseType.includes('-vip-')
-  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('hdid'))}`
+  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('hdid'))}?type=hd`
 
   return (
     <div className={styles.item}>
@@ -93,7 +93,7 @@ const JLCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const courseType = item.get('category_idnumber')
   const isVip = courseType.includes('-vip-')
-  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('jlid'))}`
+  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('jlid'))}?type=jl`
 
   return (
     <div className={styles.item}>

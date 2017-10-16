@@ -31,7 +31,7 @@ const Header = ({ dispatch, children, ...headerProps }) => {
 
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
   headerProps: PropTypes.object,
 }
 

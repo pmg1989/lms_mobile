@@ -23,9 +23,15 @@ class Progress extends Component {
   }
 
   render () {
-    const { progress, user, onProgress } = this.props
+    const { params, progress, user, onProgress } = this.props
     const info = progress.get('info')
     const lessons = progress.get('lessons')
+    const categorySummary = info.get('category_summary')
+    const dicType = {
+      profession: '专业课',
+      hd: '互动课',
+      jl: '交流课',
+    }
 
     const headerProps = {
       rightContent: (
@@ -41,12 +47,15 @@ class Progress extends Component {
     }
 
     const bottomProps = {
-      tofeedback: info.get('tofeedback'),
+      info,
+      params,
     }
 
     return (
       <div className="content-box">
-        <Header {...headerProps}>{info.get('category_summary')}</Header>
+        <Header {...headerProps}>
+          {categorySummary && <span>{dicType[params.type]}-{categorySummary}</span>}
+        </Header>
         <div className="content">
           <Top info={info} />
           <Content {...contentProps} />
@@ -66,6 +75,7 @@ const mapStateToProps = (state, ownProps) => ({
   params: {
     ...ownProps.params,
     contractId: decodeURIComponent(ownProps.params.contractId),
+    type: ownProps.location.query.type,
   },
 })
 
