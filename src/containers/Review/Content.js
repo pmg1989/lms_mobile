@@ -14,9 +14,10 @@ const Content = ({ info, comment }) => {
         <div className={styles.name}>{info.get('student')}同学：</div>
         <hr />
         <div className={styles.text}>
-          {!!commentText ?
-            <span>{commentText}</span>:
-            <span>老师会在24小时内完成评论 <br/>请稍后查看</span>
+          {commentText ?
+            <span>{commentText}</span> :
+            <span>老师会在24小时内完成评论
+<br />请稍后查看</span>
           }
         </div>
         {gradeTime &&
