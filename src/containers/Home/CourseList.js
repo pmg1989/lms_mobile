@@ -60,7 +60,7 @@ PFCourse.propTypes = {
 
 const HDCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
-  const courseType = item.get('category_idnumber')
+  const courseType = 'hd'
   const isVip = courseType.includes('-vip-')
   const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('hdid'))}?type=hd`
 
@@ -91,7 +91,7 @@ HDCourse.propTypes = {
 
 const JLCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
-  const courseType = item.get('category_idnumber')
+  const courseType = item.get('jl_category_idnumber')
   const isVip = courseType.includes('-vip-')
   const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('jlid'))}?type=jl`
 
