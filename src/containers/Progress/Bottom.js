@@ -35,7 +35,7 @@ const Bottom = ({ info, params: { type, courseType, contractId } }) => {
     const lockStart = info.get('contract_freezestart')
     const lockEnd = info.get('contract_freezeend')
 
-    if(lockStart && lockEnd && (now >= lockStart && now <= lockEnd)) {
+    if (lockStart && lockEnd && (now >= lockStart && now <= lockEnd)) {
       e.preventDefault()
       Toast.info(`课程已冻结，无法订课！冻结时间为：${moment.unix(lockStart).format('YYYY-MM-DD')} ~ ${moment.unix(lockEnd).format('YYYY-MM-DD')}`)
       return false
@@ -44,15 +44,15 @@ const Bottom = ({ info, params: { type, courseType, contractId } }) => {
   }
 
   const checkIsVip = (e) => {
-    if(checkIsLock(e)) {
+    if (checkIsLock(e)) {
       const categoryIdnumber = info.get('category_idnumber')
       const isVip = categoryIdnumber.includes('-vip-')
       const notEnroll = ['composition', 'theory'].includes('categoryIdnumber')
-      if(type === 'profession' && !isVip) {
+      if (type === 'profession' && !isVip) {
         e.preventDefault()
         Toast.info('只有VIP学员可以预约上课哦！')
       }
-      if(type === 'profession' && notEnroll) {
+      if (type === 'profession' && notEnroll) {
         e.preventDefault()
         Toast.info('该课程暂时无法预约哦!')
       }
