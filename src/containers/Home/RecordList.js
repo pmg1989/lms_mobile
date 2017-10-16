@@ -14,14 +14,15 @@ Title.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
+const RecordList = ({ audioPlayer, onAudioPlayer }) => {
   let $audio
+  const list = audioPlayer.get('list')
+  const index = audioPlayer.get('index')
+  const playing = audioPlayer.get('playing')
+  const switching = audioPlayer.get('switching')
 
   const audioPlayerProps = {
-    list,
-    index,
-    playing,
-    switching,
+    audioPlayer,
     onAudioPlayer,
     setAudioElement ($el) {
       $audio = $el
@@ -67,10 +68,7 @@ const RecordList = ({ list, index, playing, switching, onAudioPlayer }) => {
 }
 
 RecordList.propTypes = {
-  list: PropTypes.instanceOf(Immutable.List).isRequired,
-  index: PropTypes.number.isRequired,
-  playing: PropTypes.bool.isRequired,
-  switching: PropTypes.bool.isRequired,
+  audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
   onAudioPlayer: PropTypes.object.isRequired,
 }
 

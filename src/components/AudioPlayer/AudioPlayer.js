@@ -9,16 +9,7 @@ import styles from './AudioPlayer.less'
 
 class AudioPlayer extends Component {
   static propTypes = {
-    // list: PropTypes.arrayOf(PropTypes.shape({
-    //   title: PropTypes.string,
-    //   author: PropTypes.string,
-    //   thumb: PropTypes.string,
-    //   source: PropTypes.string,
-    // })),
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
-    index: PropTypes.number.isRequired,
-    playing: PropTypes.bool.isRequired,
-    switching: PropTypes.bool.isRequired,
+    audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
     onAudioPlayer: PropTypes.object.isRequired,
     setAudioElement: PropTypes.func,
   }
@@ -33,7 +24,8 @@ class AudioPlayer extends Component {
   }
 
   handlePlayPause () {
-    const { onAudioPlayer, playing } = this.props
+    const { onAudioPlayer, audioPlayer } = this.props
+    const playing = audioPlayer.get('playing')
     playing ? onAudioPlayer.changePause() : onAudioPlayer.changePlay()
     playing ? this.$audio.pause() : this.$audio.play()
   }
@@ -48,8 +40,12 @@ class AudioPlayer extends Component {
   }
 
   render () {
-    const { list, index, playing, switching, setAudioElement, onAudioPlayer } = this.props
+    const { audioPlayer, setAudioElement, onAudioPlayer } = this.props
     const { loop, isFullScreen } = this.state
+    const list = audioPlayer.get('list')
+    const index = audioPlayer.get('index')
+    const playing = audioPlayer.get('playing')
+    const switching = audioPlayer.get('switching')
     const current = list.get(index) || Immutable.fromJS({})
     const fullScreenPlayerProps = {
       current,

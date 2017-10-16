@@ -48,10 +48,7 @@ class Home extends Component {
     }
 
     const recordListProps = {
-      list: audioPlayer.get('list'),
-      index: audioPlayer.get('index'),
-      playing: audioPlayer.get('playing'),
-      switching: audioPlayer.get('switching'),
+      audioPlayer,
       onAudioPlayer,
     }
 
