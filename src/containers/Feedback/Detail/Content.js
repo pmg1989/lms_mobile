@@ -57,7 +57,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
       <Title cur={1} text="老师满意度" />
       <div className={styles.form_box}>
         <div className={styles.row}>
-          <div className={styles.title}>1. 老师课前教学准备充分度</div>
+          <div className={classnames(styles.title, !!getFieldError('lesson_prepare_score') && styles.errors)}>1. 老师课前教学准备充分度</div>
           <RadioStar onChange={handleChangeChecked('lesson_prepare_score')}>
             <input
               style={{ display: 'none' }}
@@ -74,7 +74,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={styles.title}>2. 本课内容设计满意度</div>
+          <div className={classnames(styles.title, !!getFieldError('lesson_content_score') && styles.errors)}>2. 本课内容设计满意度</div>
           <RadioStar onChange={handleChangeChecked('lesson_content_score')}>
             <input
               style={{ display: 'none' }}
@@ -91,12 +91,12 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={styles.title}>3. 老师课堂形象满意度</div>
+          <div className={classnames(styles.title, !!getFieldError('teacher_appearance_score') && styles.errors)}>3. 老师课堂形象满意度</div>
           <RadioStar onChange={handleChangeChecked('teacher_appearance_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('teacher_appearance_score', {
-                initialValue: '2',
+                initialValue: '',
                 rules: [
                   {
                     required: true,
@@ -108,7 +108,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={styles.title}>4. 与老师有良好的互动</div>
+          <div className={classnames(styles.title, !!getFieldError('lesson_interaction_score') && styles.errors)}>4. 与老师有良好的互动</div>
           <RadioStar onChange={handleChangeChecked('lesson_interaction_score')}>
             <input
               style={{ display: 'none' }}
@@ -125,7 +125,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={styles.title}>5. 老师讲课表达能力</div>
+          <div className={classnames(styles.title, !!getFieldError('teacher_expression_score') && styles.errors)}>5. 老师讲课表达能力</div>
           <RadioStar onChange={handleChangeChecked('teacher_expression_score')}>
             <input
               style={{ display: 'none' }}

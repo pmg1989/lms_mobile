@@ -31,7 +31,7 @@ class Radio extends Component {
     return (
       <div className={classnames(styles.radio, checked && groupValue === value && styles.checked)} onClick={::this.handleChecked}>
         <img src={require(`images/feedback/${source}.png`)} alt="" />
-        {children}{value}
+        {children}
       </div>
     )
   }
