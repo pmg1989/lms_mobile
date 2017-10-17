@@ -54,7 +54,7 @@ class Home extends Component {
 
     const feedbackModalProps = {
       feedback: Immutable.fromJS({
-        visible: false,
+        visible: true,
       }),
     }
 

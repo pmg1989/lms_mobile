@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { Modal } from 'antd-mobile'
-import { browserHistory } from 'react-router'
-import { Icon } from 'components'
-import { queryString } from 'utils/tools'
+import { Icon, LinkToken } from 'components'
 import styles from './FeedbackModal.less'
 
 class FeedbackModal extends Component {
@@ -25,30 +23,17 @@ class FeedbackModal extends Component {
     const { visible } = this.state
 
     const modalProps = {
-      title: <Icon className={styles.title_icon} type={require('svg/complete.svg')} />,
+      title: (
+        <div className={styles.title_box}>
+          <Icon className={styles.title_icon} type={require('svg/complete.svg')} />
+          <Icon className={styles.close_icon} type={require('svg/close.svg')} onClick={this.handleClose} />
+        </div>
+      ),
       visible,
       platform: 'ios',
       transparent: true,
       maskClosable: false,
-      footer: [
-        {
-          text: '关闭',
-          onPress: () => this.handleClose(),
-        },
-        {
-          text: <span className={styles.btn}>课后反馈</span>,
-          onPress: () => {
-            this.handleClose()
-            browserHistory.push({
-              pathname: '/feedback',
-              query: {
-                mobile: queryString('mobile'),
-                token: queryString('token'),
-              },
-            })
-          },
-        },
-      ],
+      footer: [],
     }
 
     return (
@@ -56,6 +41,7 @@ class FeedbackModal extends Component {
         <div className={styles.title}>声乐VIP第一阶段</div>
         <p>专业课 2017-11-26 13：30</p>
         <p>已完成该课程</p>
+        <LinkToken className={styles.btn} to={'/demo'} onClick={this.handleClose}>课后反馈</LinkToken>
       </Modal>
     )
   }

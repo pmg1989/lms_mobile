@@ -1,8 +1,18 @@
 @import "../../themes/mixin.less";
 
-.title_icon {
-  width: 60px;
-  height: 60px;
+.title_box {
+  position: relative;
+
+  .title_icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .close_icon {
+    position: absolute;
+    right: 10px;
+    top: -20px;
+  }
 }
 
 .title {
@@ -11,5 +21,11 @@
 }
 
 .btn {
-  color: @nb-blue-light;
+  display: inline-block;
+  color: @nb-blue;
+  font-size: 36px;
+  padding: 12px 100px;
+  border: 2px solid currentColor;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
