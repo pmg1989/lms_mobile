@@ -45,6 +45,9 @@ const Content = ({ form: { getFieldProps } }) => {
           count={150}
         />
       </div>
+      <div className={styles.btn_box}>
+        <span className={styles.btn}>提交反馈</span>
+      </div>
     </div>
   )
 }
