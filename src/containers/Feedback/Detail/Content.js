@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 // import Immutable from 'immutable'
 import classnames from 'classnames'
@@ -19,26 +19,19 @@ Title.propTypes = {
   errors: PropTypes.bool,
 }
 
-class RadioStar extends Component {
-  state = {
-
+const RadioStar = ({ getFieldProps }) => {
+  const radioGroupProps = {
+    getFieldProps,
   }
 
-  render () {
-    const { getFieldProps } = this.props
-    const radioGroupProps = {
-      getFieldProps,
-    }
-
-    return (
-      <RadioGroup {...radioGroupProps}>
-        <Radio type="satisfy" value="4">很满意</Radio>
-        <Radio type="good" value="3">满意</Radio>
-        <Radio type="soso" value="2">不太满意</Radio>
-        <Radio type="bad" value="1">不满意</Radio>
-      </RadioGroup>
-    )
-  }
+  return (
+    <RadioGroup {...radioGroupProps}>
+      <Radio type="satisfy" value="4">很满意</Radio>
+      <Radio type="good" value="3">满意</Radio>
+      <Radio type="soso" value="2">不太满意</Radio>
+      <Radio type="bad" value="1">不满意</Radio>
+    </RadioGroup>
+  )
 }
 RadioStar.propTypes = {
   getFieldProps: PropTypes.object.isRequired,
@@ -53,9 +46,8 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError } }) => 
         // for (let index in errors) {
         //   console.log(errors[index].errors[0].message)
         // }
-      } else {
-        console.log(value)
       }
+      console.log(value)
     })
   }
 
@@ -77,7 +69,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError } }) => 
             }) }}
           />
         </div>
-        <div className={styles.row}>
+        {/* <div className={styles.row}>
           <div className={styles.title}>2. 本课内容设计满意度</div>
           <RadioStar
             getFieldProps={{ ...getFieldProps('lesson_content_score', {
@@ -90,7 +82,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError } }) => 
             }) }}
           />
         </div>
-        {/* <div className={styles.row}>
+        <div className={styles.row}>
           <div className={styles.title}>3. 老师课堂形象满意度</div>
           <RadioStar
             {...getFieldProps("teacher_appearance_score", {

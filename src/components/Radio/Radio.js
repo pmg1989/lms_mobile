@@ -6,10 +6,10 @@ import styles from './Radio.less'
 class Radio extends Component {
   static propTypes = {
     type: PropTypes.string.isRequired,
-    groupValue: PropTypes.string.isRequired,
+    groupValue: PropTypes.string,
     value: PropTypes.string.isRequired,
     children: PropTypes.any.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
   }
 
   state = {

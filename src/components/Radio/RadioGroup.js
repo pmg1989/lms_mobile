@@ -19,10 +19,11 @@ class RadioGroup extends Component {
   render () {
     const { children, getFieldProps } = this.props
     const { value } = this.state
+    console.log(this.props)
     return (
       <div className={styles.radio_box}>
-        <input {...getFieldProps} value={value}
-          style={{ display: 'none' }}
+        <input {...getFieldProps}
+          style={{ width: '20px' }}
         />
         {React.Children.map(children,
        child => React.cloneElement(child, {
