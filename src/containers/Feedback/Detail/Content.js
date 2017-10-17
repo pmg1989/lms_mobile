@@ -19,13 +19,9 @@ Title.propTypes = {
   errors: PropTypes.bool,
 }
 
-const RadioStar = ({ getFieldProps }) => {
-  const radioGroupProps = {
-    getFieldProps,
-  }
-
+const RadioStar = ({ onChange, children }) => {
   return (
-    <RadioGroup {...radioGroupProps}>
+    <RadioGroup onChange={onChange} field={children}>
       <Radio type="satisfy" value="4">很满意</Radio>
       <Radio type="good" value="3">满意</Radio>
       <Radio type="soso" value="2">不太满意</Radio>
@@ -34,10 +30,11 @@ const RadioStar = ({ getFieldProps }) => {
   )
 }
 RadioStar.propTypes = {
-  getFieldProps: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
 }
 
-const Content = ({ form: { getFieldProps, validateFields, getFieldError } }) => {
+const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFieldsValue } }) => {
   const submit = (e) => {
     validateFields((errors, value) => {
       if (errors) {
@@ -51,58 +48,99 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError } }) => 
     })
   }
 
+  const handleChangeChecked = field => (value) => {
+    setFieldsValue({ [field]: value })
+  }
+
   return (
     <div className={styles.box}>
       <Title cur={1} text="老师满意度" />
       <div className={styles.form_box}>
         <div className={styles.row}>
           <div className={styles.title}>1. 老师课前教学准备充分度</div>
-          <RadioStar
-            getFieldProps={{ ...getFieldProps('lesson_prepare_score', {
-              initialValue: '',
-              rules: [
-                {
-                  required: true,
-                  message: '请填写老师课前教学准备充分度',
-                },
-              ],
-            }) }}
-          />
+          <RadioStar onChange={handleChangeChecked('lesson_prepare_score')}>
+            <input
+              style={{ display: 'none' }}
+              {...getFieldProps('lesson_prepare_score', {
+                initialValue: '',
+                rules: [
+                  {
+                    required: true,
+                    message: '请填写老师课前教学准备充分度',
+                  },
+                ],
+              })}
+            />
+          </RadioStar>
         </div>
-        {/* <div className={styles.row}>
+        <div className={styles.row}>
           <div className={styles.title}>2. 本课内容设计满意度</div>
-          <RadioStar
-            getFieldProps={{ ...getFieldProps('lesson_content_score', {
-              initialValue: '3',
-              rules: [
-                {
-                  required: true,
-                },
-              ],
-            }) }}
-          />
+          <RadioStar onChange={handleChangeChecked('lesson_content_score')}>
+            <input
+              style={{ display: 'none' }}
+              {...getFieldProps('lesson_content_score', {
+                initialValue: '3',
+                rules: [
+                  {
+                    required: true,
+                    message: '请填写本课内容设计满意度',
+                  },
+                ],
+              })}
+            />
+          </RadioStar>
         </div>
         <div className={styles.row}>
           <div className={styles.title}>3. 老师课堂形象满意度</div>
-          <RadioStar
-            {...getFieldProps("teacher_appearance_score", {
-              initialValue: "2",
-              rules: [
-                {
-                  required: true,
-                },
-              ],
-            })}
-          />
+          <RadioStar onChange={handleChangeChecked('teacher_appearance_score')}>
+            <input
+              style={{ display: 'none' }}
+              {...getFieldProps('teacher_appearance_score', {
+                initialValue: '2',
+                rules: [
+                  {
+                    required: true,
+                    message: '请填写老师课堂形象满意度',
+                  },
+                ],
+              })}
+            />
+          </RadioStar>
         </div>
         <div className={styles.row}>
           <div className={styles.title}>4. 与老师有良好的互动</div>
-          <RadioStar model="lesson_interaction_score" value="1" />
+          <RadioStar onChange={handleChangeChecked('lesson_interaction_score')}>
+            <input
+              style={{ display: 'none' }}
+              {...getFieldProps('lesson_interaction_score', {
+                initialValue: '1',
+                rules: [
+                  {
+                    required: true,
+                    message: '请填写与老师有良好的互动',
+                  },
+                ],
+              })}
+            />
+          </RadioStar>
         </div>
         <div className={styles.row}>
           <div className={styles.title}>5. 老师讲课表达能力</div>
-          <RadioStar model="teacher_expression_score" value="2" />
-        </div>*/}
+          <RadioStar onChange={handleChangeChecked('teacher_expression_score')}>
+            <input
+              style={{ display: 'none' }}
+              {...getFieldProps('teacher_expression_score', {
+                initialValue: '2',
+                rules: [
+                  {
+                    required: true,
+                    message: '请填写与老师有良好的互动',
+                  },
+                ],
+              })}
+            />
+          </RadioStar>
+        </div>
       </div>
       <Title cur={2} text="建议与意见(针对教学内容)" errors={!!getFieldError('lesson_suggestion')} />
       <div className={styles.form_box}>

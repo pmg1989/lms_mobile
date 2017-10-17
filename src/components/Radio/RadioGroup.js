@@ -4,33 +4,33 @@ import styles from './RadioGroup.less'
 
 class RadioGroup extends Component {
   static propTypes = {
-    getFieldProps: PropTypes.object.isRequired,
+    field: PropTypes.any.isRequired,
     children: PropTypes.any.isRequired,
+    onChange: PropTypes.func.isRequired,
   }
 
   state = {
-    value: this.props.getFieldProps.value,
+    value: this.props.field.props.value,
   }
 
   handleChange (value) {
     this.setState({ value })
+    this.props.onChange(value)
   }
 
   render () {
-    const { children, getFieldProps } = this.props
+    const { field, children } = this.props
     const { value } = this.state
-    console.log(this.props)
+
     return (
       <div className={styles.radio_box}>
-        <input {...getFieldProps}
-          style={{ width: '20px' }}
-        />
+        {field}
         {React.Children.map(children,
-       child => React.cloneElement(child, {
-         groupValue: value,
-         onChange: ::this.handleChange,
-       })
-      )}
+          child => React.cloneElement(child, {
+            groupValue: value,
+            onChange: ::this.handleChange,
+          })
+        )}
       </div>
     )
   }

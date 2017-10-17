@@ -13,7 +13,7 @@ class Radio extends Component {
   }
 
   state = {
-    checked: this.props.value === this.props.groupValue,
+    checked: this.props.groupValue === this.props.value,
   }
 
   handleChecked () {
