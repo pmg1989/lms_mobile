@@ -7,14 +7,15 @@ import { createForm } from 'rc-form'
 import { RadioGroup, Radio } from 'components'
 import styles from './Content.less'
 
-const Title = ({ cur, text, errors }) => (
+const Title = ({ cur, inner, text, errors }) => (
   <div className={styles.title_box}>
-    <span className={styles.number}>{cur}</span>
-    <span className={classnames(errors && styles.errors)}>{text}</span>
+    <span className={styles.number}>{cur}{ inner && '. ' }</span>
+    <span className={classnames(styles.title, errors && styles.errors)}>{text}</span>
   </div>
 )
 Title.propTypes = {
   cur: PropTypes.number.isRequired,
+  inner: PropTypes.bool,
   text: PropTypes.string.isRequired,
   errors: PropTypes.bool,
 }
@@ -57,7 +58,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
       <Title cur={1} text="老师满意度" />
       <div className={styles.form_box}>
         <div className={styles.row}>
-          <div className={classnames(styles.title, !!getFieldError('lesson_prepare_score') && styles.errors)}>1. 老师课前教学准备充分度</div>
+          <Title cur={1} inner text="老师课前教学准备充分度" errors={!!getFieldError('lesson_prepare_score')} />
           <RadioStar onChange={handleChangeChecked('lesson_prepare_score')}>
             <input
               style={{ display: 'none' }}
@@ -74,12 +75,12 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={classnames(styles.title, !!getFieldError('lesson_content_score') && styles.errors)}>2. 本课内容设计满意度</div>
+          <Title cur={2} inner text="本课内容设计满意度" errors={!!getFieldError('lesson_content_score')} />
           <RadioStar onChange={handleChangeChecked('lesson_content_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_content_score', {
-                initialValue: '3',
+                initialValue: '',
                 rules: [
                   {
                     required: true,
@@ -91,7 +92,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={classnames(styles.title, !!getFieldError('teacher_appearance_score') && styles.errors)}>3. 老师课堂形象满意度</div>
+          <Title cur={3} inner text="老师课堂形象满意度" errors={!!getFieldError('teacher_appearance_score')} />
           <RadioStar onChange={handleChangeChecked('teacher_appearance_score')}>
             <input
               style={{ display: 'none' }}
@@ -108,12 +109,12 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={classnames(styles.title, !!getFieldError('lesson_interaction_score') && styles.errors)}>4. 与老师有良好的互动</div>
+          <Title cur={4} inner text="与老师有良好的互动" errors={!!getFieldError('lesson_interaction_score')} />
           <RadioStar onChange={handleChangeChecked('lesson_interaction_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_interaction_score', {
-                initialValue: '1',
+                initialValue: '',
                 rules: [
                   {
                     required: true,
@@ -125,12 +126,12 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
           </RadioStar>
         </div>
         <div className={styles.row}>
-          <div className={classnames(styles.title, !!getFieldError('teacher_expression_score') && styles.errors)}>5. 老师讲课表达能力</div>
+          <Title cur={5} inner text="老师讲课表达能力" errors={!!getFieldError('teacher_expression_score')} />
           <RadioStar onChange={handleChangeChecked('teacher_expression_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('teacher_expression_score', {
-                initialValue: '2',
+                initialValue: '',
                 rules: [
                   {
                     required: true,

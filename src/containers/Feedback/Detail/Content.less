@@ -3,7 +3,7 @@
 .title_box {
   padding: 20px 30px;
   font-size: 28px;
-  color: @nb-gray;
+  // color: @nb-gray;
 
   .number {
     background-color: @nb-blue;
@@ -32,7 +32,19 @@
   .row {
     padding: 10px 0;
 
+    .title_box {
+      padding: 0;
+
+      .number {
+        background-color: #fff;
+        font-size: 28px;
+        color: @nb-gray-dark;
+        margin-right: 0;
+      }
+    }
+
     .title {
+      display: inline-block;
       margin-bottom: 10px;
 
       &.errors {
