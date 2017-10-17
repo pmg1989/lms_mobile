@@ -27,8 +27,9 @@ const Content = ({ form: { getFieldProps } }) => {
       <div className={styles.form_box}>
         <TextareaItem
           {...getFieldProps('text1', {
-            initialValue: '',
+            initialValue: '我已经被禁用了',
           })}
+          editable={false}
           placeholder="写下你对教学内容的建议与意见"
           rows={3}
           count={150}
