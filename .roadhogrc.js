@@ -43,6 +43,7 @@ export default {
             constants: `${__dirname}/src/constants`,
             actions: `${__dirname}/src/actions`,
             svg: `${__dirname}/src/svg`,
+            images: `${__dirname}/src/public/images`,
             themes: `${__dirname}/src/themes`,
           }
         }]
