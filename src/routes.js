@@ -70,6 +70,14 @@ const Routes = [
           }, 'feedback')
         },
       },
+      {
+        path: 'feedback/:id',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Feedback/Detail'))
+          }, 'feedback-detail')
+        },
+      },
     ],
   },
   {

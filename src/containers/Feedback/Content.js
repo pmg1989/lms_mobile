@@ -3,7 +3,7 @@ import React from 'react'
 // import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
-import { Icon } from 'components'
+import { Icon, LinkToken } from 'components'
 import styles from '../Progress/Content.less'
 
 const Content = () => {
@@ -18,9 +18,9 @@ const Content = () => {
             </span>
           </div>
           <div className={styles.right}>
-            <span className={classnames(styles.btn, styles.border, styles.leave)}>
+            <LinkToken to={'/feedback/1'} className={classnames(styles.btn, styles.border, styles.leave)}>
               课后反馈
-            </span>
+            </LinkToken>
             {/*
               <span className={classnames(styles.btn, styles.undo)}>反馈超时</span>
               <span className={classnames(styles.btn, styles.border)}>
