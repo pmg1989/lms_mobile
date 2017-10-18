@@ -19,7 +19,7 @@ class Progress extends Component {
 
   componentWillMount () {
     const { params, onProgress } = this.props
-    onProgress.getProgressInfo(params.contractId, params.courseType)
+    onProgress.getProgressInfo(params.contractId, params.categoryId)
   }
 
   render () {

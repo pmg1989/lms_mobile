@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Header } from 'components'
 
-const Reserve = ({ courseType, contractId }) => {
-  console.log('ownProps params id detail', courseType, contractId)
+const Reserve = ({ categoryId, contractId }) => {
+  console.log('ownProps params id detail', categoryId, contractId)
 
   return (
     <div className="content-box">
@@ -20,13 +20,13 @@ const Reserve = ({ courseType, contractId }) => {
 }
 
 Reserve.propTypes = {
-  courseType: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
   contractId: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    courseType: ownProps.params.courseType,
+    categoryId: ownProps.params.categoryId,
     contractId: ownProps.params.contractId,
   }
 }

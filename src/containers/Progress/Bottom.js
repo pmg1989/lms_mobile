@@ -12,7 +12,7 @@ import styles from './Bottom.less'
 const Item = Popover.Item
 const now = new Date().getTime() / 1000
 
-const Bottom = ({ info, params: { type, courseType, contractId } }) => {
+const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
   const popoverProps = {
     visible: info.get('tofeedback'),
     placement: 'top',
@@ -47,7 +47,7 @@ const Bottom = ({ info, params: { type, courseType, contractId } }) => {
     if (checkIsLock(e)) {
       const categoryIdnumber = info.get('category_idnumber')
       const isVip = categoryIdnumber.includes('-vip-')
-      const notEnroll = ['composition', 'theory'].includes('categoryIdnumber')
+      const notEnroll = ['composition', 'theory'].includes('categoryId')
       if (type === 'profession' && !isVip) {
         e.preventDefault()
         Toast.info('只有VIP学员可以预约上课哦！')
@@ -69,7 +69,7 @@ const Bottom = ({ info, params: { type, courseType, contractId } }) => {
       </div>
       {['profession', 'jl'].includes(type) &&
         <div className={styles.right}>
-          <LinkToken className={styles.btn} onClick={checkIsVip} to={`/reserve/${courseType}/${contractId}`}>
+          <LinkToken className={styles.btn} onClick={checkIsVip} to={`/reserve/${categoryId}/${contractId}`}>
             预约课程
           </LinkToken>
         </div>

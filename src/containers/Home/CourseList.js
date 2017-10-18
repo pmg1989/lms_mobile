@@ -29,9 +29,9 @@ TitleBanner.propTypes = {
 
 const PFCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
-  const courseType = item.get('category_idnumber')
-  const isVip = courseType.includes('-vip-')
-  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('contractid'))}?type=profession`
+  const categoryId = item.get('category_idnumber')
+  const isVip = categoryId.includes('-vip-')
+  const linkTo = `/progress/${categoryId}/${encodeURIComponent(item.get('contractid'))}?type=profession`
 
   return (
     <div className={styles.item}>
@@ -60,9 +60,9 @@ PFCourse.propTypes = {
 
 const HDCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
-  const courseType = 'hd'
-  const isVip = courseType.includes('-vip-')
-  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('hdid'))}?type=hd`
+  const categoryId = 'hd'
+  const isVip = categoryId.includes('-vip-')
+  const linkTo = `/progress/${categoryId}/${encodeURIComponent(item.get('hdid'))}?type=hd`
 
   return (
     <div className={styles.item}>
@@ -91,9 +91,9 @@ HDCourse.propTypes = {
 
 const JLCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
-  const courseType = item.get('jl_category_idnumber')
-  const isVip = courseType.includes('-vip-')
-  const linkTo = `/progress/${courseType}/${encodeURIComponent(item.get('jlid'))}?type=jl`
+  const categoryId = item.get('jl_category_idnumber')
+  const isVip = categoryId.includes('-vip-')
+  const linkTo = `/progress/${categoryId}/${encodeURIComponent(item.get('jlid'))}?type=jl`
 
   return (
     <div className={styles.item}>
@@ -124,11 +124,11 @@ const CourseList = ({ status, list }) => {
   return (
     <div className={styles.list_box}>
       {list.map((item, key) => {
-        const courseType = (item.getIn(['profession', 'category_idnumber']) || '').split('-')[0]
+        const categoryId = (item.getIn(['profession', 'category_idnumber']) || '').split('-')[0]
 
         return (
           <div key={key} className={styles.list}>
-            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image={`./images/course-type/${courseType}.png`} />
+            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image={`./images/course-type/${categoryId}.png`} />
             <PFCourse status={status} item={item.get('profession')} />
             {item.getIn(['hd', 'hdid']) && <HDCourse type={'hd'} title="互动课" status={status} item={item.get('hd')} />}
             {item.getIn(['jl', 'jlid']) && <JLCourse type={'jl'} title="交流课" status={status} item={item.get('jl')} />}

@@ -8,9 +8,9 @@ const receiveProgressInfo = data => ({
   type: progressConstants.FETCH_PROGRESS_INFO,
 })
 
-export const getProgressInfo = (ccid, courseType) => (
+export const getProgressInfo = (ccid, categoryId) => (
   dispatch => (
-    fetchProgressInfo({ ccid, category_idnumber: courseType }).then(({ data }) => ({
+    fetchProgressInfo({ ccid, category_idnumber: categoryId }).then(({ data }) => ({
       info: {
         category_summary: data.category_summary,
         category_idnumber: data.category_idnumber,
