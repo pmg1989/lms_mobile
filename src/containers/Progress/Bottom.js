@@ -23,7 +23,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
 
   const goToFeedBack = () => {
     browserHistory.push({
-      pathname: '/feedback',
+      pathname: `/feedback/${contractId}/${categoryId}`,
       query: {
         mobile: queryString('mobile'),
         token: queryString('token'),

@@ -74,7 +74,7 @@ const mapStateToProps = (state, ownProps) => ({
   },
   params: {
     ...ownProps.params,
-    contractId: decodeURIComponent(ownProps.params.contractId),
+    // contractId: decodeURIComponent(ownProps.params.contractId),
     type: ownProps.location.query.type,
   },
 })
