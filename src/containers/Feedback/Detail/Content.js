@@ -42,7 +42,7 @@ const Content = ({
     item,
     onFeedback,
   }) => {
-    console.log(readOnly)
+  console.log(readOnly)
   const submit = (e) => {
     validateFields((errors, value) => {
       if (errors) {
