@@ -16,6 +16,12 @@ class Radio extends Component {
     checked: this.props.groupValue === this.props.value,
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.groupValue && nextProps.groupValue) {
+      this.setState({ checked: nextProps.groupValue === this.props.value })
+    }
+  }
+
   handleChecked () {
     this.setState({ checked: true })
     if (this.props.onChange) {
