@@ -39,7 +39,7 @@ const Routes = [
         },
       },
       {
-        path: 'progress/:categoryId/:contractId',
+        path: 'progress/:contractId/:categoryId',
         getComponent (location, cb) {
           require.ensure([], (require) => {
             cb(null, require('./containers/Progress'))
@@ -47,7 +47,7 @@ const Routes = [
         },
       },
       {
-        path: 'reserve/:categoryId/:contractId',
+        path: 'reserve/:contractId/:categoryId',
         getComponent (location, cb) {
           require.ensure([], (require) => {
             cb(null, require('./containers/Reserve'))
