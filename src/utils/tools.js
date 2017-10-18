@@ -27,3 +27,11 @@ export function parseTime (time) {
   return `${min}:${sec}`
   // return `${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
 }
+
+export function renderTypeName (enName) {
+  return {
+    PROFESSIOIN: '专业课',
+    HD: '互动',
+    JL: '交流',
+  }[enName] || '未知'
+}

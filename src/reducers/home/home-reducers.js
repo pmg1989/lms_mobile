@@ -22,13 +22,24 @@ const $course = Immutable.fromJS({
 })
 
 const course = createReducer($course, {
-  [homeConstants.FETCH_COURSE_LIST] (state, action) {
-    return state.merge(action.list)
+  [homeConstants.FETCH_COURSE_LIST] (state, { list }) {
+    return state.set('commingList', list.get('commingList'))
+                .set('studingList', list.get('studingList'))
+                .set('passedList', list.get('passedList'))
+  },
+})
+
+const $feedbackList = Immutable.fromJS([])
+
+const feedbackList = createReducer($feedbackList, {
+  [homeConstants.FETCH_COURSE_LIST] (state, { list }) {
+    return list.get('feedbackList')
   },
 })
 
 export default combineReducers({
   notice,
   course,
+  feedbackList,
   audioPlayer,
 })

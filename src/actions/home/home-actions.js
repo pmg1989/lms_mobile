@@ -29,6 +29,7 @@ export const getCourseList = userid => (
       commingList: data.comminglist,
       studingList: data.studinglist,
       passedList: data.passedlist,
+      feedbackList: data.feedbacklist,
     })).then(list => dispatch(receiveCourseList(list)))
   )
 )
