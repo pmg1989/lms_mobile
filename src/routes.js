@@ -71,7 +71,7 @@ const Routes = [
         },
       },
       {
-        path: 'feedback/:contractId/:categoryId/:lessonId',
+        path: 'feedback/:lessonId',
         getComponent (location, cb) {
           require.ensure([], (require) => {
             cb(null, require('./containers/Feedback/Detail'))

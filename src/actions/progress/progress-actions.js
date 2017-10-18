@@ -10,20 +10,9 @@ const receiveProgressInfo = data => ({
 
 export const getProgressInfo = (ccid, categoryId) => (
   dispatch => (
-    fetchProgressInfo({ ccid, category_idnumber: categoryId }).then(({ data }) => ({
-      info: {
-        category_summary: data.category_summary,
-        category_idnumber: data.category_idnumber,
-        attendedlesson_cnt: data.attendedlesson_cnt,
-        contractlesson_cnt: data.contractlesson_cnt,
-        contract_deadline: data.contract_deadline,
-        currentlesson_available: data.currentlesson_available,
-        currentlesson_id: data.currentlesson_id,
-        contract_freezeend: data.contract_freezeend,
-        contract_freezestart: data.contract_freezestart,
-        tofeedback: data.tofeedback,
-      },
-      lessons: data.lessons,
+    fetchProgressInfo({ ccid, category_idnumber: categoryId }).then(({ data: { lessons, ...info } }) => ({
+      info,
+      lessons,
     })).then(data => dispatch(receiveProgressInfo(data)))
   )
 )
