@@ -21,10 +21,12 @@ class FeedbackDetail extends Component {
   }
 
   render () {
-    const { readOnly, item } = this.props
+    const { params: { lessonId }, readOnly, item, onFeedback } = this.props
     const contentProps = {
       readOnly,
+      lessonId,
       item,
+      onFeedback,
     }
 
     return (

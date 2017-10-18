@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import Immutable from 'immutable'
+import Immutable from 'immutable'
 import classnames from 'classnames'
 import { TextareaItem } from 'antd-mobile'
 import { createForm } from 'rc-form'
@@ -35,17 +35,26 @@ RadioStar.propTypes = {
   children: PropTypes.any.isRequired,
 }
 
-const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFieldsValue } }) => {
+const Content = ({
+    form: { getFieldProps, validateFields, getFieldError, setFieldsValue },
+    readOnly,
+    lessonId,
+    item,
+    onFeedback,
+  }) => {
+    console.log(readOnly)
   const submit = (e) => {
     validateFields((errors, value) => {
       if (errors) {
         e.preventDefault()
-        console.log(errors)
-        // for (let index in errors) {
-        //   console.log(errors[index].errors[0].message)
-        // }
+          // for (let index in errors) {
+          //   console.log(errors[index].errors[0].message)
+          // }
+      } else {
+        onFeedback.submitFeedback({ ...value, lessonid: lessonId }).then((res) => {
+          console.log(res)
+        })
       }
-      console.log(value)
     })
   }
 
@@ -63,7 +72,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_prepare_score', {
-                initialValue: '',
+                initialValue: item.get('lesson_prepare_score'),
                 rules: [
                   {
                     required: true,
@@ -80,7 +89,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_content_score', {
-                initialValue: '',
+                initialValue: item.get('lesson_content_score'),
                 rules: [
                   {
                     required: true,
@@ -97,7 +106,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
             <input
               style={{ display: 'none' }}
               {...getFieldProps('teacher_appearance_score', {
-                initialValue: '',
+                initialValue: item.get('teacher_appearance_score'),
                 rules: [
                   {
                     required: true,
@@ -114,7 +123,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_interaction_score', {
-                initialValue: '',
+                initialValue: item.get('lesson_interaction_score'),
                 rules: [
                   {
                     required: true,
@@ -131,7 +140,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
             <input
               style={{ display: 'none' }}
               {...getFieldProps('teacher_expression_score', {
-                initialValue: '',
+                initialValue: item.get('teacher_expression_score'),
                 rules: [
                   {
                     required: true,
@@ -147,7 +156,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
       <div className={styles.form_box}>
         <TextareaItem
           {...getFieldProps('lesson_suggestion', {
-            initialValue: '我已经被禁用了',
+            initialValue: item.get('lesson_suggestion'),
             rules: [
               {
                 required: true,
@@ -155,7 +164,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
               },
             ],
           })}
-          editable={false}
+          editable
           placeholder="写下你对教学内容的建议与意见"
           rows={3}
           count={150}
@@ -165,7 +174,7 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
       <div className={styles.form_box}>
         <TextareaItem
           {...getFieldProps('teacher_suggestion', {
-            initialValue: '',
+            initialValue: item.get('teacher_suggestion'),
             rules: [
               {
                 required: true,
@@ -187,9 +196,10 @@ const Content = ({ form: { getFieldProps, validateFields, getFieldError, setFiel
 
 Content.propTypes = {
   form: PropTypes.object.isRequired,
-  // category: PropTypes.string.isRequired,
-  // lessons: PropTypes.instanceOf(Immutable.List).isRequired,
-  // onProgress: PropTypes.object.isRequired,
+  readOnly: PropTypes.bool.isRequired,
+  lessonId: PropTypes.string.isRequired,
+  item: PropTypes.instanceOf(Immutable.Map).isRequired,
+  onFeedback: PropTypes.object.isRequired,
 }
 
 export default createForm()(Content)
