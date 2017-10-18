@@ -5,11 +5,16 @@ import styles from './Radio.less'
 
 class Radio extends Component {
   static propTypes = {
+    editable: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired,
     groupValue: PropTypes.string,
     value: PropTypes.string.isRequired,
     children: PropTypes.any.isRequired,
     onChange: PropTypes.func,
+  }
+
+  static defaultProps = {
+    editable: true,
   }
 
   state = {
@@ -23,9 +28,11 @@ class Radio extends Component {
   }
 
   handleChecked () {
-    this.setState({ checked: true })
-    if (this.props.onChange) {
-      this.props.onChange(this.props.value)
+    if (this.props.editable) {
+      this.setState({ checked: true })
+      if (this.props.onChange) {
+        this.props.onChange(this.props.value)
+      }
     }
   }
 

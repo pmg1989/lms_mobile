@@ -10,20 +10,20 @@ import Content from './Content'
 class FeedbackDetail extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
-    readOnly: PropTypes.bool.isRequired,
+    editable: PropTypes.bool.isRequired,
     item: PropTypes.instanceOf(Immutable.Map).isRequired,
     onFeedback: PropTypes.object.isRequired,
   }
 
   componentWillMount () {
-    const { params: { lessonId }, readOnly, onFeedback } = this.props
-    readOnly && onFeedback.getFeedbackItem(lessonId)
+    const { params: { lessonId }, editable, onFeedback } = this.props
+    !editable && onFeedback.getFeedbackItem(lessonId)
   }
 
   render () {
-    const { params: { lessonId }, readOnly, item, onFeedback } = this.props
+    const { params: { lessonId }, editable, item, onFeedback } = this.props
     const contentProps = {
-      readOnly,
+      editable,
       lessonId,
       item,
       onFeedback,
@@ -42,7 +42,7 @@ class FeedbackDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   item: state.getIn(['feedback', 'item']),
-  readOnly: !ownProps.location.query.type,
+  editable: ownProps.location.query.type === 'add',
 })
 
 const mapDispatchToProps = dispatch => ({

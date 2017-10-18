@@ -4,13 +4,14 @@ import styles from './RadioGroup.less'
 
 class RadioGroup extends Component {
   static propTypes = {
+    editable: PropTypes.bool.isRequired,
     field: PropTypes.any.isRequired,
     children: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
   }
 
   state = {
-    value: this.props.field.props.value,
+    value: this.props.field.props.value.toString(),
   }
 
   componentWillReceiveProps (nextProps) {
@@ -25,7 +26,7 @@ class RadioGroup extends Component {
   }
 
   render () {
-    const { field, children } = this.props
+    const { editable, field, children } = this.props
     const { value } = this.state
 
     return (
@@ -33,6 +34,7 @@ class RadioGroup extends Component {
         {field}
         {React.Children.map(children,
           child => React.cloneElement(child, {
+            editable,
             groupValue: value,
             onChange: ::this.handleChange,
           })

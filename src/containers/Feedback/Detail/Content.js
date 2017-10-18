@@ -20,9 +20,9 @@ Title.propTypes = {
   errors: PropTypes.bool,
 }
 
-const RadioStar = ({ onChange, children }) => {
+const RadioStar = ({ editable, onChange, children }) => {
   return (
-    <RadioGroup onChange={onChange} field={children}>
+    <RadioGroup editable={editable} onChange={onChange} field={children}>
       <Radio type="satisfy" value="4">很满意</Radio>
       <Radio type="good" value="3">满意</Radio>
       <Radio type="soso" value="2">不太满意</Radio>
@@ -31,18 +31,18 @@ const RadioStar = ({ onChange, children }) => {
   )
 }
 RadioStar.propTypes = {
+  editable: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
 }
 
 const Content = ({
     form: { getFieldProps, validateFields, getFieldError, setFieldsValue },
-    readOnly,
+    editable,
     lessonId,
     item,
     onFeedback,
   }) => {
-  console.log(readOnly)
   const submit = (e) => {
     validateFields((errors, value) => {
       if (errors) {
@@ -68,7 +68,7 @@ const Content = ({
       <div className={styles.form_box}>
         <div className={styles.row}>
           <Title cur={1} inner text="老师课前教学准备充分度" errors={!!getFieldError('lesson_prepare_score')} />
-          <RadioStar onChange={handleChangeChecked('lesson_prepare_score')}>
+          <RadioStar editable={editable} onChange={handleChangeChecked('lesson_prepare_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_prepare_score', {
@@ -85,7 +85,7 @@ const Content = ({
         </div>
         <div className={styles.row}>
           <Title cur={2} inner text="本课内容设计满意度" errors={!!getFieldError('lesson_content_score')} />
-          <RadioStar onChange={handleChangeChecked('lesson_content_score')}>
+          <RadioStar editable={editable} onChange={handleChangeChecked('lesson_content_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_content_score', {
@@ -102,7 +102,7 @@ const Content = ({
         </div>
         <div className={styles.row}>
           <Title cur={3} inner text="老师课堂形象满意度" errors={!!getFieldError('teacher_appearance_score')} />
-          <RadioStar onChange={handleChangeChecked('teacher_appearance_score')}>
+          <RadioStar editable={editable} onChange={handleChangeChecked('teacher_appearance_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('teacher_appearance_score', {
@@ -119,7 +119,7 @@ const Content = ({
         </div>
         <div className={styles.row}>
           <Title cur={4} inner text="与老师有良好的互动" errors={!!getFieldError('lesson_interaction_score')} />
-          <RadioStar onChange={handleChangeChecked('lesson_interaction_score')}>
+          <RadioStar editable={editable} onChange={handleChangeChecked('lesson_interaction_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('lesson_interaction_score', {
@@ -136,7 +136,7 @@ const Content = ({
         </div>
         <div className={styles.row}>
           <Title cur={5} inner text="老师讲课表达能力" errors={!!getFieldError('teacher_expression_score')} />
-          <RadioStar onChange={handleChangeChecked('teacher_expression_score')}>
+          <RadioStar editable={editable} onChange={handleChangeChecked('teacher_expression_score')}>
             <input
               style={{ display: 'none' }}
               {...getFieldProps('teacher_expression_score', {
@@ -164,7 +164,7 @@ const Content = ({
               },
             ],
           })}
-          editable
+          editable={editable}
           placeholder="写下你对教学内容的建议与意见"
           rows={3}
           count={150}
@@ -182,6 +182,7 @@ const Content = ({
               },
             ],
           })}
+          editable={editable}
           placeholder="写下你对导师的建议与意见"
           rows={3}
           count={150}
@@ -196,7 +197,7 @@ const Content = ({
 
 Content.propTypes = {
   form: PropTypes.object.isRequired,
-  readOnly: PropTypes.bool.isRequired,
+  editable: PropTypes.bool.isRequired,
   lessonId: PropTypes.string.isRequired,
   item: PropTypes.instanceOf(Immutable.Map).isRequired,
   onFeedback: PropTypes.object.isRequired,
