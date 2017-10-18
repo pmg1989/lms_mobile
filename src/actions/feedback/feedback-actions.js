@@ -31,6 +31,10 @@ export const getFeedbackItem = lessonid => (
   )
 )
 
+export const resetFeedbackItem = () => ({
+  type: feedbackConstants.RESET_FEEDBACK_ITEM,
+})
+
 export const submitFeedback = params => (
   () => (
     fetchSubmitFeedback(params)

@@ -17,7 +17,11 @@ class FeedbackDetail extends Component {
 
   componentWillMount () {
     const { params: { lessonId }, editable, onFeedback } = this.props
-    !editable && onFeedback.getFeedbackItem(lessonId)
+    if (editable) {
+      onFeedback.resetFeedbackItem()
+    } else {
+      onFeedback.getFeedbackItem(lessonId)
+    }
   }
 
   render () {

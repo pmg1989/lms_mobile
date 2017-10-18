@@ -23,6 +23,9 @@ const feedback = createReducer($feedback, {
   [feedbackConstants.FETCH_FEEDBACK_ITEM] (state, action) {
     return state.set('item', action.item)
   },
+  [feedbackConstants.RESET_FEEDBACK_ITEM] (state) {
+    return state.set('item', $feedback.get('item'))
+  },
 })
 
 export default feedback
