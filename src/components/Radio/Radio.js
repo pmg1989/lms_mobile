@@ -16,7 +16,7 @@ class Radio extends Component {
     checked: this.props.groupValue === this.props.value,
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (!this.props.groupValue && nextProps.groupValue) {
       this.setState({ checked: nextProps.groupValue === this.props.value })
     }
