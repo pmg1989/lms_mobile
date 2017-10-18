@@ -10,7 +10,8 @@ const receiveFeedbackList = data => ({
 
 export const getFeedbackList = (ccid, categoryId) => (
   dispatch => (
-    fetchFeedbackList({ ccid, category_idnumber: categoryId }).then(({ data: { lessons, ...info } }) => ({
+    fetchFeedbackList({ ccid, category_idnumber: categoryId })
+    .then(({ data: { lessons, ...info } }) => ({
       info,
       lessons,
     })).then(data => dispatch(receiveFeedbackList(data)))
