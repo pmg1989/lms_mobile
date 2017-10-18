@@ -20,11 +20,11 @@ class FeedbackModal extends Component {
     item: Immutable.fromJS({}),
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(!this.props.feedbackList.size && !!nextProps.feedbackList.size) {
-      if(!!closeList) {
-        for(let item of nextProps.feedbackList) {
-          if(!closeList.includes(item.get('id'))) {
+  componentWillReceiveProps (nextProps) {
+    if (!this.props.feedbackList.size && !!nextProps.feedbackList.size) {
+      if (closeList) {
+        for (let item of nextProps.feedbackList) {
+          if (!closeList.includes(item.get('id'))) {
             this.setState({ visible: true, item })
             break
           }
@@ -37,7 +37,7 @@ class FeedbackModal extends Component {
 
   handleClose = () => {
     this.setState({ visible: false })
-    const padLeftString = !!closeList ? `${closeList},` : ''
+    const padLeftString = closeList ? `${closeList},` : ''
     localStorage.setItem(CLOSED_FEEDBACK_LIST, `${padLeftString}${this.state.item.get('id')}`)
   }
 
