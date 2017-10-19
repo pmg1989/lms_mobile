@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
-import { Icon, LinkToken } from 'components'
+import { Icon, LinkToken, Empty } from 'components'
 import styles from '../Progress/Content.less'
 
 const Content = ({ lessons }) => {
@@ -62,9 +62,9 @@ const Content = ({ lessons }) => {
         })}
         {!hasLessions &&
         <li>
-          <div className={styles.empty}>
-            <span>~~你还没有课程反馈哦~~</span>
-          </div>
+          <Empty>
+            暂无反馈
+          </Empty>
         </li>
         }
       </ul>
