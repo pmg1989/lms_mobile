@@ -22,7 +22,7 @@ class Reserve extends Component {
   render () {
     const { reserve } = this.props
     const contentProps = {
-      reserve,
+      dayOfLessons: reserve.get('dayOfLessons'),
     }
 
     return (
