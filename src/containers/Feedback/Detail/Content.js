@@ -54,7 +54,7 @@ const Content = ({
       } else {
         onFeedback.submitFeedback({ ...value, lessonid: lessonId })
         .then(({ status, message }) => {
-          if(status === 10000) {
+          if (status === 10000) {
             Toast.info(
               <div className={styles.toast_box}>
                 <Icon type={require('svg/status_present.svg')} />
