@@ -6,6 +6,7 @@ import home from './home'
 import progress from './progress'
 import review from './review'
 import feedback from './feedback'
+import reserve from './reserve'
 
 export default combineReducers({
   routing,
@@ -14,4 +15,5 @@ export default combineReducers({
   progress,
   feedback,
   review,
+  reserve,
 })

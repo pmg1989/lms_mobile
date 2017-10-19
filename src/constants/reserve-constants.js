@@ -1,0 +1,1 @@
+export const FETCH_RESERVE_LIST = 'FETCH_RESERVE_LIST'
