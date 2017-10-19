@@ -14,13 +14,13 @@ export const getReserveList = (ccid, categoryIdnumber) => (
     fetchReserveList({ ccid, category_idnumber: categoryIdnumber })
     .then(({ data: { list, ...info } }) => {
       const dayOfLessons = {}
-      list.map(item => {
+      list.map((item) => {
         const month = moment.unix(item.available).format('YYYY / MM')
         const day = moment.unix(item.available).format('D')
-        if(!dayOfLessons[month]) {
+        if (!dayOfLessons[month]) {
           dayOfLessons[month] = {}
         }
-        if(!dayOfLessons[month][day]) {
+        if (!dayOfLessons[month][day]) {
           dayOfLessons[month][day] = { selected: false, lessons: [] }
         }
         dayOfLessons[month][day].lessons.push({
@@ -33,7 +33,7 @@ export const getReserveList = (ccid, categoryIdnumber) => (
       })
       return {
         info,
-        dayOfLessons: dayOfLessons,
+        dayOfLessons,
       }
     }).then(data => dispatch(receiveReserveList(data)))
   )
