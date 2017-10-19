@@ -2,12 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
-import { Router, browserHistory } from 'react-router'
+import { applyRouterMiddleware, Router, browserHistory } from 'react-router'
+import { useScroll } from 'react-router-scroll'
 import 'utils/rem'
 import 'utils/locale'
 import './themes/index.less'
 
-import routes from './routes'
+import routers from './routes'
 import store from './store'
 
 const history = syncHistoryWithStore(browserHistory, store, {
@@ -16,9 +17,19 @@ const history = syncHistoryWithStore(browserHistory, store, {
   },
 })
 
+const renderUseScroll = useScroll((prevRouterProps, { routes }) => {
+  if (routes.some(route => route.ignoreScrollBehavior)) {
+    return false
+  }
+  if (routes.some(route => route.scrollToTop)) {
+    return [0, 0]
+  }
+  return true
+})
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <Router history={history} routes={routers} render={applyRouterMiddleware(renderUseScroll)} />
   </Provider>,
   document.getElementById('root')
 )
