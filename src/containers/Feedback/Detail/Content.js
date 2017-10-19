@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
-import { TextareaItem } from 'antd-mobile'
+import { browserHistory } from 'react-router'
+import { TextareaItem, Toast } from 'antd-mobile'
 import { createForm } from 'rc-form'
-import { RadioGroup, Radio } from 'components'
+import { RadioGroup, Radio, Icon } from 'components'
 import styles from './Content.less'
 
 const Title = ({ cur, inner, text, errors }) => (
@@ -51,8 +52,27 @@ const Content = ({
           //   console.log(errors[index].errors[0].message)
           // }
       } else {
-        onFeedback.submitFeedback({ ...value, lessonid: lessonId }).then((res) => {
-          console.log(res)
+        onFeedback.submitFeedback({ ...value, lessonid: lessonId })
+        .then(({ status, message }) => {
+          if(status === 10000) {
+            Toast.info(
+              <div className={styles.toast_box}>
+                <Icon type={require('svg/status_present.svg')} />
+                <span className={styles.msg}>反馈提交成功！</span>
+              </div>,
+              2,
+              () => {
+                browserHistory.goBack()
+              },
+            )
+          } else {
+            Toast.info((
+              <div className={styles.toast_box}>
+                <Icon type={require('svg/status_absent.svg')} />
+                <span className={styles.msg}>{message}</span>
+              </div>
+            ), 2)
+          }
         })
       }
     })
@@ -188,9 +208,11 @@ const Content = ({
           count={150}
         />
       </div>
-      <div className={styles.btn_box}>
-        <span className={styles.btn} onClick={submit}>提交反馈</span>
-      </div>
+      {editable &&
+        <div className={styles.btn_box}>
+          <span className={styles.btn} onClick={submit}>提交反馈</span>
+        </div>
+      }
     </div>
   )
 }
