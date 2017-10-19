@@ -6,7 +6,7 @@ import styles from './Empty.less'
 
 const Empty = ({ type, className, children }) => {
   return (
-    <div className={classnames(styles.empty_box, className ? className : '')}>
+    <div className={classnames(styles.empty_box, className || '')}>
       {type === 'nomal' &&
       <Icon className={styles.icon} type={require('svg/empty.svg')} />
       }
