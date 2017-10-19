@@ -27,10 +27,16 @@ class Progress extends Component {
     const info = progress.get('info')
     const lessons = progress.get('lessons')
     const categorySummary = info.get('category_summary')
+
     const dicType = {
       profession: '专业课',
       hd: '互动课',
       jl: '交流课',
+    }
+
+    const topProps = {
+      info,
+      hasLessons: !!lessons.size,
     }
 
     const headerProps = {
@@ -57,7 +63,7 @@ class Progress extends Component {
           {categorySummary && <span>{dicType[params.type]}-{categorySummary}</span>}
         </Header>
         <div className="content">
-          <Top info={info} />
+          <Top {...topProps} />
           <Content {...contentProps} />
           <Bottom {...bottomProps} />
         </div>

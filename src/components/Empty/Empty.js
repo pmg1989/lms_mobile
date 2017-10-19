@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { Icon } from 'components'
 import styles from './Empty.less'
 
-const Empty = ({ type, children }) => {
+const Empty = ({ type, className, children }) => {
   return (
-    <div className={styles.empty_box}>
+    <div className={classnames(styles.empty_box, className ? className : '')}>
       {type === 'nomal' &&
       <Icon className={styles.icon} type={require('svg/empty.svg')} />
       }
@@ -25,6 +26,7 @@ Empty.defaultProps = {
 
 Empty.propTypes = {
   type: PropTypes.string.isRequired,
+  className: PropTypes.string,
   children: PropTypes.any.isRequired,
 }
 

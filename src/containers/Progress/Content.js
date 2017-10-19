@@ -4,7 +4,7 @@ import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
 import { Modal, Toast } from 'antd-mobile'
-import { Icon, LinkToken } from 'components'
+import { Icon, LinkToken, Empty } from 'components'
 import styles from './Content.less'
 
 const alert = Modal.alert
@@ -100,9 +100,9 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
         })}
         {!hasLessions &&
         <li>
-          <div className={styles.empty}>{isVip ?
+          <Empty type="music">{isVip ?
             <span>快点击右上角，预约上课吧</span> : <span>正在排课中，<br />如需帮助请联系服务专员</span>}
-          </div>
+          </Empty>
         </li>
         }
       </ul>
