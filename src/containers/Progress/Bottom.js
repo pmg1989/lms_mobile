@@ -69,17 +69,17 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
       </div>
       {['profession', 'jl'].includes(type) &&
         <div className={styles.right}>
-          <LinkToken className={styles.btn} onClick={checkIsVip} to={`/reserve/${contractId}/${categoryId}`}>
+          <LinkToken className={styles.btn} onClick={checkIsVip} to={`/reserve/${encodeURIComponent(contractId)}/${categoryId}`}>
             预约课程
           </LinkToken>
         </div>
       }
       {type === 'hd' &&
         <div className={styles.right}>
-          <LinkToken className={styles.btn} onClick={checkIsLock} to={`/reserve/${contractId}/hd-rhythm`}>
+          <LinkToken className={styles.btn} onClick={checkIsLock} to={`/reserve/${encodeURIComponent(contractId)}/hd-rhythm`}>
             预约节奏课
           </LinkToken>
-          <LinkToken className={classnames(styles.btn, styles.orange)} onClick={checkIsLock} to={`/reserve/${contractId}/hd-yoga`}>
+          <LinkToken className={classnames(styles.btn, styles.orange)} onClick={checkIsLock} to={`/reserve/${encodeURIComponent(contractId)}/hd-yoga`}>
             预约瑜伽课
           </LinkToken>
         </div>
