@@ -15,7 +15,7 @@ class RadioGroup extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this.props.field.props.value && nextProps.field.props.value) {
+    if (this.props.field.props.value.toString() !== nextProps.field.props.value.toString()) {
       this.setState({ value: nextProps.field.props.value.toString() })
     }
   }

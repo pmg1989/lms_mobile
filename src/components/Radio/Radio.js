@@ -22,7 +22,7 @@ class Radio extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this.props.groupValue && nextProps.groupValue) {
+    if (this.props.groupValue.toString() !== nextProps.groupValue.toString()) {
       this.setState({ checked: nextProps.groupValue === this.props.value })
     }
   }
