@@ -85,7 +85,6 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
         </div>
       }
     </div>
-
   )
 }
 
