@@ -3,7 +3,10 @@ import Immutable from 'immutable'
 import { reserveConstants } from 'constants'
 
 const $reserve = Immutable.fromJS({
-  info: {},
+  info: {
+    // monthDays: moment().endOf('month'),
+    // monthName: moment().format('YYYY / MM'),
+  },
   dayOfLessons: {},
 })
 

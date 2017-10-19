@@ -32,7 +32,11 @@ export const getReserveList = (ccid, categoryIdnumber) => (
         return dayOfLessons
       })
       return {
-        info,
+        info: {
+          ...info,
+          monthDays: moment().endOf('month'),
+          monthName: moment().format('YYYY / MM'),
+        },
         dayOfLessons,
       }
     }).then(data => dispatch(receiveReserveList(data)))
