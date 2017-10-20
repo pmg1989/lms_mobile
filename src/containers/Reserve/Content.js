@@ -7,10 +7,16 @@ import styles from './Content.less'
 
 const Content = ({ dayOfLessons, info }) => {
   console.log(dayOfLessons, info)
+  const calendarProps = {
+    fillDates: dayOfLessons,
+    onChange (month, day) {
+      console.log(dayOfLessons.getIn([month, day]))
+    },
+  }
   return (
     <div className={styles.box}>
       <div className={styles.title}>预约第一课</div>
-      <Calendar />
+      <Calendar {...calendarProps} />
     </div>
   )
 }

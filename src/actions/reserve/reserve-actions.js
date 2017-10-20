@@ -21,7 +21,7 @@ export const getReserveList = (ccid, categoryIdnumber) => (
           dayOfLessons[month] = {}
         }
         if (!dayOfLessons[month][day]) {
-          dayOfLessons[month][day] = { selected: false, lessons: [] }
+          dayOfLessons[month][day] = { lessons: [] }
         }
         dayOfLessons[month][day].lessons.push({
           label: moment.unix(item.available).format('HH:mm'),
