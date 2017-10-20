@@ -1,22 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
-import { Calendar } from 'components'
+import { Calendar, Icon } from 'components'
 // import moment from 'moment'
 import styles from './Content.less'
 
 const Content = ({ dayOfLessons, info }) => {
-  console.log(dayOfLessons, info)
   const calendarProps = {
     fillDates: dayOfLessons,
     onChange (month, day) {
       console.log(dayOfLessons.getIn([month, day]))
     },
   }
+
   return (
     <div className={styles.box}>
-      <div className={styles.title}>预约第一课</div>
+      <div className={styles.title}>预约第{info.get('attendedlesson_cnt')}课</div>
       <Calendar {...calendarProps} />
+      <div className={styles.date_select}>
+        <Icon type={require('svg/complete.svg')} />
+        <span className={styles.center}>选择时间</span>
+        <Icon type={require('svg/arrow-down.svg')} />
+      </div>
+      <div className={styles.tips}>
+        已约课<span>5</span>人 限30人
+      </div>
+      <div className={styles.btn}>预约</div>
     </div>
   )
 }
