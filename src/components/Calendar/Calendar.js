@@ -12,44 +12,65 @@ class Calendar extends Component {
   }
 
   state = {
-    monthDays: moment().endOf('month'),
-    monthName: moment().format('YYYY / MM'),
+    curMoment: moment(),
     dateList: [],
   }
 
   componentWillMount () {
-    const { monthDays } = this.state
+    this.renderDateList()
+  }
+
+  handlePreMonth () {
+    this.setState(prevState => ({
+      curMoment: prevState.curMoment.subtract(1, 'M'),
+    }), () => {
+      this.renderDateList()
+    })
+  }
+
+  handleNextMonth () {
+    this.setState(prevState => ({
+      curMoment: prevState.curMoment.add(1, 'M'),
+    }), () => {
+      this.renderDateList()
+    })
+  }
+
+  renderDateList () {
+    const { curMoment } = this.state
     const dates = []
-    const start = (monthDays.date(1).weekday() + 1) % 7
-    const end = monthDays.add(1, 'M').date(0).date()
-    console.log(monthDays.format('YYYY-MM-DD'), start, end)
+    const start = (curMoment.date(1).weekday() + 1) % 7
+    const end = curMoment.add(1, 'M').date(0).date()
+
     for (let i = 0; i < start; i += 1) {
       dates.push('')
     }
     for (let i = 0; i < end; i += 1) {
       dates.push(i + 1)
     }
-    const padRight = 7 - (dates.length % 7)
-    for (let i = 0; i < padRight; i += 1) {
-      dates.push('')
+    if (dates.length % 7 > 0) {
+      const padRight = 7 - (dates.length % 7)
+      for (let i = 0; i < padRight; i += 1) {
+        dates.push('')
+      }
     }
     this.setState({ dateList: dates })
   }
 
   render () {
-    const { monthName, dateList } = this.state
+    const { curMoment, dateList } = this.state
 
     return (
       <div className={styles.cal_box}>
         <div className={styles.top_box}>
           <div className={classnames(styles.item, styles.left)}>
-            <Icon type={require('svg/arrow-left-light.svg')} />
+            <Icon onClick={::this.handlePreMonth} type={require('svg/arrow-left-light.svg')} />
           </div>
           <div className={classnames(styles.item, styles.center)}>
-            {monthName}
+            {curMoment.format('YYYY / MM')}
           </div>
           <div className={classnames(styles.item, styles.right)}>
-            <Icon className={classnames(styles.right_icon)} type={require('svg/arrow-left.svg')} />
+            <Icon onClick={::this.handleNextMonth} className={classnames(styles.right_icon)} type={require('svg/arrow-left.svg')} />
           </div>
         </div>
         <div className={styles.list}>
