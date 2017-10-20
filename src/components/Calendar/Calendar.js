@@ -14,10 +14,10 @@ class Calendar extends Component {
 
   state = {
     dateList: [],
-    curMoment: moment(),
+    curMonth: moment().format('YYYY / MM'),
     selectedDay: 0,
     fillDates: Immutable.fromJS({}),
-    prevStatus: true,
+    prevStatus: false,
     nextStatus: true,
   }
 
@@ -34,19 +34,19 @@ class Calendar extends Component {
   }
 
   handlePreMonth () {
-    const { prevStatus } = this.state
-    prevStatus && this.setState(prevState => ({
-      curMoment: prevState.curMoment.subtract(1, 'M'),
-    }), () => {
+    const { prevStatus, curMonth } = this.state
+    prevStatus && this.setState({
+      curMonth: moment(curMonth, 'YYYY-MM').subtract(1, 'M').format('YYYY / MM'),
+    }, () => {
       this.renderDateList()
     })
   }
 
   handleNextMonth () {
-    const { nextStatus } = this.state
-    nextStatus && this.setState(prevState => ({
-      curMoment: prevState.curMoment.add(1, 'M'),
-    }), () => {
+    const { nextStatus, curMonth } = this.state
+    nextStatus && this.setState({
+      curMonth: moment(curMonth, 'YYYY-MM').add(1, 'M').format('YYYY / MM'),
+    }, () => {
       this.renderDateList()
     })
   }
@@ -54,15 +54,15 @@ class Calendar extends Component {
   handleChange = (day, curDays) => () => {
     if (curDays) {
       this.setState({ selectedDay: day })
-      this.props.onChange(this.state.curMoment.format('YYYY / MM'), day)
+      this.props.onChange(this.state.curMonth, day)
     }
   }
 
   renderDateList () {
-    const { curMoment } = this.state
+    const { curMonth, fillDates } = this.state
     const dates = []
-    const start = (curMoment.date(1).weekday() + 1) % 7
-    const end = curMoment.add(1, 'M').date(0).date()
+    const start = (moment(curMonth, 'YYYY-MM').date(1).weekday() + 1) % 7
+    const end = moment(curMonth, 'YYYY-MM').daysInMonth()
 
     for (let i = 0; i < start; i += 1) {
       dates.push('')
@@ -76,12 +76,18 @@ class Calendar extends Component {
         dates.push('')
       }
     }
-    this.setState({ dateList: dates })
+    const prevMonth = moment(curMonth, 'YYYY-MM').subtract(1, 'M').format('YYYY / MM')
+    const nextMonth = moment(curMonth, 'YYYY-MM').add(1, 'M').format('YYYY / MM')
+    this.setState({
+      dateList: dates,
+      prevStatus: fillDates && !!fillDates.get(prevMonth),
+      nextStatus: fillDates && !!fillDates.get(nextMonth),
+    })
   }
 
   render () {
-    const { curMoment, dateList, fillDates, selectedDay, prevStatus, nextStatus } = this.state
-    const curMonth = curMoment.format('YYYY / MM')
+    const { curMonth, dateList, fillDates, selectedDay, prevStatus, nextStatus } = this.state
+
     const dicDates = fillDates.get(curMonth)
 
     return (
