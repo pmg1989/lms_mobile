@@ -28,7 +28,7 @@ class Reserve extends Component {
 
     return (
       <div className="content-box">
-        <Header>本课满意度调查</Header>
+        <Header>{reserve.getIn(['info', 'category_summary'])}</Header>
         <div className="content">
           <Content {...contentProps} />
         </div>

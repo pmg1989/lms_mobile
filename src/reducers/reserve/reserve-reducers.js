@@ -4,6 +4,7 @@ import { reserveConstants } from 'constants'
 
 const $reserve = Immutable.fromJS({
   info: {
+    category_summary: '',
     // monthDays: moment().endOf('month'),
     // monthName: moment().format('YYYY / MM'),
   },
