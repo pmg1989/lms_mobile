@@ -17,6 +17,8 @@ class Calendar extends Component {
     curMoment: moment(),
     selectedDay: 0,
     fillDates: Immutable.fromJS({}),
+    prevStatus: true,
+    nextStatus: true,
   }
 
   componentWillMount () {
@@ -24,8 +26,7 @@ class Calendar extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('test')
-    if (this.props.fillDates !== nextProps.fillDates) {
+    if (!Immutable.is(this.props.fillDates, nextProps.fillDates)) {
       this.setState({ fillDates: nextProps.fillDates }, () => {
         this.renderDateList()
       })
@@ -33,7 +34,8 @@ class Calendar extends Component {
   }
 
   handlePreMonth () {
-    this.setState(prevState => ({
+    const { prevStatus } = this.state
+    prevStatus && this.setState(prevState => ({
       curMoment: prevState.curMoment.subtract(1, 'M'),
     }), () => {
       this.renderDateList()
@@ -41,7 +43,8 @@ class Calendar extends Component {
   }
 
   handleNextMonth () {
-    this.setState(prevState => ({
+    const { nextStatus } = this.state
+    nextStatus && this.setState(prevState => ({
       curMoment: prevState.curMoment.add(1, 'M'),
     }), () => {
       this.renderDateList()
@@ -77,21 +80,21 @@ class Calendar extends Component {
   }
 
   render () {
-    const { curMoment, dateList, fillDates, selectedDay } = this.state
+    const { curMoment, dateList, fillDates, selectedDay, prevStatus, nextStatus } = this.state
     const curMonth = curMoment.format('YYYY / MM')
     const dicDates = fillDates.get(curMonth)
-    // console.log(dicDates && dicDates.toJS());
+
     return (
       <div className={styles.cal_box}>
         <div className={styles.top_box}>
           <div className={classnames(styles.item, styles.left)}>
-            <Icon onClick={::this.handlePreMonth} type={require('svg/arrow-left-light.svg')} />
+            <Icon onClick={::this.handlePreMonth} type={prevStatus ? require('svg/arrow-left.svg') : require('svg/arrow-left-light.svg')} />
           </div>
           <div className={classnames(styles.item, styles.center)}>
             {curMonth}
           </div>
           <div className={classnames(styles.item, styles.right)}>
-            <Icon onClick={::this.handleNextMonth} className={classnames(styles.right_icon)} type={require('svg/arrow-left.svg')} />
+            <Icon onClick={::this.handleNextMonth} className={classnames(styles.right_icon)} type={nextStatus ? require('svg/arrow-left.svg') : require('svg/arrow-left-light.svg')} />
           </div>
         </div>
         <div className={styles.list}>
