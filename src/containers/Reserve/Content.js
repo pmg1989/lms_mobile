@@ -9,7 +9,7 @@ import styles from './Content.less'
 const TimeSelect = ({ lessons, onChange }) => {
   return (
     <div className={styles.date_select}>
-      <Icon type={require('svg/complete.svg')} />
+      <Icon type={require('svg/select-time.svg')} />
       <span className={styles.center}>选择时间</span>
       <select className={styles.selected} onChange={onChange}>
         {lessons.map((item, key) => {

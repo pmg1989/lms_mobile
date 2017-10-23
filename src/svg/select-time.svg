@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_snooze</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="课程预约" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="约课时间选择" transform="translate(-12.000000, -457.000000)">
+            <g id="time" transform="translate(0.000000, 440.000000)">
+                <g id="ic_snooze" transform="translate(12.000000, 17.000000)">
+                    <path d="M10.9947115,0.423076923 C5.15096154,0.423076923 0.423076923,5.15625 0.423076923,11 C0.423076923,16.84375 5.15096154,21.5769231 10.9947115,21.5769231 C16.8384615,21.5769231 21.5769231,16.84375 21.5769231,11 C21.5769231,5.15625 16.8384615,0.423076923 10.9947115,0.423076923 L10.9947115,0.423076923 Z" id="Shape" fill="#3DC722"></path>
+                    <polygon id="Shape" fill="#FFFFFF" points="11.5288462 5.71153846 9.94230769 5.71153846 9.94230769 12.0576923 15.4899038 15.3894231 16.2884615 14.0884615 11.5288462 11.2644231"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
