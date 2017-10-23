@@ -131,10 +131,10 @@ class Confirm extends Component {
                 />
                 <span>自带伴奏</span>
                 <div className={classnames(styles.radio, backSource === 1 && styles.active)} onClick={::this.handleChange(1)}>
-                是 <span className={styles.icon} />
+                  是 <span className={styles.icon} />
                 </div>
                 <div className={classnames(styles.radio, backSource === 2 && styles.active)} onClick={::this.handleChange(2)}>
-                否 <span className={styles.icon} />
+                  否 <span className={styles.icon} />
                 </div>
               </div>
               <div className={styles.tips_box}>
