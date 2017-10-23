@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
-import { browserHistory } from 'react-router'
 import { Toast } from 'antd-mobile'
 import { Calendar, Icon } from 'components'
+import Confirm from './Confirm'
 import styles from './Content.less'
 
 const TimeSelect = ({ lessons, onChange }) => {
@@ -23,6 +23,7 @@ const TimeSelect = ({ lessons, onChange }) => {
     </div>
   )
 }
+
 TimeSelect.propTypes = {
   lessons: PropTypes.instanceOf(Immutable.List).isRequired,
   onChange: PropTypes.func.isRequired,
@@ -38,31 +39,23 @@ class Content extends Component {
 
   state = {
     lessons: Immutable.fromJS([]),
-    curLesson: {},
+    curLesson: Immutable.fromJS({}),
+    showModal: false,
   }
 
   submit () {
-    const { curLesson: { lessonId } } = this.state
-    if (!lessonId) {
-      Toast.info('请先选择预约的日期/时间！')
+    const { curLesson } = this.state
+    if (!curLesson.get('lessonId')) {
+      Toast.info('请先选择预约的日期/时间!')
     } else {
-      const { params: { contractId, categoryId }, submitReserve } = this.props
-      submitReserve(lessonId, contractId, categoryId).then(({ status, message }) => {
-        if (status === 10000) {
-          Toast.info('预约成功！', 2, () => {
-            browserHistory.goBack()
-          })
-        } else {
-          Toast.info(message)
-        }
-      })
+      this.setState({ showModal: true })
     }
   }
 
   render () {
-    const { dayOfLessons, info, params: { categoryId } } = this.props
-    const { lessons, curLesson } = this.state
-    const showTips = categoryId.startsWith('hd-') || categoryId.startsWith('jl-')
+    const { dayOfLessons, info, params, submitReserve } = this.props
+    const { lessons, curLesson, showModal } = this.state
+    const showTips = params.categoryId.startsWith('hd-') || params.categoryId.startsWith('jl-')
 
     const calendarProps = {
       fillDates: dayOfLessons,
@@ -70,7 +63,7 @@ class Content extends Component {
         const lessonList = dayOfLessons.getIn([month, day])
         this.setState({
           lessons: lessonList,
-          curLesson: lessonList.get(0).toJS(),
+          curLesson: lessonList.get(0),
         })
       },
     }
@@ -78,7 +71,18 @@ class Content extends Component {
     const timeSelectProps = {
       lessons,
       onChange: (e) => {
-        this.setState({ curLesson: JSON.parse(e.target.value) })
+        this.setState({ curLesson: Immutable.fromJS(JSON.parse(e.target.value)) })
+      },
+    }
+
+    const confirmProps = {
+      visible: showModal,
+      params,
+      categorySummary: info.get('category_summary'),
+      curLesson,
+      submitReserve,
+      onClose: () => {
+        this.setState({ showModal: false })
       },
     }
 
@@ -93,6 +97,7 @@ class Content extends Component {
           </div>
         }
         <div className={styles.btn} onClick={::this.submit}>预约</div>
+        <Confirm {...confirmProps} />
       </div>
     )
   }

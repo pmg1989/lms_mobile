@@ -25,6 +25,7 @@ export const getReserveList = (ccid, categoryIdnumber) => (
         }
         dayOfLessons[month][day].push({
           label: moment.unix(item.available).format('HH:mm'),
+          date: moment.unix(item.available).format('YYYY-MM-DD'),
           lessonId: item.id,
           num_student: item.num_student,
           lower_limit: item.lower_limit,
