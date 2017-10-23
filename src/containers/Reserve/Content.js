@@ -54,7 +54,7 @@ class Content extends Component {
         <div className={styles.date_select}>
           <Icon type={require('svg/complete.svg')} />
           <span className={styles.center}>选择时间</span>
-          <select className={styles.selected} ref={c => { this.time = c }}>
+          <select className={styles.selected} ref={(c) => { this.time = c }}>
             {lessons.map((item, key) => {
               return (
                 <option key={key} value={item.get('lessonId')}>{item.get('label')}</option>
