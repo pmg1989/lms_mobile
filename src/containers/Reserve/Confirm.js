@@ -22,7 +22,7 @@ class Confirm extends Component {
     backSource: 2,
   }
 
-  handleChange = (backSource) => () => {
+  handleChange = backSource => () => {
     this.setState({ backSource })
     this.props.form.setFieldsValue({ back_source: backSource })
   }
@@ -42,10 +42,9 @@ class Confirm extends Component {
     const isJL = categoryId.startsWith('jl-')
 
     const submit = () => {
-
       onReserve.submitReserve(curLesson.get('lessonId'), contractId, categoryId).then(({ status, message, data }) => {
         if (status === 10000) {
-          if(data.isok) {
+          if (data.isok) {
             onClose()
             Toast.info('预约成功!', 2, () => {
               browserHistory.goBack()
@@ -53,7 +52,6 @@ class Confirm extends Component {
           } else {
             Toast.info(message)
           }
-
         } else {
           Toast.info(message)
         }
@@ -118,27 +116,27 @@ class Confirm extends Component {
                     },
                   ] })}
               />
-            <div className={styles.radio_box}>
-              <input
-                style={{ display: 'none' }}
-                {...getFieldProps('back_source', {
-                  initialValue: 2,
-                  rules: [
-                    {
-                      required: true,
-                      message: '请选择是否自带伴奏',
-                    },
-                  ],
-                })}
-              />
-              <span>自带伴奏</span>
-              <div className={classnames(styles.radio, backSource === 1 && styles.active)} onClick={::this.handleChange(1)}>
-                是 <span className={styles.icon}></span>
+              <div className={styles.radio_box}>
+                <input
+                  style={{ display: 'none' }}
+                  {...getFieldProps('back_source', {
+                    initialValue: 2,
+                    rules: [
+                      {
+                        required: true,
+                        message: '请选择是否自带伴奏',
+                      },
+                    ],
+                  })}
+                />
+                <span>自带伴奏</span>
+                <div className={classnames(styles.radio, backSource === 1 && styles.active)} onClick={::this.handleChange(1)}>
+                是 <span className={styles.icon} />
+                </div>
+                <div className={classnames(styles.radio, backSource === 2 && styles.active)} onClick={::this.handleChange(2)}>
+                否 <span className={styles.icon} />
+                </div>
               </div>
-              <div className={classnames(styles.radio, backSource === 2 && styles.active)} onClick={::this.handleChange(2)}>
-                否 <span className={styles.icon}></span>
-              </div>
-            </div>
               <div className={styles.tips_box}>
                 <div className={styles.title}>温馨提示：</div>
                   1. 填写录音课演唱曲目信息；<br />
