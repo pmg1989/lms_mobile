@@ -1,7 +1,46 @@
+@import "../../themes/mixin.less";
+
+.bg {
+  :global {
+    .am-modal-content {
+      background-color: #f6f6f6;
+    }
+
+    .am-list-item.am-input-item:after {
+      border-bottom: none;
+    }
+  }
+}
+
 .content {
   line-height: 1.8;
+  padding: 0 30px;
 
   .red {
     color: #db0b2e;
+  }
+
+  .jl_box {
+    margin-top: 30px;
+
+    .input {
+      border: 2px solid #ddd;
+      height: auto;
+      min-height: auto;
+      margin-bottom: 30px;
+
+      &.errors {
+        border-color: #db0b2e;
+      }
+    }
+
+    .tips_box {
+      border: 4px solid @nb-blue;
+      border-radius: 10px;
+      background-color: #edfdf2;
+      padding: 30px 0 30px 20px;
+      font-size: 24px;
+      text-align: left;
+    }
   }
 }
