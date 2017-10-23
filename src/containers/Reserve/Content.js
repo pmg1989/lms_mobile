@@ -6,6 +6,28 @@ import { Toast } from 'antd-mobile'
 import { Calendar, Icon } from 'components'
 import styles from './Content.less'
 
+const TimeSelect = ({ lessons, onChange }) => {
+  return (
+    <div className={styles.date_select}>
+      <Icon type={require('svg/complete.svg')} />
+      <span className={styles.center}>选择时间</span>
+      <select className={styles.selected} onChange={onChange}>
+        {lessons.map((item, key) => {
+          return (
+            <option key={key} value={JSON.stringify(item.toJS())}>
+              {item.get('label')}
+            </option>
+          )
+        })}
+      </select>
+    </div>
+  )
+}
+TimeSelect.propTypes = {
+  lessons: PropTypes.instanceOf(Immutable.List).isRequired,
+  onChange: PropTypes.func.isRequired,
+}
+
 class Content extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -16,10 +38,11 @@ class Content extends Component {
 
   state = {
     lessons: Immutable.fromJS([]),
+    curLesson: {},
   }
 
   submit () {
-    const lessonId = this.time.value
+    const { curLesson: { lessonId } } = this.state
     if (!lessonId) {
       Toast.info('请先选择预约的日期/时间！')
     } else {
@@ -37,13 +60,25 @@ class Content extends Component {
   }
 
   render () {
-    const { dayOfLessons, info } = this.props
-    const { lessons } = this.state
+    const { dayOfLessons, info, params: { categoryId } } = this.props
+    const { lessons, curLesson } = this.state
+    const showTips = categoryId.startsWith('hd-') || categoryId.startsWith('jl-')
 
     const calendarProps = {
       fillDates: dayOfLessons,
       onChange: (month, day) => {
-        this.setState({ lessons: dayOfLessons.getIn([month, day]) })
+        const lessonList = dayOfLessons.getIn([month, day])
+        this.setState({
+          lessons: lessonList,
+          curLesson: lessonList.get(0).toJS(),
+        })
+      },
+    }
+
+    const timeSelectProps = {
+      lessons,
+      onChange: (e) => {
+        this.setState({ curLesson: JSON.parse(e.target.value) })
       },
     }
 
@@ -51,20 +86,12 @@ class Content extends Component {
       <div className={styles.box}>
         <div className={styles.title}>预约第{info.get('attendedlesson_cnt')}课</div>
         <Calendar {...calendarProps} />
-        <div className={styles.date_select}>
-          <Icon type={require('svg/complete.svg')} />
-          <span className={styles.center}>选择时间</span>
-          <select className={styles.selected} ref={(c) => { this.time = c }}>
-            {lessons.map((item, key) => {
-              return (
-                <option key={key} value={item.get('lessonId')}>{item.get('label')}</option>
-              )
-            })}
-          </select>
-        </div>
-        <div className={styles.tips}>
-          已约课<span>5</span>人 限30人
-        </div>
+        <TimeSelect {...timeSelectProps} />
+        {!!curLesson.lower_limit && showTips &&
+          <div className={styles.tips}>
+            已约课<span>{curLesson.num_student}</span>人 至少{curLesson.lower_limit}人开课
+          </div>
+        }
         <div className={styles.btn} onClick={::this.submit}>预约</div>
       </div>
     )
