@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 import moment from 'moment'
 import { reserveConstants } from 'constants'
-import { fetchReserveList } from 'services/reserve'
+import { fetchReserveList, fetchSubmitReserve } from 'services/reserve'
 
 const receiveReserveList = data => ({
   info: Immutable.fromJS(data.info),
@@ -21,9 +21,9 @@ export const getReserveList = (ccid, categoryIdnumber) => (
           dayOfLessons[month] = {}
         }
         if (!dayOfLessons[month][day]) {
-          dayOfLessons[month][day] = { lessons: [] }
+          dayOfLessons[month][day] = []
         }
-        dayOfLessons[month][day].lessons.push({
+        dayOfLessons[month][day].push({
           label: moment.unix(item.available).format('HH:mm'),
           lessonId: item.id,
           num_student: item.num_student,
@@ -40,5 +40,12 @@ export const getReserveList = (ccid, categoryIdnumber) => (
         dayOfLessons,
       }
     }).then(data => dispatch(receiveReserveList(data)))
+  )
+)
+
+export const submitReserve = (lessonid, ccid, categoryIdnumber) => (
+  () => (
+    fetchSubmitReserve({ lessonid, ccid, category_idnumber: categoryIdnumber })
+    .then(res => res)
   )
 )

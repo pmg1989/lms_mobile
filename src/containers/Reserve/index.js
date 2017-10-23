@@ -20,10 +20,12 @@ class Reserve extends Component {
   }
 
   render () {
-    const { reserve } = this.props
+    const { params, reserve, onReserve: { submitReserve } } = this.props
     const contentProps = {
+      params,
       dayOfLessons: reserve.get('dayOfLessons'),
       info: reserve.get('info'),
+      submitReserve,
     }
 
     return (
