@@ -88,7 +88,7 @@ class Content extends Component {
 
     return (
       <div className={styles.box}>
-        <div className={styles.title}>预约第{info.get('attendedlesson_cnt')}课</div>
+        <div className={styles.title}>预约第{info.get('enrolledlesson_cnt') && (info.get('enrolledlesson_cnt') + 1)}课</div>
         <Calendar {...calendarProps} />
         <TimeSelect {...timeSelectProps} />
         {!!curLesson.lower_limit && showTips &&
