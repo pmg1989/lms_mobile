@@ -31,6 +31,30 @@
 
       &.errors {
         border-color: #db0b2e;
+        background-color: #ffe4e8;
+      }
+    }
+
+    .radio_box {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      .radio {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          margin-left: 10px;
+          width: 32px;
+          height: 32px;
+          background-color: #fff;
+          border: 2px solid #ddd;
+        }
+
+        &.active .icon {
+          background-color: #4A90E2;
+        }
       }
     }
 

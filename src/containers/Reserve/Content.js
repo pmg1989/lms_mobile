@@ -34,7 +34,7 @@ class Content extends Component {
     params: PropTypes.object.isRequired,
     dayOfLessons: PropTypes.instanceOf(Immutable.Map).isRequired,
     info: PropTypes.instanceOf(Immutable.Map).isRequired,
-    submitReserve: PropTypes.func.isRequired,
+    onReserve: PropTypes.object.isRequired,
   }
 
   state = {
@@ -53,7 +53,7 @@ class Content extends Component {
   }
 
   render () {
-    const { dayOfLessons, info, params, submitReserve } = this.props
+    const { dayOfLessons, info, params, onReserve } = this.props
     const { lessons, curLesson, showModal } = this.state
     const showTips = params.categoryId.startsWith('hd-') || params.categoryId.startsWith('jl-')
 
@@ -80,7 +80,7 @@ class Content extends Component {
       params,
       categorySummary: info.get('category_summary'),
       curLesson,
-      submitReserve,
+      onReserve,
       onClose: () => {
         this.setState({ showModal: false })
       },

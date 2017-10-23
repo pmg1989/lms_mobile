@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 import moment from 'moment'
 import { reserveConstants } from 'constants'
-import { fetchReserveList, fetchSubmitReserve } from 'services/reserve'
+import { fetchReserveList, fetchSubmitReserve, fetchConfirmReserve } from 'services/reserve'
 
 const receiveReserveList = data => ({
   info: Immutable.fromJS(data.info),
@@ -41,6 +41,13 @@ export const getReserveList = (ccid, categoryIdnumber) => (
         dayOfLessons,
       }
     }).then(data => dispatch(receiveReserveList(data)))
+  )
+)
+
+export const confirmReserve = (lessonid, forms) => (
+  () => (
+    fetchConfirmReserve({ lessonid, ...forms })
+    .then(res => res)
   )
 )
 
