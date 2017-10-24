@@ -12,7 +12,6 @@ const alert = Modal.alert
 const now = new Date()
 
 const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) => {
-  const hasLessions = lessons.size > 0
   const isVip = category.includes('-vip-')
 
   const handleCancel = (title, available, lessonid, index) => {
@@ -99,7 +98,7 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
             </li>
           )
         })}
-        {!hasLessions &&
+        {lessons.isEmpty() &&
         <li>
           <Empty type="music">{isVip ?
             <span>快点击右上角，预约上课吧</span> : <span>正在排课中，<br />如需帮助请联系服务专员</span>}

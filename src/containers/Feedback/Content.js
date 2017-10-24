@@ -7,7 +7,6 @@ import { Icon, LinkToken, Empty } from 'components'
 import styles from '../Progress/Content.less'
 
 const Content = ({ lessons }) => {
-  const hasLessions = lessons.size > 0
 
   return (
     <div className={classnames(styles.list_box, styles.feedback_box)}>
@@ -60,7 +59,7 @@ const Content = ({ lessons }) => {
             </li>
           )
         })}
-        {!hasLessions &&
+        {lessons.isEmpty() &&
         <li>
           <Empty>
             暂无反馈

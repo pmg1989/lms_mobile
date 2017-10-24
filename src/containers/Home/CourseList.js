@@ -4,7 +4,7 @@ import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
 import { Link } from 'react-router'
-import { Icon, LinkToken } from 'components'
+import { Icon, LinkToken, Empty } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './CourseList.less'
 
@@ -140,6 +140,13 @@ const CourseList = ({ status, list }) => {
           </div>
         )
       })}
+      {list.isEmpty() &&
+        <div className={styles.list}>
+          <Empty type="music">
+            <span>暂无课程</span>
+          </Empty>
+        </div>
+      }
     </div>
   )
 }
