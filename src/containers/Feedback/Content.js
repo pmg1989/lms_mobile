@@ -39,18 +39,18 @@ const Content = ({ lessons }) => {
             <li key={key}>
               <div className={styles.left}>
                 {dicAcronym[item.get('acronym')].Icon}
-                <span className={styles.title}>
-                  {moment.unix(item.get('available')).format('MM-DD HH:mm YYYY')}
+                <span className={styles.title_box}>
+                  {moment.unix(item.get('available')).format('MM-DD HH:mm')}
                 </span>
               </div>
               <div className={styles.right}>
                 {!submitTime &&
-                  <LinkToken to={`/feedback/${id}?type=add`} className={classnames(styles.btn, styles.border, styles.leave)}>
+                  <LinkToken to={`/feedback/${id}?type=add`} className={classnames(styles.btn, styles.border, styles.blue)}>
                     课后反馈
                   </LinkToken>
                 }
                 {submitTime &&
-                  <LinkToken to={`/feedback/${id}`} className={classnames(styles.btn, styles.border)}>
+                  <LinkToken to={`/feedback/${id}`} className={classnames(styles.btn, styles.underline)}>
                     查看反馈
                   </LinkToken>
                 }
