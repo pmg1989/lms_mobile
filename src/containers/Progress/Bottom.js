@@ -44,10 +44,10 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
   }
 
   const isVip = () => {
-    if(type !== 'profession') {
+    if (type !== 'profession') {
       return true
     }
-    
+
     return type === 'profession' && categoryId.includes('-vip-')
   }
 
