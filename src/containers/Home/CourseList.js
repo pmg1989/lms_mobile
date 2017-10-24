@@ -61,7 +61,6 @@ PFCourse.propTypes = {
 const HDCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const categoryId = 'hd'
-  const isVip = categoryId.includes('-vip-')
   const linkTo = `/progress/${encodeURIComponent(item.get('hdid'))}/${categoryId}?type=hd`
 
   return (
@@ -78,8 +77,8 @@ const HDCourse = ({ status, item }) => {
       </div>
       <div className={styles.right}>
         <span>已完成 · {item.get('attended_lesson_cnt')} / {item.get('constract_lesson_cnt')}</span>
-        {status === 1 && isVip && <span><LinkToken className={classnames(styles.btn, styles.btn_blue)} to={linkTo}>预约</LinkToken></span>}
-        {((status === 1 && !isVip) || status === 2) && <span><LinkToken className={styles.btn} to={linkTo}>查看</LinkToken></span>}
+        {status === 1 && <span><LinkToken className={classnames(styles.btn, styles.btn_blue)} to={linkTo}>预约</LinkToken></span>}
+        {status === 2 && <span><LinkToken className={styles.btn} to={linkTo}>查看</LinkToken></span>}
       </div>
     </div>
   )
@@ -92,7 +91,6 @@ HDCourse.propTypes = {
 const JLCourse = ({ status, item }) => {
   const hasNext = !!item.get('current_lesson_available')
   const categoryId = item.get('jl_category_idnumber')
-  const isVip = categoryId.includes('-vip-')
   const linkTo = `/progress/${encodeURIComponent(item.get('jlid'))}/${categoryId}?type=jl`
 
   return (
@@ -109,8 +107,8 @@ const JLCourse = ({ status, item }) => {
       </div>
       <div className={styles.right}>
         <span>已完成 · {item.get('attended_lesson_cnt')} / {item.get('constract_lesson_cnt')}</span>
-        {status === 1 && isVip && <span><LinkToken className={classnames(styles.btn, styles.btn_blue)} to={linkTo}>预约</LinkToken></span>}
-        {((status === 1 && !isVip) || status === 2) && <span><LinkToken className={styles.btn} to={linkTo}>查看</LinkToken></span>}
+        {status === 1 && <span><LinkToken className={classnames(styles.btn, styles.btn_blue)} to={linkTo}>预约</LinkToken></span>}
+        {status === 2 && <span><LinkToken className={styles.btn} to={linkTo}>查看</LinkToken></span>}
       </div>
     </div>
   )
