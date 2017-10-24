@@ -13,6 +13,9 @@ const Item = Popover.Item
 const now = new Date().getTime() / 1000
 
 const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
+  const lockStart = info.get('contract_freezestart')
+  const lockEnd = info.get('contract_freezeend')
+
   const popoverProps = {
     visible: info.get('tofeedback'),
     placement: 'top',
@@ -31,34 +34,45 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
     })
   }
 
-  const checkIsLock = (e) => {
-    const lockStart = info.get('contract_freezestart')
-    const lockEnd = info.get('contract_freezeend')
+  const isLock = () => {
+    return !!lockStart && !!lockEnd && (now >= lockStart && now <= lockEnd)
+  }
 
-    if (lockStart && lockEnd && (now >= lockStart && now <= lockEnd)) {
+  const isVip = () => {
+    return type === 'profession' && categoryId.includes('-vip-')
+  }
+
+  const isNotEnroll = () => {
+    const notEnroll = ['composition', 'theory'].includes(categoryId)
+    return type === 'profession' && notEnroll
+  }
+
+  const isFull = () => {
+    const curCnt = info.get('attendedlesson_cnt')
+    const countCnt = info.get('contractlesson_cnt')
+    return curCnt === countCnt
+  }
+
+  const checkIsLock = (e) => {
+    if (isLock()) {
       e.preventDefault()
       Toast.info(`课程已冻结，无法订课！冻结时间为：${moment.unix(lockStart).format('YYYY-MM-DD')} ~ ${moment.unix(lockEnd).format('YYYY-MM-DD')}`)
-      return false
+      return true
     }
-    return true
+    return false
   }
 
   const checkIsVip = (e) => {
-    if (checkIsLock(e)) {
-      const categoryIdnumber = info.get('category_idnumber')
-      const isVip = categoryIdnumber.includes('-vip-')
-      const notEnroll = ['composition', 'theory'].includes('categoryId')
-      const curCnt = info.get('attendedlesson_cnt')
-      const countCnt = info.get('contractlesson_cnt')
-      if (type === 'profession' && !isVip) {
+    if (!checkIsLock(e)) {
+      if (!isVip()) {
         e.preventDefault()
         Toast.info('只有VIP学员可以预约上课哦！')
       }
-      if (type === 'profession' && notEnroll) {
+      if (isNotEnroll()) {
         e.preventDefault()
         Toast.info('该课程暂时无法预约哦!')
       }
-      if (curCnt === countCnt) {
+      if (isFull()) {
         e.preventDefault()
         Toast.info('你的课程已经预约满了哦!')
       }
@@ -66,28 +80,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
   }
 
   const isDisabled = () => {
-    const lockStart = info.get('contract_freezestart')
-    const lockEnd = info.get('contract_freezeend')
-    if (lockStart && lockEnd && (now >= lockStart && now <= lockEnd)) {
-      return true // 账号被锁了
-    }
-
-    const categoryIdnumber = info.get('category_idnumber')
-    const isVip = categoryIdnumber.includes('-vip-')
-    const notEnroll = ['composition', 'theory'].includes('categoryId')
-    if (type === 'profession' && !isVip) {
-      return true // 只有VIP学员可以预约上课
-    }
-    if (type === 'profession' && notEnroll) {
-      return true // composition、theory课程暂时无法预约
-    }
-
-    const curCnt = info.get('attendedlesson_cnt')
-    const countCnt = info.get('contractlesson_cnt')
-    if (curCnt === countCnt) {
-      return true // 课程已经预约满了
-    }
-    return false
+    return isLock() || !isVip() || isNotEnroll() || isFull()
   }
 
   return (
