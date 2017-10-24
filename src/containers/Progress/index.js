@@ -55,6 +55,7 @@ class Progress extends Component {
     const bottomProps = {
       info,
       params,
+      lessonsSize: lessons.size,
     }
 
     return (

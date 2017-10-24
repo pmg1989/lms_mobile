@@ -12,7 +12,7 @@ import styles from './Bottom.less'
 const Item = Popover.Item
 const now = new Date().getTime() / 1000
 
-const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
+const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize }) => {
   const lockStart = info.get('contract_freezestart')
   const lockEnd = info.get('contract_freezeend')
 
@@ -39,9 +39,8 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
   }
 
   const isFull = () => {
-    const curCnt = info.get('attendedlesson_cnt')
-    const countCnt = info.get('contractlesson_cnt')
-    return curCnt === countCnt
+    const countCnt = info.get('contractlesson_cnt') || 0
+    return lessonsSize === countCnt
   }
 
   const isVip = () => {
@@ -116,6 +115,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
 Bottom.propTypes = {
   info: PropTypes.instanceOf(Immutable.Map).isRequired,
   params: PropTypes.object.isRequired,
+  lessonsSize: PropTypes.number.isRequired,
 }
 
 export default Bottom
