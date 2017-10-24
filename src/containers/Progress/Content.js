@@ -33,6 +33,7 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
         },
       ],
     )
+    document.querySelector('.am-modal').classList.remove("am-modal-android") //fix platform for android
   }
 
   return (
