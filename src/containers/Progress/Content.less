@@ -2,9 +2,9 @@
 
 .list_box {
   padding: 50px 40px 140px;
+  background-color: #fff;
 
   &.feedback_box {
-    background-color: #fff;
     padding: 50px 40px;
     min-height: e('calc(100vh - 188px)');
   }
@@ -14,15 +14,22 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
     }
 
     .left {
       display: flex;
       align-items: center;
+      flex: 1;
 
-      .title {
-        padding-left: 20px;
+      .title_box {
+        padding-left: 30px;
+        line-height: 1.5;
+      }
+
+      .gray {
+        font-size: 26px;
+        color: @nb-gray-light;
       }
     }
 
@@ -31,25 +38,32 @@
 
       .btn {
         color: @nb-gray-light;
-        font-size: 28px;
+        font-size: 24px;
+
+        &.underline {
+          text-decoration: underline;
+        }
 
         &.border {
           border: 2px solid currentColor;
           padding: 8px 30px;
-          font-size: 24px;
           border-radius: 6px;
         }
 
-        &.undo {
-          color: #FF7871;
-        }
-
-        &.leave {
-          color: #FFB06F;
+        &.absent {
+          color: #D0021B;
         }
 
         &.blue {
           color: @nb-blue;
+        }
+
+        &.disabled {
+          border: 2px solid #e8e8e8;
+          background-color: #e8e8e8;
+          color: #bbbbbb;
+          padding: 8px 30px;
+          border-radius: 6px;
         }
       }
     }

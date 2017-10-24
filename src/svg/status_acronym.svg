@@ -1,1 +1,12 @@
-<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1507884439177" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5604" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M512 106.666667c224 0 405.333333 181.333333 405.333333 405.333333s-181.333333 405.333333-405.333333 405.333333S106.666667 736 106.666667 512 288 106.666667 512 106.666667m0-64C251.733333 42.666667 42.666667 251.733333 42.666667 512s209.066667 469.333333 469.333333 469.333333 469.333333-209.066667 469.333333-469.333333S772.266667 42.666667 512 42.666667z" p-id="5605" fill="#999999"></path></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>取消预约</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="课程预约" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="交流课" transform="translate(-15.000000, -185.000000)" fill="#3DC722">
+            <circle id="Oval-2" cx="27.5" cy="197.5" r="12.5"></circle>
+        </g>
+    </g>
+</svg>

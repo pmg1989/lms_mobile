@@ -27,22 +27,16 @@
     display: flex;
     .btn {
       flex: 1;
-      color: @nb-blue;
-      background-color: #F0FFF2;
+      color: #fff;
+      background-color: @nb-blue;
       padding: 25px;
       text-align: center;
-      border: 2px solid currentColor;
       border-radius: @nb-border-radius;
       margin-left: 20px;
 
-      &.orange {
-        color: @orange;
-        background-color: #fff2de;
-      }
-
-      &.blue {
-        color: #3a90de;
-        background-color: #dfeffe;
+      &.disabled {
+        color: #bbbbbb;
+        background-color: #e8e8e8;
       }
     }
   }
@@ -50,7 +44,7 @@
 
 .feedback_box {
   position: fixed;
-  
+
   :global {
     .am-popover-inner {
       background-color: #ff6267;

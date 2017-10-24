@@ -79,7 +79,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
           <LinkToken className={styles.btn} onClick={checkIsLock} to={`/reserve/${encodeURIComponent(contractId)}/hd-rhythm`}>
             预约节奏课
           </LinkToken>
-          <LinkToken className={classnames(styles.btn, styles.orange)} onClick={checkIsLock} to={`/reserve/${encodeURIComponent(contractId)}/hd-yoga`}>
+          <LinkToken className={classnames(styles.btn, styles.disabled)} onClick={checkIsLock} to={`/reserve/${encodeURIComponent(contractId)}/hd-yoga`}>
             预约瑜伽课
           </LinkToken>
         </div>

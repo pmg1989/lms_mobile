@@ -13,6 +13,7 @@ const now = new Date()
 
 const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) => {
   const isVip = category.includes('-vip-')
+  const lessonsCount = lessons.size
 
   const handleCancel = (title, available, lessonid, index) => {
     alert(
@@ -43,16 +44,16 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
           const isCancel = available - (now.getTime() / 1000) > 60 * 60 * 24
 
           const LinkToReview = (
-            <LinkToken to={`/review/${item.get('id')}`} className={classnames(styles.btn, styles.border, styles.blue)}>查看评语</LinkToken>
+            <LinkToken to={`/review/${item.get('id')}`} className={classnames(styles.btn, styles.underline)}>查看评语</LinkToken>
           )
 
           const dicAcronym = {
             E: {
-              Link: <span className={classnames(styles.btn, styles.leave)}>请假</span>,
+              Link: <span className={classnames(styles.btn, styles.absent)}>请假</span>,
               Icon: <Icon type={require('svg/status_absent.svg')} />,
             }, // 请假 leave
             A: {
-              Link: <span className={classnames(styles.btn, styles.undo)}>缺席</span>,
+              Link: <span className={classnames(styles.btn, styles.absent)}>缺席</span>,
               Icon: <Icon type={require('svg/status_absent.svg')} />,
             }, // 缺席
             P: {
@@ -71,16 +72,25 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
               Link: (
                 <span>
                   {moment.unix(available).isAfter(new Date()) && isCancel &&
-                    <span className={classnames(styles.btn, styles.border)} onClick={() => handleCancel(item.get('category_summary'), available, item.get('id'), key)}>
+                    <span className={classnames(styles.btn, styles.border, styles.blue)} onClick={() => handleCancel(item.get('category_summary'), available, item.get('id'), key)}>
                       取消预约
                     </span>
                   }
                   {moment.unix(available).isAfter(new Date()) && !isCancel &&
-                    <span className={styles.btn}>即将开课</span>
+                    <span className={classnames(styles.btn, styles.disabled)}>即将开课</span>
                   }
                 </span>
               ),
-              Icon: <Icon type={require('svg/status_acronym.svg')} />,
+              Icon: (
+                <span>
+                  {moment.unix(available).isAfter(new Date()) && isCancel &&
+                    <Icon type={require('svg/status_acronym.svg')} />
+                  }
+                  {moment.unix(available).isAfter(new Date()) && !isCancel &&
+                    <Icon type={require('svg/status_acronym_ing.svg')} />
+                  }
+                </span>
+              ),
             },
           }
 
@@ -88,9 +98,10 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
             <li key={key}>
               <div className={styles.left}>
                 {dicAcronym[item.get('acronym')].Icon}
-                <span className={styles.title}>
-                  {moment.unix(available).format('MM-DD HH:mm YYYY')}
-                </span>
+                <div className={styles.title_box}>
+                  <span>第{lessonsCount - key}课</span> <br />
+                  <span className={styles.gray}>{moment.unix(available).format('MM-DD HH:mm')}</span>
+                </div>
               </div>
               <div className={styles.right}>
                 {dicAcronym[item.get('acronym')].Link}
