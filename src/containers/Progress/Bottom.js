@@ -58,7 +58,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
         e.preventDefault()
         Toast.info('该课程暂时无法预约哦!')
       }
-      if(curCnt === countCnt) {
+      if (curCnt === countCnt) {
         e.preventDefault()
         Toast.info('你的课程已经预约满了哦!')
       }
@@ -84,7 +84,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId } }) => {
 
     const curCnt = info.get('attendedlesson_cnt')
     const countCnt = info.get('contractlesson_cnt')
-    if(curCnt === countCnt) {
+    if (curCnt === countCnt) {
       return true // 课程已经预约满了
     }
     return false
