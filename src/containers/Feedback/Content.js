@@ -7,7 +7,6 @@ import { Icon, LinkToken, Empty } from 'components'
 import styles from '../Progress/Content.less'
 
 const Content = ({ lessons }) => {
-
   return (
     <div className={classnames(styles.list_box, styles.feedback_box)}>
       <ul className={styles.list}>
