@@ -83,8 +83,8 @@ class Calendar extends Component {
     const nextMonthIsCurMonth = prevMonth === CURMONTH // 当前月份没有可选日期，但下个月份有可选日期时，点击下个月操作，激活当前月按钮
     this.setState({
       dateList: dates,
-      prevStatus: (fillDates && !!fillDates.get(prevMonth)) || nextMonthIsCurMonth,
-      nextStatus: fillDates && !!fillDates.get(nextMonth),
+      prevStatus: !!fillDates.get(prevMonth) || nextMonthIsCurMonth,
+      nextStatus: !!fillDates.get(nextMonth),
     })
   }
 
