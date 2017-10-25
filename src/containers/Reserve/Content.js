@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
+import classnames from 'classnames'
 import { Toast } from 'antd-mobile'
 import { Calendar, Icon } from 'components'
 import Confirm from './Confirm'
@@ -45,7 +46,9 @@ class Content extends Component {
 
   submit () {
     const { curLesson } = this.state
-    if (!curLesson.get('lessonId')) {
+    if (this.props.dayOfLessons.isEmpty()) {
+      Toast.info('没有可预约的课程!')
+    } else if (!curLesson.get('lessonId')) {
       Toast.info('请先选择预约的日期/时间!')
     } else {
       this.setState({ showModal: true })
@@ -96,7 +99,7 @@ class Content extends Component {
             已约课<span>{curLesson.num_student}</span>人 至少{curLesson.lower_limit}人开课
           </div>
         }
-        <div className={styles.btn} onClick={::this.submit}>预约</div>
+        <div className={classnames(styles.btn, dayOfLessons.isEmpty() && styles.disabled)} onClick={::this.submit}>预约</div>
         <Confirm {...confirmProps} />
       </div>
     )
