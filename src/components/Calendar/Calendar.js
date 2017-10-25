@@ -6,6 +6,8 @@ import moment from 'moment'
 import { Icon } from 'components'
 import styles from './Calendar.less'
 
+const CURMONTH = moment().format('YYYY / MM')
+
 class Calendar extends Component {
   static propTypes = {
     fillDates: PropTypes.instanceOf(Immutable.Map).isRequired,
@@ -16,7 +18,7 @@ class Calendar extends Component {
     dateList: [],
     curMonth: moment().format('YYYY / MM'),
     selectedDay: 0,
-    fillDates: Immutable.fromJS({}),
+    fillDates: Immutable.fromJS(this.props.fillDates),
     prevStatus: false,
     nextStatus: true,
   }
@@ -78,9 +80,10 @@ class Calendar extends Component {
     }
     const prevMonth = moment(curMonth, 'YYYY-MM').subtract(1, 'M').format('YYYY / MM')
     const nextMonth = moment(curMonth, 'YYYY-MM').add(1, 'M').format('YYYY / MM')
+    const nextMonthIsCurMonth = prevMonth === CURMONTH // 当前月份没有可选日期，但下个月份有可选日期时，点击下个月操作，激活当前月按钮
     this.setState({
       dateList: dates,
-      prevStatus: fillDates && !!fillDates.get(prevMonth),
+      prevStatus: (fillDates && !!fillDates.get(prevMonth)) || nextMonthIsCurMonth,
       nextStatus: fillDates && !!fillDates.get(nextMonth),
     })
   }
