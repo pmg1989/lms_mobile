@@ -4,16 +4,6 @@ import Immutable from 'immutable'
 import { Icon, Empty } from 'components'
 import styles from './List.less'
 
-const Title = ({ title }) => (
-  <div className={styles.title_box}>
-    <span className={styles.title}>{title}</span>
-  </div>
-)
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-}
-
 const ThumbTitle = ({ thumb, title, des }) => (
   <li className={styles.avatar_box}>
     <img className={styles.thumb} src={thumb} alt={title} />
@@ -30,14 +20,13 @@ ThumbTitle.propTypes = {
   des: PropTypes.string.isRequired,
 }
 
-const List = ({ showMore = true, list, title }) => {
+const List = ({ limit, list }) => {
   return (
     <div className={styles.list_box}>
-      <Title title={title} />
       <ul className={styles.list}>
-        { showMore && <ThumbTitle thumb="/images/course-type/composition-big.png" title="新流行和声键盘" des="第三阶段（上）离调" />}
+        { !!limit && <ThumbTitle thumb="/images/course-type/composition-big.png" title="新流行和声键盘" des="第三阶段（上）离调" />}
         {list.map((item, key) => {
-          if (showMore && key >= 3) {
+          if (!!limit && key >= limit) {
             return false
           }
           return (
@@ -54,7 +43,7 @@ const List = ({ showMore = true, list, title }) => {
             <Empty type="music">暂无练习</Empty>
           </li>
         }
-        {showMore &&
+        {!!limit &&
           <li>
             <div className={styles.more}>预览全部（共5课）</div>
           </li>
@@ -65,8 +54,7 @@ const List = ({ showMore = true, list, title }) => {
 }
 
 List.propTypes = {
-  showMore: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  limit: PropTypes.number.isRequired,
   list: PropTypes.instanceOf(Immutable.List).isRequired,
 }
 

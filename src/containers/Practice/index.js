@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Header } from 'components'
 import { practiceActions } from 'actions/practice'
+import Title from './Title'
 import List from './List'
 
 class Practice extends Component {
@@ -24,8 +25,7 @@ class Practice extends Component {
     const listWrap = practice.get('list')
 
     const historyProps = {
-      showMore: false,
-      title: '最近的5个练习',
+      limit: 0,
       list: practice.get('history'),
     }
 
@@ -33,11 +33,12 @@ class Practice extends Component {
       <div className="content-box">
         <Header>练习</Header>
         <div className="content">
+          <Title title="最近的5个练习" />
           <List {...historyProps} />
+          <Title title="学校课程" />
           {listWrap.map((item, key) => {
             const listProps = {
-              showMore: true,
-              title: '学校课程',
+              limit: 3,
               list: item.get('lessons'),
               info: {
                 title: item.get('title'),
