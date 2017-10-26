@@ -78,6 +78,14 @@ const Routes = [
           }, 'feedback-detail')
         },
       },
+      {
+        path: 'practice/:categoryId',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Practice'))
+          }, 'practice')
+        },
+      },
     ],
   },
   {

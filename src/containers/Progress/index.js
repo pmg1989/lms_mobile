@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
-import { Header } from 'components'
+import { Header, LinkToken } from 'components'
 import { progressActions } from 'actions/progress'
 import Top from './Top'
 import Content from './Content'
@@ -41,7 +41,7 @@ class Progress extends Component {
 
     const headerProps = {
       rightContent: (
-        <span>练习</span>
+        <LinkToken to={`/practice/${params.categoryId}`}>练习</LinkToken>
       ),
     }
 
