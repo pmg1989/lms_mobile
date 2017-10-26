@@ -4,43 +4,64 @@ import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Header } from 'components'
-import { feedbackActions } from 'actions/feedback'
+import { practiceActions } from 'actions/practice'
 import List from './List'
 
 class Practice extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
-    feedback: PropTypes.instanceOf(Immutable.Map).isRequired,
-    onFeedback: PropTypes.object.isRequired,
+    practice: PropTypes.instanceOf(Immutable.Map).isRequired,
+    onPractice: PropTypes.object.isRequired,
   }
 
   componentWillMount () {
-    // const { params, onFeedback } = this.props
-    // onFeedback.getFeedbackList(params.contractId, params.categoryId)
+    const { params: { categoryId }, onPractice } = this.props
+    onPractice.getPracticeList(categoryId)
   }
 
   render () {
-    // const { feedback } = this.props
+    const { practice } = this.props
+    const listWrap = practice.get('list')
+
+    const historyProps = {
+      showMore: false,
+      title: '最近的5个练习',
+      list: practice.get('history'),
+    }
 
     return (
       <div className="content-box">
         <Header>练习</Header>
         <div className="content">
-          <List showMore={false} />
-          <List showMore />
+          <List {...historyProps} />
+          {listWrap.map((item, key) => {
+            const listProps = {
+              showMore: true,
+              title: '学校课程',
+              list: item.get('lessons'),
+              info: {
+                title: item.get('title'),
+                thumb: item.get('cover'),
+                idnumber: item.get('idnumber'),
+                stage: item.get('stage'),
+              },
+            }
+            return (
+              <List key={key} {...listProps} />
+            )
+          })}
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  feedback: state.get('feedback'),
-  params: ownProps.params,
+const mapStateToProps = state => ({
+  practice: state.get('practice'),
 })
 
 const mapDispatchToProps = dispatch => ({
-  onFeedback: bindActionCreators(feedbackActions, dispatch),
+  onPractice: bindActionCreators(practiceActions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Practice)

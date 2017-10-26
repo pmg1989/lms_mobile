@@ -7,6 +7,7 @@ import progress from './progress'
 import review from './review'
 import feedback from './feedback'
 import reserve from './reserve'
+import practice from './practice'
 
 export default combineReducers({
   routing,
@@ -16,4 +17,5 @@ export default combineReducers({
   feedback,
   review,
   reserve,
+  practice,
 })

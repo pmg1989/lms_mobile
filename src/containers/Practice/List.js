@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'components'
+import Immutable from 'immutable'
+import { Icon, Empty } from 'components'
 import styles from './List.less'
 
 const Title = ({ title }) => (
@@ -29,24 +30,30 @@ ThumbTitle.propTypes = {
   des: PropTypes.string.isRequired,
 }
 
-const List = ({ showMore = true }) => {
+const List = ({ showMore = true, list, title }) => {
   return (
     <div className={styles.list_box}>
-      <Title title="最近的5个练习" />
+      <Title title={title} />
       <ul className={styles.list}>
         { showMore && <ThumbTitle thumb="/images/course-type/composition-big.png" title="新流行和声键盘" des="第三阶段（上）离调" />}
-        <li>
-          <div className={styles.left}>
-            <span>第 3 课：i-iv-vi-v-A</span>
-          </div>
-          <Icon type={require('svg/enter.svg')} />
-        </li>
-        <li>
-          <div className={styles.left}>
-            <span>第 3 课：i-iv-vi-v-A</span>
-          </div>
-          <Icon type={require('svg/enter.svg')} />
-        </li>
+        {list.map((item, key) => {
+          if (showMore && key >= 3) {
+            return false
+          }
+          return (
+            <li key={key}>
+              <div className={styles.left}>
+                <span>{item.get('name')}</span>
+              </div>
+              <Icon type={require('svg/enter.svg')} />
+            </li>
+          )
+        })}
+        {list.isEmpty() &&
+          <li>
+            <Empty type="music">暂无练习</Empty>
+          </li>
+        }
         {showMore &&
           <li>
             <div className={styles.more}>预览全部（共5课）</div>
@@ -59,6 +66,8 @@ const List = ({ showMore = true }) => {
 
 List.propTypes = {
   showMore: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  list: PropTypes.instanceOf(Immutable.List).isRequired,
 }
 
 export default List
