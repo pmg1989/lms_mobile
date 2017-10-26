@@ -17,3 +17,9 @@ export const getPracticeList = categoryId => (
     })).then(data => dispatch(receivePracticeList(data)))
   )
 )
+
+export const changeCurLessons = (curLessons, idnumber) => ({
+  curLessons,
+  idnumber,
+  type: practiceConstants.CHANGE_CUR_LESSONS,
+})

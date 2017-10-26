@@ -2,20 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
-import { Icon } from 'components'
+import { Icon, LinkToken } from 'components'
 import styles from './List.less'
 
-const ActionSheet = ({ list }) => {
+const ActionSheet = ({ idnumber, list, show, onClose }) => {
   return (
-    <div className={classnames(styles.action_sheet_box, styles.active)}>
+    <div className={classnames(styles.action_sheet_box, show && styles.active)} onClick={onClose}>
       <ul className={styles.list}>
         {list.map((item, key) => {
           return (
             <li key={key}>
-              <div className={styles.left}>
-                <span>{item.get('name')}</span>
-              </div>
-              <Icon type={require('svg/enter.svg')} />
+              <LinkToken to={`/practice/${idnumber}/${item.get('index')}`}>
+                <div className={styles.left}>
+                  <span>{item.get('name')}</span>
+                </div>
+                <Icon type={require('svg/enter.svg')} />
+              </LinkToken>
             </li>
           )
         })}
@@ -25,7 +27,10 @@ const ActionSheet = ({ list }) => {
 }
 
 ActionSheet.propTypes = {
+  idnumber: PropTypes.string.isRequired,
   list: PropTypes.instanceOf(Immutable.List).isRequired,
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default ActionSheet

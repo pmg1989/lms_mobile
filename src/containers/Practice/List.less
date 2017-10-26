@@ -57,6 +57,33 @@
 .action_sheet_box {
   position: fixed;
   left: 0;
-  top: 100vh;
+  bottom: -100vh;
   right: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: flex-end;
+  transition: all .35s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  &.active {
+    top: 0;
+    bottom: 0;
+  }
+
+  .list {
+    max-height: 50vh;
+    overflow: auto;
+    position: relative;
+    z-index: 1002;
+    flex: 1;
+  }
 }

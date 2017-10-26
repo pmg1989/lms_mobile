@@ -20,7 +20,11 @@ ThumbTitle.propTypes = {
   stage: PropTypes.string.isRequired,
 }
 
-const List = ({ limit, list, info }) => {
+const List = ({ limit, list, info, onChangeActionSheet }) => {
+  const handleChangeCurLessons = () => {
+    onChangeActionSheet(list, info.idnumber)
+  }
+
   return (
     <div className={styles.list_box}>
       <ul className={styles.list}>
@@ -42,7 +46,7 @@ const List = ({ limit, list, info }) => {
           )
         })}
         {!!limit &&
-          <li>
+          <li onClick={handleChangeCurLessons}>
             <div className={styles.more}>预览全部（共5课）</div>
           </li>
         }
@@ -60,6 +64,7 @@ List.propTypes = {
   limit: PropTypes.number.isRequired,
   list: PropTypes.instanceOf(Immutable.List).isRequired,
   info: PropTypes.object,
+  onChangeActionSheet: PropTypes.func,
 }
 
 export default List

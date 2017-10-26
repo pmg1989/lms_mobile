@@ -7,7 +7,7 @@ import { Header } from 'components'
 import { practiceActions } from 'actions/practice'
 import Title from './Title'
 import List from './List'
-// import ActionSheet from './ActionSheet'
+import ActionSheet from './ActionSheet'
 
 class Practice extends Component {
   static propTypes = {
@@ -16,18 +16,33 @@ class Practice extends Component {
     onPractice: PropTypes.object.isRequired,
   }
 
+  state = {
+    showActionSheet: false,
+  }
+
   componentWillMount () {
     const { params: { categoryId }, onPractice } = this.props
     onPractice.getPracticeList(categoryId)
   }
 
   render () {
-    const { practice } = this.props
+    const { practice, onPractice } = this.props
+    const { showActionSheet } = this.state
     const listWrap = practice.get('list')
 
     const historyProps = {
       limit: 0,
       list: practice.get('history'),
+    }
+
+    const actionSheetProps = {
+      idnumber: practice.get('idnumber'),
+      list: practice.get('curLessons'),
+      show: showActionSheet,
+      onClose: () => {
+        this.setState({ showActionSheet: false })
+        document.body.removeAttribute('style')
+      },
     }
 
     return (
@@ -48,12 +63,17 @@ class Practice extends Component {
                 stage: item.get('stage'),
                 idnumber,
               },
+              onChangeActionSheet: (list, idNumber) => {
+                this.setState({ showActionSheet: true })
+                onPractice.changeCurLessons(list, idNumber)
+                document.body.style.overflow = 'hidden'
+              },
             }
             return (
               <List key={key} {...listProps} />
             )
           })}
-          {/* <ActionSheet list={list} />*/}
+          <ActionSheet {...actionSheetProps} />
         </div>
       </div>
     )
