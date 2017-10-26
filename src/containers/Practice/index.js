@@ -7,6 +7,7 @@ import { Header } from 'components'
 import { practiceActions } from 'actions/practice'
 import Title from './Title'
 import List from './List'
+// import ActionSheet from './ActionSheet'
 
 class Practice extends Component {
   static propTypes = {
@@ -37,20 +38,22 @@ class Practice extends Component {
           <List {...historyProps} />
           <Title title="学校课程" />
           {listWrap.map((item, key) => {
+            const idnumber = item.get('idnumber') || ''
             const listProps = {
               limit: 3,
               list: item.get('lessons'),
               info: {
                 title: item.get('title'),
-                thumb: item.get('cover'),
-                idnumber: item.get('idnumber'),
+                cover: `/images/course-type/${idnumber.split('-')[0]}-big.png`,
                 stage: item.get('stage'),
+                idnumber,
               },
             }
             return (
               <List key={key} {...listProps} />
             )
           })}
+          {/* <ActionSheet list={list} />*/}
         </div>
       </div>
     )

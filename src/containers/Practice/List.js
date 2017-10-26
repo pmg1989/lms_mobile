@@ -4,27 +4,28 @@ import Immutable from 'immutable'
 import { Icon, Empty } from 'components'
 import styles from './List.less'
 
-const ThumbTitle = ({ thumb, title, des }) => (
+const ThumbTitle = ({ cover, title, stage }) => (
   <li className={styles.avatar_box}>
-    <img className={styles.thumb} src={thumb} alt={title} />
+    <img className={styles.thumb} src={cover} alt={title} />
     <div className={styles.text}>
       <span className={styles.title}>{title}</span><br />
-      <span>{des}</span>
+      <span>{stage}</span>
     </div>
   </li>
 )
 
 ThumbTitle.propTypes = {
-  thumb: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  des: PropTypes.string.isRequired,
+  stage: PropTypes.string.isRequired,
 }
 
-const List = ({ limit, list }) => {
+const List = ({ limit, list, info }) => {
+  console.log(info)
   return (
     <div className={styles.list_box}>
       <ul className={styles.list}>
-        { !!limit && <ThumbTitle thumb="/images/course-type/composition-big.png" title="新流行和声键盘" des="第三阶段（上）离调" />}
+        { !!limit && <ThumbTitle {...info} />}
         {list.map((item, key) => {
           if (!!limit && key >= limit) {
             return false
@@ -38,14 +39,14 @@ const List = ({ limit, list }) => {
             </li>
           )
         })}
-        {list.isEmpty() &&
-          <li>
-            <Empty type="music">暂无练习</Empty>
-          </li>
-        }
         {!!limit &&
           <li>
             <div className={styles.more}>预览全部（共5课）</div>
+          </li>
+        }
+        {list.isEmpty() &&
+          <li>
+            <Empty type="music">暂无练习</Empty>
           </li>
         }
       </ul>
@@ -56,6 +57,7 @@ const List = ({ limit, list }) => {
 List.propTypes = {
   limit: PropTypes.number.isRequired,
   list: PropTypes.instanceOf(Immutable.List).isRequired,
+  info: PropTypes.object,
 }
 
 export default List
