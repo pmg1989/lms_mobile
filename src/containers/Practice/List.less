@@ -10,15 +10,21 @@
   box-shadow: 0 0 5px 5px #E7E7E7;
 
   li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 30px;
     border-bottom: 2px solid #E7E7E7;
 
+    a {
+      color: @nb-gray;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 30px;
+    }
+
     &.avatar_box {
+      display: flex;
       justify-content: flex-start;
       align-items: flex-start;
+      padding: 40px 30px;
 
       .thumb {
         width: 144px;
@@ -43,6 +49,7 @@
       flex: 1;
       text-align: center;
       color: @nb-gray;
+      padding: 40px 30px;
     }
   }
 }

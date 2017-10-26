@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
-import { Icon, Empty } from 'components'
+import { Icon, LinkToken, Empty } from 'components'
 import styles from './List.less'
 
 const ThumbTitle = ({ cover, title, stage }) => (
@@ -21,21 +21,23 @@ ThumbTitle.propTypes = {
 }
 
 const List = ({ limit, list, info }) => {
-  console.log(info)
   return (
     <div className={styles.list_box}>
       <ul className={styles.list}>
         { !!limit && <ThumbTitle {...info} />}
         {list.map((item, key) => {
+          const idnumber = info ? info.idnumber : item.get('idnumber')
           if (!!limit && key >= limit) {
             return false
           }
           return (
             <li key={key}>
-              <div className={styles.left}>
-                <span>{item.get('name')}</span>
-              </div>
-              <Icon type={require('svg/enter.svg')} />
+              <LinkToken to={`/practice/${idnumber}/${item.get('index')}`}>
+                <div className={styles.left}>
+                  {item.get('name')}
+                </div>
+                <Icon type={require('svg/enter.svg')} />
+              </LinkToken>
             </li>
           )
         })}
