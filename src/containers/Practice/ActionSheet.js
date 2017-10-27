@@ -22,6 +22,9 @@ const ActionSheet = ({ idnumber, list, show, onClose }) => {
           )
         })}
       </ul>
+      <div className={styles.bottom_box}>
+        <span>关闭</span>
+      </div>
     </div>
   )
 }
