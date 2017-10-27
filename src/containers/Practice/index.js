@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Header } from 'components'
+import { Header, Empty } from 'components'
 import { practiceActions } from 'actions/practice'
 import Title from './Title'
 import List from './List'
@@ -73,6 +73,11 @@ class Practice extends Component {
               <List key={key} {...listProps} />
             )
           })}
+          {listWrap.isEmpty() &&
+            <div style={{ backgroundColor: '#fff' }}>
+              <Empty type="music">暂无练习</Empty>
+            </div>
+          }
           <ActionSheet {...actionSheetProps} />
         </div>
       </div>

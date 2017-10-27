@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
 import moment from 'moment'
-import { Link } from 'react-router'
 import { Icon, LinkToken, Empty } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './CourseList.less'
@@ -132,9 +131,9 @@ const CourseList = ({ status, list }) => {
             {item.getIn(['jl', 'jlid']) && <JLCourse type={'jl'} title="交流课" status={status} item={item.get('jl')} />}
             {status !== 0 &&
               <div className={styles.btn_box}>
-                <Link className={styles.btn} to={'/demo/123/456?name=felix&token=abc'}>
+                <LinkToken className={styles.btn} to={`/practice/${item.getIn(['profession', 'category_idnumber'])}`}>
                   <Icon className={styles.icon} type={require('svg/microphone.svg')} /> 练习歌曲
-                </Link>
+                </LinkToken>
               </div>
             }
           </div>
