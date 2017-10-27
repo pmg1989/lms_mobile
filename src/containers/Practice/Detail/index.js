@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Header } from 'components'
 import { practiceDetailActions } from 'actions/practice'
 import Top from './Top'
-// import RecordList from './RecordList'
+import RecordList from './RecordList'
 
 class PracticeDetail extends Component {
   static propTypes = {
@@ -28,6 +28,7 @@ class PracticeDetail extends Component {
         <Header>第1课</Header>
         <div className="content">
           <Top info={practiceDetail.get('info')} />
+          <RecordList />
         </div>
       </div>
     )
