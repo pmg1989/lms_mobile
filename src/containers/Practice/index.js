@@ -4,7 +4,7 @@ import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Header, Empty } from 'components'
-import { practiceActions } from 'actions/practice'
+import { practiceListActions } from 'actions/practice'
 import Title from './Title'
 import List from './List'
 import ActionSheet from './ActionSheet'
@@ -12,8 +12,8 @@ import ActionSheet from './ActionSheet'
 class Practice extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
-    practice: PropTypes.instanceOf(Immutable.Map).isRequired,
-    onPractice: PropTypes.object.isRequired,
+    practiceList: PropTypes.instanceOf(Immutable.Map).isRequired,
+    onPracticeList: PropTypes.object.isRequired,
   }
 
   state = {
@@ -21,23 +21,23 @@ class Practice extends Component {
   }
 
   componentWillMount () {
-    const { params: { categoryId }, onPractice } = this.props
-    onPractice.getPracticeList(categoryId)
+    const { params: { categoryId }, onPracticeList } = this.props
+    onPracticeList.getPracticeList(categoryId)
   }
 
   render () {
-    const { practice, onPractice } = this.props
+    const { practiceList, onPracticeList } = this.props
     const { showActionSheet } = this.state
-    const listWrap = practice.get('list')
+    const listWrap = practiceList.get('list')
 
     const historyProps = {
       limit: 0,
-      list: practice.get('history'),
+      list: practiceList.get('history'),
     }
 
     const actionSheetProps = {
-      idnumber: practice.get('idnumber'),
-      list: practice.get('curLessons'),
+      idnumber: practiceList.get('idnumber'),
+      list: practiceList.get('curLessons'),
       show: showActionSheet,
       onClose: () => {
         this.setState({ showActionSheet: false })
@@ -65,7 +65,7 @@ class Practice extends Component {
               },
               onChangeActionSheet: (list, idNumber) => {
                 this.setState({ showActionSheet: true })
-                onPractice.changeCurLessons(list, idNumber)
+                onPracticeList.changeCurLessons(list, idNumber)
                 document.body.style.overflow = 'hidden'
               },
             }
@@ -86,11 +86,11 @@ class Practice extends Component {
 }
 
 const mapStateToProps = state => ({
-  practice: state.get('practice'),
+  practiceList: state.getIn(['practice', 'list']),
 })
 
 const mapDispatchToProps = dispatch => ({
-  onPractice: bindActionCreators(practiceActions, dispatch),
+  onPracticeList: bindActionCreators(practiceListActions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Practice)
