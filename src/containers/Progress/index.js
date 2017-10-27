@@ -41,7 +41,9 @@ class Progress extends Component {
 
     const headerProps = {
       rightContent: (
-        <LinkToken to={`/practice/${params.categoryId}`}>练习</LinkToken>
+        <span>
+          {params.type === 'profession' && <LinkToken to={`/practice/${params.categoryId}`}>练习</LinkToken>}
+        </span>
       ),
     }
 
