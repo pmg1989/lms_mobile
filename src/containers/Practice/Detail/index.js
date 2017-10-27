@@ -22,13 +22,12 @@ class PracticeDetail extends Component {
 
   render () {
     const { practiceDetail } = this.props
-    console.log(practiceDetail)
 
     return (
       <div className="content-box">
         <Header>第1课</Header>
         <div className="content">
-          <Top />
+          <Top info={practiceDetail.get('info')} />
         </div>
       </div>
     )
