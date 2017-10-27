@@ -23,7 +23,7 @@ class PracticeDetail extends Component {
   render () {
     const { practiceDetail } = this.props
     console.log(practiceDetail)
-    
+
     return (
       <div className="content-box">
         <Header>第1课</Header>
