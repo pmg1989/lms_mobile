@@ -24,11 +24,12 @@ class PracticeDetail extends Component {
   }
 
   render () {
-    const { practiceDetail, audioPlayer, onAudioPlayer } = this.props
+    const { practiceDetail, audioPlayer, onAudioPlayer, onPracticeDetail } = this.props
 
     const recordListProps = {
       audioPlayer,
       onAudioPlayer,
+      onPracticeDetail,
     }
 
     return (

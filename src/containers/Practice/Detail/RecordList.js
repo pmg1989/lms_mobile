@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import { Icon, AudioPlayer } from 'components'
 import styles from './RecordList.less'
 
-const RecordList = ({ audioPlayer, onAudioPlayer }) => {
+const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   let $audio
   const list = audioPlayer.get('list')
   const index = audioPlayer.get('index')
@@ -31,6 +31,7 @@ const RecordList = ({ audioPlayer, onAudioPlayer }) => {
     } else {
       onAudioPlayer.changeIndex(cur)
     }
+    onPracticeDetail.addPracticeHistory(list.getIn([cur, 'author']))
   }
 
   return (
@@ -60,6 +61,7 @@ const RecordList = ({ audioPlayer, onAudioPlayer }) => {
 RecordList.propTypes = {
   audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
   onAudioPlayer: PropTypes.object.isRequired,
+  onPracticeDetail: PropTypes.object.isRequired,
 }
 
 export default RecordList

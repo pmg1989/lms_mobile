@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { practiceConstants, audioPlayerConstants } from 'constants'
-import { fetchPracticeItem } from 'services/practice'
+import { fetchPracticeItem, fetchPracticeHistory } from 'services/practice'
 
 
 const receivePracticeItem = list => ({
@@ -33,3 +33,7 @@ export const getPracticeItem = categoryId => (
     })
   )
 )
+
+export const addPracticeHistory = audioKey => {
+  return () => fetchPracticeHistory({ audio_key: audioKey })
+}
