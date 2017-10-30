@@ -8,6 +8,7 @@ import review from './review'
 import feedback from './feedback'
 import reserve from './reserve'
 import practice from './practice'
+import audioPlayer from './audio-player'
 
 export default combineReducers({
   routing,
@@ -18,4 +19,5 @@ export default combineReducers({
   review,
   reserve,
   practice,
+  audioPlayer,
 })

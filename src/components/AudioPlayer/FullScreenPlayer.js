@@ -21,6 +21,7 @@ class FullScreenPlayer extends Component {
     handleNext: PropTypes.func.isRequired,
     handleSwitch: PropTypes.func.isRequired,
     setAudioElement: PropTypes.func.isRequired,
+    resetAudio: PropTypes.func.isRequired,
   }
 
   state = {
@@ -41,6 +42,7 @@ class FullScreenPlayer extends Component {
 
   componentWillUnmount () {
     const { $audio } = this
+    this.props.resetAudio()
 
     $audio.removeEventListener('canplay', this.onCanplay)
     $audio.removeEventListener('loadstart', this.onLoadstart)

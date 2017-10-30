@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
-import { homeConstants } from 'constants'
+import { audioPlayerConstants } from 'constants'
 
 const $audioPlayer = Immutable.fromJS({
   list: [],
@@ -10,30 +10,33 @@ const $audioPlayer = Immutable.fromJS({
 })
 
 const audioPlayer = createReducer($audioPlayer, {
-  [homeConstants.FETCH_RECORD_LIST] (state, action) {
+  [audioPlayerConstants.FETCH_RECORD_LIST] (state, action) {
     return state.set('list', action.list)
   },
-  [homeConstants.AUDIO_CHANGE_INDEX] (state, action) {
+  [audioPlayerConstants.AUDIO_CHANGE_INDEX] (state, action) {
     return state.set('index', action.index).set('playing', false).set('switching', true)
   },
-  [homeConstants.AUDIO_CHANGE_PLAY] (state) {
+  [audioPlayerConstants.AUDIO_CHANGE_PLAY] (state) {
     return state.set('playing', true).set('switching', false)
   },
-  [homeConstants.AUDIO_CHANGE_PAUSE] (state) {
+  [audioPlayerConstants.AUDIO_CHANGE_PAUSE] (state) {
     return state.set('playing', false).set('switching', false)
   },
-  [homeConstants.AUDIO_CHANGE_PREV] (state) {
+  [audioPlayerConstants.AUDIO_CHANGE_PREV] (state) {
     const size = state.get('list').size
     const cur = state.get('index') - 1
     return state.set('index', cur < 0 ? size - 1 : cur).set('playing', false).set('switching', true)
   },
-  [homeConstants.AUDIO_CHANGE_NEXT] (state) {
+  [audioPlayerConstants.AUDIO_CHANGE_NEXT] (state) {
     const size = state.get('list').size
     const cur = state.get('index') + 1
     return state.set('index', cur % size).set('playing', false).set('switching', true)
   },
-  [homeConstants.AUDIO_CHANGE_SWITCH] (state) {
+  [audioPlayerConstants.AUDIO_CHANGE_SWITCH] (state) {
     return state.set('switching', !state.get('switching')).set('playing', false)
+  },
+  [audioPlayerConstants.AUDIO_CHANGE_RESET] () {
+    return $audioPlayer
   },
 })
 

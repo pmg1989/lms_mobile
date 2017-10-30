@@ -5,14 +5,17 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Header } from 'components'
 import { practiceDetailActions } from 'actions/practice'
+import { audioPlayerActions } from 'actions/audio-player'
 import Top from './Top'
-import RecordList from './RecordList'
+import RecordList from '../../Home/RecordList'
 
 class PracticeDetail extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
     practiceDetail: PropTypes.instanceOf(Immutable.Map).isRequired,
+    audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
     onPracticeDetail: PropTypes.object.isRequired,
+    onAudioPlayer: PropTypes.object.isRequired,
   }
 
   componentWillMount () {
@@ -21,14 +24,19 @@ class PracticeDetail extends Component {
   }
 
   render () {
-    const { practiceDetail } = this.props
+    const { practiceDetail, audioPlayer, onAudioPlayer } = this.props
+
+    const recordListProps = {
+      audioPlayer,
+      onAudioPlayer,
+    }
 
     return (
       <div className="content-box">
         <Header>第1课</Header>
         <div className="content">
           <Top info={practiceDetail.get('info')} />
-          <RecordList />
+          <RecordList {...recordListProps} />
         </div>
       </div>
     )
@@ -37,10 +45,12 @@ class PracticeDetail extends Component {
 
 const mapStateToProps = state => ({
   practiceDetail: state.getIn(['practice', 'detail']),
+  audioPlayer: state.get('audioPlayer'),
 })
 
 const mapDispatchToProps = dispatch => ({
   onPracticeDetail: bindActionCreators(practiceDetailActions, dispatch),
+  onAudioPlayer: bindActionCreators(audioPlayerActions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PracticeDetail)

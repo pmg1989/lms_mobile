@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import { homeConstants } from 'constants'
+import { homeConstants, audioPlayerConstants } from 'constants'
 import { fetchNotice, fetchCourseList, fetchRecordList } from 'services/home'
 
 const receiveNotice = data => ({
@@ -36,7 +36,7 @@ export const getCourseList = userid => (
 
 const receiveRecordList = list => ({
   list: Immutable.fromJS(list),
-  type: homeConstants.FETCH_RECORD_LIST,
+  type: audioPlayerConstants.FETCH_RECORD_LIST,
 })
 
 export const getRecordList = (userid, avatar) => (

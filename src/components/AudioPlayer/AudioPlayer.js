@@ -56,12 +56,9 @@ class AudioPlayer extends Component {
       handleLoop: ::this.handleLoop,
       handlePlayPause: ::this.handlePlayPause,
       handleNext: ::this.handleNext,
-      handlePrev: () => {
-        onAudioPlayer.toPrev()
-      },
-      handleSwitch: () => {
-        onAudioPlayer.changeSwitching()
-      },
+      resetAudio: onAudioPlayer.reset,
+      handlePrev: onAudioPlayer.toPrev,
+      handleSwitch: onAudioPlayer.changeSwitching,
       hideFullScreen: () => {
         this.setState({ isFullScreen: false })
       },

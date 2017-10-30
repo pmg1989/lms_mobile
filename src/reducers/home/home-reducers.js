@@ -2,7 +2,6 @@ import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
 import { combineReducers } from 'redux-immutable'
 import { homeConstants } from 'constants'
-import audioPlayer from './audio-player-reducers'
 
 const $notice = Immutable.fromJS({
   title: '牛班公告',
@@ -41,5 +40,4 @@ export default combineReducers({
   notice,
   course,
   feedbackList,
-  audioPlayer,
 })

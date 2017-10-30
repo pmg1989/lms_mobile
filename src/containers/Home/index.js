@@ -5,7 +5,8 @@ import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Tabs } from 'antd-mobile'
 import { Header, Notice } from 'components'
-import { audioPlayerActions, homeActions } from 'actions/home'
+import { homeActions } from 'actions/home'
+import { audioPlayerActions } from 'actions/audio-player'
 import UserInfo from './UserInfo'
 import CourseList from './CourseList'
 import RecordList from './RecordList'
@@ -17,6 +18,7 @@ class Home extends Component {
   static propTypes = {
     app: PropTypes.instanceOf(Immutable.Map).isRequired,
     home: PropTypes.instanceOf(Immutable.Map).isRequired,
+    audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
     onHome: PropTypes.object.isRequired,
     onAudioPlayer: PropTypes.object.isRequired,
   }
@@ -29,8 +31,7 @@ class Home extends Component {
   }
 
   render () {
-    const { app, home, onAudioPlayer } = this.props
-    const audioPlayer = home.get('audioPlayer')
+    const { app, home, audioPlayer, onAudioPlayer } = this.props
 
     const headerProps = {
       leftContent: null,
@@ -84,6 +85,7 @@ class Home extends Component {
 const mapStateToProps = state => ({
   app: state.get('app'),
   home: state.get('home'),
+  audioPlayer: state.get('audioPlayer'),
 })
 
 const mapDispatchToProps = dispatch => ({
