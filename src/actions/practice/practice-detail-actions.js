@@ -21,8 +21,8 @@ export const getPracticeItem = categoryId => (
       return {
         list: audios.map(item => ({
           title: item.audio_name,
-          author: 'demo',
-          thumb: 'https://o9u2lnvze.qnssl.com/upload/d260b7a5f9c149481fc62821995123cd.jpg?1493097035',
+          author: item.audio_key,
+          thumb: info.cover,
           source: item.audio_url,
         })),
         info,
