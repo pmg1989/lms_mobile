@@ -19,8 +19,8 @@ class PracticeDetail extends Component {
   }
 
   componentWillMount () {
-    const { params: { categoryId }, onPracticeDetail } = this.props
-    onPracticeDetail.getPracticeItem(categoryId)
+    const { params: { categoryId, index }, onPracticeDetail } = this.props
+    onPracticeDetail.getPracticeItem(categoryId, index)
   }
 
   render () {

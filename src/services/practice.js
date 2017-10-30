@@ -5,7 +5,7 @@ export function fetchPracticeList (params) {
 }
 
 export function fetchPracticeItem (params) {
-  return request({ wsfunction: 'mod_frontservice_get_practice_songs', ...params })
+  return request({ wsfunction: 'mod_frontservice_get_practice_audios', ...params })
 }
 
 export function fetchPracticeHistory (params) {
