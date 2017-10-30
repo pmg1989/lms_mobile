@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
-import { Icon, LinkToken, Empty } from 'components'
+import { Icon, LinkToken } from 'components'
 import styles from './List.less'
 
 const ThumbTitle = ({ cover, title, stage }) => (
@@ -48,11 +48,6 @@ const List = ({ limit, list, info, onChangeActionSheet }) => {
         {!!limit &&
           <li onClick={handleChangeCurLessons}>
             <div className={styles.more}>预览全部（共5课）</div>
-          </li>
-        }
-        {list.isEmpty() &&
-          <li>
-            <Empty type="music">暂无练习</Empty>
           </li>
         }
       </ul>

@@ -8,6 +8,7 @@ import { practiceListActions } from 'actions/practice'
 import Title from './Title'
 import List from './List'
 import ActionSheet from './ActionSheet'
+import styles from './List.less'
 
 class Practice extends Component {
   static propTypes = {
@@ -29,10 +30,11 @@ class Practice extends Component {
     const { practiceList, onPracticeList } = this.props
     const { showActionSheet } = this.state
     const listWrap = practiceList.get('list')
+    const history = practiceList.get('history')
 
     const historyProps = {
       limit: 0,
-      list: practiceList.get('history'),
+      list: history,
     }
 
     const actionSheetProps = {
@@ -49,9 +51,12 @@ class Practice extends Component {
       <div className="content-box">
         <Header>练习</Header>
         <div className="content">
-          <Title title="最近的5个练习" />
-          <List {...historyProps} />
-          <Title title="学校课程" />
+          {!history.isEmpty() && <Title title="最近的5个练习" />}
+          {!history.isEmpty() && <List {...historyProps} />}
+          {listWrap.isEmpty() ?
+            <Empty className={styles.empty_box} type="music">暂无练习</Empty> :
+            <Title title="学校课程" />
+          }
           {listWrap.map((item, key) => {
             const idnumber = item.get('idnumber') || ''
             const listProps = {
@@ -73,11 +78,6 @@ class Practice extends Component {
               <List key={key} {...listProps} />
             )
           })}
-          {listWrap.isEmpty() &&
-            <div style={{ backgroundColor: '#fff' }}>
-              <Empty type="music">暂无练习</Empty>
-            </div>
-          }
           <ActionSheet {...actionSheetProps} />
         </div>
       </div>
