@@ -12,6 +12,11 @@ class AudioPlayer extends Component {
     audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
     onAudioPlayer: PropTypes.object.isRequired,
     setAudioElement: PropTypes.func,
+    share: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    share: true,
   }
 
   state = {
@@ -41,7 +46,7 @@ class AudioPlayer extends Component {
   }
 
   render () {
-    const { audioPlayer, setAudioElement, onAudioPlayer } = this.props
+    const { audioPlayer, setAudioElement, onAudioPlayer, share } = this.props
     const { loop, isFullScreen } = this.state
     const list = audioPlayer.get('list')
     const index = audioPlayer.get('index')
@@ -49,6 +54,7 @@ class AudioPlayer extends Component {
     const switching = audioPlayer.get('switching')
     const current = list.get(index) || Immutable.fromJS({})
     const fullScreenPlayerProps = {
+      share,
       current,
       loop,
       playing,

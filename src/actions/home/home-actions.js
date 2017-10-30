@@ -47,6 +47,7 @@ export const getRecordList = (userid, avatar) => (
         author: item.owner,
         thumb: avatar,
         source: item.url,
+        shareLink: item.sharelink,
       }))
     }).then(list => dispatch(receiveRecordList(list)))
   )

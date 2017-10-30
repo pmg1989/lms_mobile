@@ -15,6 +15,7 @@ const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   const audioPlayerProps = {
     audioPlayer,
     onAudioPlayer,
+    share: false,
     setAudioElement ($el) {
       $audio = $el
     },

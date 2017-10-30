@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import { Slider } from 'antd-mobile'
 import { Icon } from 'components'
 import { parseTime } from 'utils/tools'
+import { isApp, tools } from 'utils/app'
 import styles from './FullScreenPlayer.less'
 
 class FullScreenPlayer extends Component {
@@ -22,6 +23,7 @@ class FullScreenPlayer extends Component {
     handleSwitch: PropTypes.func.isRequired,
     setAudioElement: PropTypes.func.isRequired,
     resetAudio: PropTypes.func.isRequired,
+    share: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -75,9 +77,20 @@ class FullScreenPlayer extends Component {
     }
   }
 
+  handleShare () {
+    const { current } = this.props
+    const params = {
+      title: current.get('title'),
+      description: '我录了一首歌曲。',
+      image: current.get('thumb'),
+      url: current.get('shareLink'),
+    }
+    tools.share(params)
+  }
+
   render () {
     const {
-      current, playing, loop, isFullScreen,
+      current, playing, loop, isFullScreen, share,
       setAudioElement, hideFullScreen, handleLoop, handlePlayPause, handlePrev, handleNext } = this.props
 
     const { currentTime, totalTime, percent } = this.state
@@ -151,7 +164,7 @@ class FullScreenPlayer extends Component {
               <Icon className={styles.play_o} onClick={handlePlayPause} type={require('svg/play-o.svg')} />
             }
             <Icon type={require('svg/next.svg')} onClick={handleNext} />
-            <Icon type={require('svg/share.svg')} />
+            {isApp() && share && <Icon onClick={::this.handleShare} type={require('svg/share.svg')} />}
           </div>
         </div>
         <audio {...audioProps}>audio not supported :(</audio>
