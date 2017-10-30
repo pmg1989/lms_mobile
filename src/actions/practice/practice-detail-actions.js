@@ -34,6 +34,6 @@ export const getPracticeItem = categoryId => (
   )
 )
 
-export const addPracticeHistory = audioKey => {
+export const addPracticeHistory = (audioKey) => {
   return () => fetchPracticeHistory({ audio_key: audioKey })
 }
