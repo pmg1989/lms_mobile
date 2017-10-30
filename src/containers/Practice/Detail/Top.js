@@ -9,6 +9,7 @@ const Top = ({ info }) => {
       <div className={styles.top}>
         <div className={styles.thumbs}>
           <img src={info.get('cover')} alt={info.get('title')} />
+          <span className={styles.index}>{info.get('index')}</span>
         </div>
         <div className={styles.text}>
           <span className={styles.title}>{info.get('name')}</span><br />
