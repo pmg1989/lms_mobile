@@ -37,6 +37,7 @@ class AudioPlayer extends Component {
 
   handleShowFullScreen () {
     this.setState({ isFullScreen: true })
+    document.body.style.overflow = 'hidden'
   }
 
   render () {
@@ -61,6 +62,7 @@ class AudioPlayer extends Component {
       handleSwitch: onAudioPlayer.changeSwitching,
       hideFullScreen: () => {
         this.setState({ isFullScreen: false })
+        document.body.removeAttribute('style')
       },
       setAudioElement: ($el) => {
         this.$audio = $el
