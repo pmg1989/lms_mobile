@@ -64,7 +64,7 @@ class Practice extends Component {
               list: item.get('lessons'),
               info: {
                 title: item.get('title'),
-                cover: `/images/course-type/${idnumber.split('-')[0]}-big.png`,
+                cover: item.get('cover'),
                 stage: item.get('stage'),
                 idnumber,
               },
