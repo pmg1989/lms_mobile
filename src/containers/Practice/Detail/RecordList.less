@@ -1,0 +1,40 @@
+@import "../../../themes/mixin.less";
+
+.list_box {
+  background-color: #fff;
+
+  &.playing {
+    margin-bottom: 120px;
+  }
+
+  .list {
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: @nb-gray-dark;
+      padding: 30px;
+      border-bottom: 2px solid #eee;
+
+      .left {
+        flex: 1;
+      }
+
+      .title {
+        padding-left: 15px;
+      }
+
+      .opt_box {
+        svg {
+          display: block;
+          transition: transform .25s ease-in-out;
+        }
+
+        .pause {
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+  }
+}

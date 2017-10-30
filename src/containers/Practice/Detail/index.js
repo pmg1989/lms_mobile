@@ -7,7 +7,7 @@ import { Header } from 'components'
 import { practiceDetailActions } from 'actions/practice'
 import { audioPlayerActions } from 'actions/audio-player'
 import Top from './Top'
-import RecordList from '../../Home/RecordList'
+import RecordList from './RecordList'
 
 class PracticeDetail extends Component {
   static propTypes = {
