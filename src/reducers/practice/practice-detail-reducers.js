@@ -1,9 +1,12 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
 import { practiceConstants } from 'constants'
+import { defaultImage } from 'utils/config'
 
 const $practiceDetail = Immutable.fromJS({
-  info: {},
+  info: {
+    cover: defaultImage,
+  },
 })
 
 const practiceDetail = createReducer($practiceDetail, {

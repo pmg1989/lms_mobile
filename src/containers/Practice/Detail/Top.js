@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
-import { defaultImage } from 'utils/config'
 import styles from './Top.less'
 
 const Top = ({ info }) => {
@@ -9,7 +8,7 @@ const Top = ({ info }) => {
     <div className={styles.top_box}>
       <div className={styles.top}>
         <div className={styles.thumbs}>
-          <img src={info.get('cover') || defaultImage} alt={info.get('title')} />
+          <img src={info.get('cover')} alt={info.get('title')} />
         </div>
         <div className={styles.text}>
           <span className={styles.title}>{info.get('name')}</span><br />
