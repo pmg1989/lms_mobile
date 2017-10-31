@@ -31,14 +31,8 @@ if (!window.android) {
 }
 
 if (!window.webkit) {
-  window.webkit = {
-    messageHandlers: {
-      returnback: { postMessage (params) { mockCallApp('returnback', params) } },
-    },
-  }
-  window.share = function () {
-    mockCallApp('share', arguments)
-  }
+  window.share = function () { mockCallApp('share', arguments) }
+  window.returnback = function(params) { mockCallApp('returnback', params) }
 }
 
 const tools = {
@@ -46,8 +40,7 @@ const tools = {
     if (isAndroid()) {
       window.android.returnback(params)
     } else if (isIOS()) {
-      window.webkit.messageHandlers.returnback.postMessage(params)
-      // returnback(params)
+      returnback()
     }
   },
   share (params) {
