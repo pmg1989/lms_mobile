@@ -10,13 +10,13 @@ class Record extends Component {
   }
 
   componentWillMount () {
-    const { query: { title, image, source } } = this.props.location
+    const { query: { title, image } } = this.props.location
     wechat.share({
       title,
       desc: '我录了一首歌曲。',
       imgUrl: image,
-      type: 'music',
-      dataUrl: source,
+      // type: 'music',
+      // dataUrl: source,
     })
   }
 
