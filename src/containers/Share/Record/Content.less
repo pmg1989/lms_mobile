@@ -1,0 +1,92 @@
+@import "../../../themes/mixin.less";
+
+.box {
+  background-color: #fff;
+  padding: 30px;
+  min-height: e('calc(100vh - 88px - 60px)');
+
+  .top {
+    font-size: 28px;
+    color: @nb-gray;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 50px;
+
+    .title {
+      color: @nb-gray-dark;
+      font-size: 40px;
+    }
+  }
+
+  .bg {
+    margin: 0 60px 60px;
+    position: relative;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    svg {
+      transition: transform .25s ease-in-out;
+    }
+
+    .icon {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      width: 100px;
+      height: 100px;
+      fill: #fff;
+
+      &.pause {
+        transform: rotateZ(-180deg);
+      }
+    }
+  }
+
+  .slider_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 100px;
+
+    :global {
+      .am-slider-wrapper {
+        flex: 1;
+      }
+
+      .am-slider {
+        margin: 0;
+      }
+    }
+
+    .curtime, .duration {
+      display: block;
+      padding-top: 6px;
+      font-size: 24px;
+      min-width: 64px;
+      color: @nb-gray;
+    }
+
+  }
+
+  .bottom {
+    text-align: center;
+    color: @nb-gray;
+    font-size: 28px;
+
+    .tips {
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+
+    .btn {
+      display: inline-block;
+      color: @nb-blue;
+      padding: 20px 100px;
+      border: 2px solid currentColor;
+      border-radius: 10px;
+    }
+  }
+}

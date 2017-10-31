@@ -97,6 +97,19 @@ const Routes = [
     ],
   },
   {
+    path: 'share',
+    childRoutes: [
+      {
+        path: 'record',
+        getComponent (location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Share/Record'))
+          }, 'share-record')
+        },
+      },
+    ],
+  },
+  {
     path: 'login',
     getComponent (location, cb) {
       require.ensure([], (require) => {

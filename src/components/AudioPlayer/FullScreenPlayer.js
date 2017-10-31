@@ -83,7 +83,7 @@ class FullScreenPlayer extends Component {
       title: current.get('title'),
       description: '我录了一首歌曲。',
       image: current.get('thumb'),
-      url: current.get('shareLink'),
+      url: `${location.origin}/share/record?title=${encodeURIComponent(current.get('title'))}&author=${encodeURIComponent(current.get('author'))}&image=${encodeURIComponent(current.get('thumb'))}&source=${encodeURIComponent(current.get('source'))}`,
     }
     tools.share(params)
   }
