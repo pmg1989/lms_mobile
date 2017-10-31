@@ -50,7 +50,7 @@ const tools = {
   },
   share (params) {
     if (isAndroid()) {
-      window.android.share(params)
+      window.android.share(JSON.stringify(params))
     } else if (isIOS()) {
       window.webkit.messageHandlers.share.postMessage(params)
       // share(params)
