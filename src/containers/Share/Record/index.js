@@ -9,7 +9,7 @@ class Record extends Component {
     location: PropTypes.object.isRequired,
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const { query: { title, image, source } } = this.props.location
     wechat.share({
       title,
