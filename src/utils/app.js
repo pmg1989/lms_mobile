@@ -34,8 +34,10 @@ if (!window.webkit) {
   window.webkit = {
     messageHandlers: {
       returnback: { postMessage (params) { mockCallApp('returnback', params) } },
-      share: { postMessage (params) { mockCallApp('share', params) } },
     },
+  }
+  window.share = function () {
+    mockCallApp('share', arguments)
   }
 }
 
@@ -52,8 +54,7 @@ const tools = {
     if (isAndroid()) {
       window.android.share(JSON.stringify(params))
     } else if (isIOS()) {
-      window.webkit.messageHandlers.share.postMessage(params)
-      // share(params)
+      share(params.title, params.description, params.image, params.url)
     }
   },
 }
