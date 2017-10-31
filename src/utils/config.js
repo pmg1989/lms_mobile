@@ -1,6 +1,6 @@
 const hostname = location.hostname
 
-function getEnv() {
+function getEnv () {
   if (hostname === 'student.newband.com') {
     return 'production'
   }
@@ -10,18 +10,18 @@ function getEnv() {
   return 'staging'
 }
 
-function isProduction() {
+function isProduction () {
   return getEnv() === 'production'
 }
 
-function getAuthHost() {
+function getAuthHost () {
   if (isProduction()) {
     return 'https://lmsapi.newband.com/v1/Login/phonelogin'
   }
   return 'http://school.newband.com:8083/v1/Login/phonelogin'
 }
 
-function getBaseShare() {
+function getBaseShare () {
   if (isProduction()) {
     return 'https://galaxyapi.newband.com/api/v1/social/wxcfg'
   }
