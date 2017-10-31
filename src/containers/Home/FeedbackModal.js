@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import moment from 'moment'
 import { Modal } from 'antd-mobile'
+import Cookies from 'js-cookie'
 import { Icon, LinkToken } from 'components'
 import { CLOSED_FEEDBACK_LIST } from 'constants/home-constants'
 import { renderTypeName } from 'utils/tools'
 import styles from './FeedbackModal.less'
 
-const closeList = localStorage.getItem(CLOSED_FEEDBACK_LIST)
+// const closeList = localStorage.getItem(CLOSED_FEEDBACK_LIST)
+const closeList = Cookies.get(CLOSED_FEEDBACK_LIST)
+console.log(closeList);
 
 class FeedbackModal extends Component {
   static propTypes = {
@@ -37,8 +40,9 @@ class FeedbackModal extends Component {
 
   handleClose = () => {
     this.setState({ visible: false })
-    const padLeftString = closeList ? `${closeList},` : ''
-    localStorage.setItem(CLOSED_FEEDBACK_LIST, `${padLeftString}${this.state.item.get('id')}`)
+    const padLeftString = closeList ? `${closeList}&` : ''
+    // localStorage.setItem(CLOSED_FEEDBACK_LIST, `${padLeftString}${this.state.item.get('id')}`)
+    Cookies.set(CLOSED_FEEDBACK_LIST, `${padLeftString}${this.state.item.get('id')}`, { expires: 365 })
   }
 
   render () {
@@ -65,7 +69,7 @@ class FeedbackModal extends Component {
           {renderTypeName(item.get('lessontype'))} {moment.unix(item.get('available')).format('YYYY-MM-DD HH:mm')}
         </p>
         <p>已完成该课程</p>
-        <LinkToken className={styles.btn} to={`feedback/${item.get('id')}`} onClick={this.handleClose}>课后反馈</LinkToken>
+        <LinkToken className={styles.btn} to={`feedback/${item.get('id')}?type=add`} onClick={this.handleClose}>课后反馈</LinkToken>
       </Modal>
     )
   }
