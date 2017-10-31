@@ -25,9 +25,9 @@ class Content extends Component {
 
     $audio.addEventListener('canplay', this.onCanplay)
     $audio.addEventListener('timeupdate', this.onTimeupdate)
-    
-    //fix by wechat ios autoPlay https://gist.github.com/ufologist/7c14837db642a6e916ce
-    wx.ready(function() {
+
+    // fix by wechat ios autoPlay https://gist.github.com/ufologist/7c14837db642a6e916ce
+    wx.ready(() => {
       $audio.play()
     })
   }
