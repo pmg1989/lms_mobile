@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Slider } from 'antd-mobile'
 import { Icon } from 'components'
+import { wx } from 'utils/wechat'
 import { parseTime } from 'utils/tools'
 import styles from './Content.less'
 
@@ -24,11 +25,15 @@ class Content extends Component {
 
     $audio.addEventListener('canplay', this.onCanplay)
     $audio.addEventListener('timeupdate', this.onTimeupdate)
+    
+    //fix by wechat ios autoPlay https://gist.github.com/ufologist/7c14837db642a6e916ce
+    wx.ready(function() {
+      $audio.play()
+    })
   }
 
   componentWillUnmount () {
     const { $audio } = this
-
     $audio.removeEventListener('canplay', this.onCanplay)
     $audio.removeEventListener('timeupdate', this.onTimeupdate)
   }

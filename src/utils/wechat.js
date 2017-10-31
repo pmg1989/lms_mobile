@@ -95,4 +95,4 @@ function share (params) {
   })
 }
 
-export default { share }
+export default { share, wx }
