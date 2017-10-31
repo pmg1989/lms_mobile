@@ -11,7 +11,6 @@ import styles from './FeedbackModal.less'
 
 // const closeList = localStorage.getItem(CLOSED_FEEDBACK_LIST)
 const closeList = Cookies.get(CLOSED_FEEDBACK_LIST)
-console.log(closeList);
 
 class FeedbackModal extends Component {
   static propTypes = {
