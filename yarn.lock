@@ -132,9 +132,9 @@ ansi-styles@^3.1.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd-mobile@^1.6.8:
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/antd-mobile/-/antd-mobile-1.6.8.tgz#491c089a10cd1bb9b10e06d4fea0beaabcee0bd9"
+antd-mobile@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/antd-mobile/-/antd-mobile-1.7.1.tgz#03ce0943e307b8503bb6bb086f7bdcb32bc75cd2"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
