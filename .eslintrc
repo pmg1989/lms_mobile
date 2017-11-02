@@ -58,5 +58,6 @@
     "sessionStorage": true,
     "document": true,
     "NEWBAND": true,
+    "zhuge": true,
   }
 }

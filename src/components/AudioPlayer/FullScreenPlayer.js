@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import { Slider } from 'antd-mobile'
 import { Icon } from 'components'
 import { parseTime } from 'utils/tools'
+import { ioShare } from 'utils/zhuge'
 import { isApp, tools } from 'utils/app'
 import styles from './FullScreenPlayer.less'
 
@@ -85,6 +86,7 @@ class FullScreenPlayer extends Component {
       image: current.get('thumb'),
       url: `${location.origin}/share/record?title=${encodeURIComponent(current.get('title'))}&author=${encodeURIComponent(current.get('author'))}&image=${encodeURIComponent(current.get('thumb'))}&source=${encodeURIComponent(current.get('source'))}`,
     }
+    ioShare(params.title, current.get('author'))
     tools.share(params)
   }
 
