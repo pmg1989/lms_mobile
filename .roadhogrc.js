@@ -15,6 +15,13 @@ export default {
   publicPath : `/${version}/`,
   outputPath : `./dist/${version}`,
   // outputPath : `./dist/deploy`,
+  proxy: {
+    "/api/v1/Login": {
+      "target": process.env.PROXY_HOST,
+      "changeOrigin": true,
+      "pathRewrite": { "^/api/v1/Login": "/v1/Login/" }
+    },
+  },
   autoprefixer : {
     browsers : [
       "iOS >= 8" ,

@@ -3,7 +3,8 @@
   "name": "lms_mobile",
   "version": "2.0.1",
   "scripts": {
-    "dev": "cross-env BROWSER=none HOST=edu.newband.cn PORT=8002 roadhog server",
+    "dev": "cross-env PROXY_HOST=http://school.newband.com:8083 BROWSER=none HOST=edu.newband.cn PORT=8002 roadhog server",
+    "start": "cross-env PROXY_HOST=https://lmsapi.newband.com BROWSER=none HOST=edu.newband.cn PORT=8002 roadhog server",
     "build": "roadhog build && node deploy",
     "build-staging": "roadhog build && node deploy",
     "build-release": "roadhog build && node deploy",
