@@ -1,5 +1,6 @@
 import Immutable from 'immutable'
 import { auth } from 'utils/request'
+import zhugeio from 'utils/zhugeio'
 import { appConstants } from 'constants'
 
 export const authLoginSuccess = app => ({
@@ -14,6 +15,7 @@ export const authLogin = (mobile, token) => (
       data.authorized = authorized
       data.mobile = mobile
       if (authorized) {
+        zhugeio.login(data)
         sessionStorage.setItem(appConstants.UTOKEN, data.utoken)
         sessionStorage.setItem(appConstants.API_DOMAIN, data.wsurl)
       } else {

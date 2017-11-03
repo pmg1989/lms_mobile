@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import { browserHistory } from 'react-router'
 import { Modal, Toast, InputItem } from 'antd-mobile'
 import { createForm } from 'rc-form'
+import zhugeio from 'utils/zhugeio'
 import styles from './Confirm.less'
 
 class Confirm extends Component {
@@ -41,11 +42,12 @@ class Confirm extends Component {
 
     const isJL = categoryId.startsWith('jl-')
 
-    const submit = () => {
+    const submit = (zhugeParams) => {
       onReserve.submitReserve(curLesson.get('lessonId'), contractId, categoryId).then(({ status, message, data }) => {
         if (status === 10000) {
           if (data.isok) {
             onClose()
+            zhugeio.reserve(zhugeParams)
             Toast.info('预约成功!', 2, () => {
               browserHistory.goBack()
             })
@@ -74,7 +76,12 @@ class Confirm extends Component {
                   onReserve.confirmReserve(curLesson.get('lessonId'), value)
                   .then(({ status, message }) => {
                     if (status === 10000) {
-                      submit()
+                      submit({
+                        categorySummary,
+                        categoryId,
+                        dates: `${curLesson.get('date')} ${curLesson.get('label')}`,
+                        ...value,
+                      })
                     } else {
                       Toast.info(message)
                     }
@@ -82,7 +89,11 @@ class Confirm extends Component {
                 }
               })
             } else {
-              submit()
+              submit({
+                categorySummary,
+                categoryId,
+                dates: `${curLesson.get('date')} ${curLesson.get('label')}`,
+              })
             }
           } },
       ],
