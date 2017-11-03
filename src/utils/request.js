@@ -53,7 +53,7 @@ export function get (url) {
 export function auth (phone, token) {
   // const url = `${NEWBAND.LMS.AUTH_HOST}/apptoken/${token}/phone/${phone}`
   // const url = `${authHost}/apptoken/${token}/phone/${phone}`
-  const url = `/api/v1/Login/phonelogin/apptoken/${token}/phone/${phone}`
+  const url = `/v1/Login/phonelogin/apptoken/${token}/phone/${phone}`
   return fetch(url, { method: 'post' })
          .then(checkStatus)
          .then(handelData)

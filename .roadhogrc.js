@@ -16,10 +16,10 @@ export default {
   outputPath : `./dist/${version}`,
   // outputPath : `./dist/deploy`,
   proxy: {
-    "/api/v1/Login": {
+    "/v1": {
       "target": process.env.PROXY_HOST,
       "changeOrigin": true,
-      "pathRewrite": { "^/api/v1/Login": "/v1/Login/" }
+      // "pathRewrite": { "^/api/v1": "/v1" }
     },
   },
   autoprefixer : {
