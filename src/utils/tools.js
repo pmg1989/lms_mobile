@@ -35,3 +35,12 @@ export function renderTypeName (enName) {
     JL: '交流',
   }[enName] || '未知'
 }
+
+export function getTypeNameFromId (categoryId) {
+  if (categoryId.startsWith('hd-')) {
+    return '互动'
+  } else if (categoryId.startsWith('jl-')) {
+    return '交流'
+  }
+  return '专业'
+}

@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import moment from 'moment'
 import { Modal, Toast } from 'antd-mobile'
 import { Icon, LinkToken, Empty } from 'components'
+import zhugeio from 'utils/zhugeio'
 import styles from './Content.less'
 
 const alert = Modal.alert
@@ -28,6 +29,11 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
           onPress: () => {
             onProgress.cancelLession(lessonid, userid, rolename, index).then(() => {
               Toast.info('您已成功取消预定课程！')
+              zhugeio.cancelReserve({
+                categorySummary: title,
+                dates: moment.unix(available).format('YYYY-MM-DD HH:mm'),
+                categoryId: category,
+              })
             })
           },
         },

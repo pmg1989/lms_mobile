@@ -1,4 +1,5 @@
 import { isIOS } from 'utils/app'
+import { getTypeNameFromId } from 'utils/tools'
 
 const type = isIOS() ? 'ios' : 'android'
 
@@ -26,22 +27,22 @@ function share (title, author) {
 
 // 预约课程
 function reserve (params) {
-  function getCategory (categoryId) {
-    if (categoryId.startsWith('hd-')) {
-      return '互动'
-    } else if (categoryId.startsWith('jl-')) {
-      return '交流'
-    }
-    return '专业'
-  }
-
   zhuge.track('预约课程', {
     课程名称: params.categorySummary,
     课程时间: params.dates,
-    课程类型: getCategory(params.categoryId),
+    课程类型: getTypeNameFromId(params.categoryId),
     录音歌曲名称: params.song || '',
     录音歌曲原唱: params.original_singer || '',
     是否自带伴奏: { 1: '是', 2: '否' }[params.back_source] || '',
+  })
+}
+
+// 取消预约课程
+function cancelReserve (params) {
+  zhuge.track('取消预约课程', {
+    课程名称: params.categorySummary,
+    课程时间: params.dates,
+    课程类型: getTypeNameFromId(params.categoryId),
   })
 }
 
@@ -49,4 +50,5 @@ export default {
   share,
   login,
   reserve,
+  cancelReserve,
 }
