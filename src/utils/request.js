@@ -2,7 +2,6 @@
 import fetch from 'isomorphic-fetch'
 import NProgress from 'nprogress'
 import { appConstants } from 'constants'
-// import { authHost } from 'utils/config'
 
 function checkStatus (res) {
   if (res.status >= 200 && res.status < 300) {
@@ -51,9 +50,7 @@ export function get (url) {
 }
 
 export function auth (phone, token) {
-  // const url = `${NEWBAND.LMS.AUTH_HOST}/apptoken/${token}/phone/${phone}`
-  // const url = `${authHost}/apptoken/${token}/phone/${phone}`
-  const url = `/v1/Login/phonelogin/apptoken/${token}/phone/${phone}`
+  const url = `/api/v1/Login/phonelogin/apptoken/${token}/phone/${phone}`
   return fetch(url, { method: 'post' })
          .then(checkStatus)
          .then(handelData)
