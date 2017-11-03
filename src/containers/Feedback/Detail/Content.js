@@ -4,8 +4,10 @@ import Immutable from 'immutable'
 import classnames from 'classnames'
 import { browserHistory } from 'react-router'
 import { TextareaItem, Toast } from 'antd-mobile'
+import moment from 'moment'
 import { createForm } from 'rc-form'
 import { RadioGroup, Radio, Icon } from 'components'
+import zhugeio from 'utils/zhugeio'
 import styles from './Content.less'
 
 const Title = ({ cur, inner, text, errors }) => (
@@ -42,19 +44,32 @@ const Content = ({
     editable,
     lessonId,
     item,
+    lesson,
     onFeedback,
   }) => {
   const submit = (e) => {
     validateFields((errors, value) => {
       if (errors) {
         e.preventDefault()
-          // for (let index in errors) {
-          //   console.log(errors[index].errors[0].message)
-          // }
+        // for (let index in errors) {
+        //   console.log(errors[index].errors[0].message)
+        // }
       } else {
         onFeedback.submitFeedback({ ...value, lessonid: lessonId })
         .then(({ status, message }) => {
           if (status === 10000) {
+            const { lesson_suggestion, teacher_suggestion, ...scores } = value
+            const score = Object.keys(scores).reduce((preScore, key) => (preScore + (+scores[key])), 0)
+            zhugeio.feedback({
+              score,
+              lesson_suggestion,
+              teacher_suggestion,
+              teacher: lesson.get('teacher'),
+              category_summary: lesson.get('category_summary'),
+              dates: moment.unix(lesson.get('available')).format('YYYY-MM-DD HH:mm'),
+              categoryId: lesson.get('category_idnumber'),
+            })
+
             Toast.info(
               <div className={styles.toast_box}>
                 <Icon type={require('svg/status_present.svg')} />
@@ -222,6 +237,7 @@ Content.propTypes = {
   editable: PropTypes.bool.isRequired,
   lessonId: PropTypes.string.isRequired,
   item: PropTypes.instanceOf(Immutable.Map).isRequired,
+  lesson: PropTypes.instanceOf(Immutable.Map).isRequired,
   onFeedback: PropTypes.object.isRequired,
 }
 

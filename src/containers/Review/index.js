@@ -30,7 +30,7 @@ class Review extends Component {
 
     return (
       <div className="content-box">
-        <Header>demo</Header>
+        <Header>查看评语</Header>
         <div className="content">
           <Content {...contentProps} />
         </div>

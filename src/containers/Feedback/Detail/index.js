@@ -12,6 +12,7 @@ class FeedbackDetail extends Component {
     params: PropTypes.object.isRequired,
     editable: PropTypes.bool.isRequired,
     item: PropTypes.instanceOf(Immutable.Map).isRequired,
+    lesson: PropTypes.instanceOf(Immutable.Map).isRequired,
     onFeedback: PropTypes.object.isRequired,
   }
 
@@ -22,14 +23,17 @@ class FeedbackDetail extends Component {
     } else {
       onFeedback.getFeedbackItem(lessonId)
     }
+    //为诸葛IO统计数据信息时使用
+    onFeedback.getFeedbackLesson(lessonId)
   }
 
   render () {
-    const { params: { lessonId }, editable, item, onFeedback } = this.props
+    const { params: { lessonId }, editable, item, lesson, onFeedback } = this.props
     const contentProps = {
       editable,
       lessonId,
       item,
+      lesson,
       onFeedback,
     }
 
@@ -46,6 +50,7 @@ class FeedbackDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   item: state.getIn(['feedback', 'item']),
+  lesson: state.getIn(['feedback', 'lesson']),
   editable: ownProps.location.query.type === 'add',
 })
 

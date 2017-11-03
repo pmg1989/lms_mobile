@@ -46,9 +46,23 @@ function cancelReserve (params) {
   })
 }
 
+//反馈课程
+function feedback (params) {
+  zhuge.track('反馈课程', {
+    老师满意度: params.score,
+    建议: params.lesson_suggestion,
+    评价: params.teacher_suggestion,
+    老师名字: params.teacher,
+    课程名称: params.category_summary,
+    课程时间: params.dates,
+    课程类型: getTypeNameFromId(params.categoryId),
+  })
+}
+
 export default {
   share,
   login,
   reserve,
   cancelReserve,
+  feedback,
 }

@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { feedbackConstants } from 'constants'
-import { fetchFeedbackList, fetchFeedbackItem, fetchSubmitFeedback } from 'services/feedback'
+import { fetchFeedbackList, fetchFeedbackItem, fetchSubmitFeedback, fetchFeedbackLesson } from 'services/feedback'
 
 const receiveFeedbackList = data => ({
   info: Immutable.fromJS(data.info),
@@ -28,6 +28,25 @@ export const getFeedbackItem = lessonid => (
     fetchFeedbackItem({ lessonid })
     .then(({ data }) => data.onlinetext.weekly)
     .then(item => dispatch(receiveFeedbackItem(item)))
+  )
+)
+
+const receiveFeedbackLesson = lesson => ({
+  lesson: Immutable.fromJS(lesson),
+  type: feedbackConstants.FETCH_FEEDBACK_LESSON,
+})
+
+export const getFeedbackLesson = lessonid => (
+  dispatch => (
+    fetchFeedbackLesson({ lessonid })
+    .then(({ data }) => ({
+      category: data.category,
+      category_idnumber: data.category_idnumber,
+      category_summary: data.category_summary,
+      teacher: data.teacher,
+      available: data.available,
+    }))
+    .then(lesson => dispatch(receiveFeedbackLesson(lesson)))
   )
 )
 
