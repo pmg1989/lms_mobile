@@ -23,7 +23,7 @@ class FeedbackDetail extends Component {
     } else {
       onFeedback.getFeedbackItem(lessonId)
     }
-    //为诸葛IO统计数据信息时使用
+    // 为诸葛IO统计数据信息时使用
     onFeedback.getFeedbackLesson(lessonId)
   }
 

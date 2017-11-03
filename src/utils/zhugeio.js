@@ -46,7 +46,7 @@ function cancelReserve (params) {
   })
 }
 
-//反馈课程
+// 反馈课程
 function feedback (params) {
   zhuge.track('反馈课程', {
     老师满意度: params.score,
