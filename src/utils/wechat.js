@@ -1,9 +1,8 @@
 import wx from 'weixin-js-sdk'
 import axios from 'axios'
-import { baseShare } from 'utils/config'
 
 function getWechatSigniture (shareUrl = location.href) {
-  axios.post(baseShare, { url: encodeURIComponent(shareUrl.split('#')[0]) }).then(({ data }) => {
+  axios.post('/share/api/v1/social/wxcfg', { url: encodeURIComponent(shareUrl.split('#')[0]) }).then(({ data }) => {
     wx.config({
       debug: data.debug,          // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。//debug最后要改为true
       appId: data.appId,          // 必填，公众号的唯一标识

@@ -17,9 +17,14 @@ export default {
   // outputPath : `./dist/deploy`,
   proxy: {
     "/api/v1": {
-      "target": process.env.PROXY_HOST,
+      "target": process.env.PROXY_HOST || 'http://school.newband.com:8083',
       "changeOrigin": true,
       "pathRewrite": { "^/api/v1": "/v1" }
+    },
+    "/share/api/v1": {
+      "target": process.env.PROXY_SHARE_HOST || 'http://staging.web.newband.com:5000',
+      "changeOrigin": true,
+      "pathRewrite": { "^/share/api/v1": "/api/v1" }
     },
   },
   autoprefixer : {
@@ -55,9 +60,6 @@ export default {
           }
         }]
       ],
-      define: {
-        'NEWBAND.LMS.AUTH_HOST': 'http://school.newband.com:8083/v1/Login/phonelogin',
-      },
     },
     production: {
       extraBabelPlugins: [
@@ -77,9 +79,6 @@ export default {
           }
         }]
       ],
-      define: {
-        'NEWBAND.LMS.AUTH_HOST': 'http://school.newband.com:8083/v1/Login/phonelogin',
-      },
     }
   },
   dllPlugin : {
