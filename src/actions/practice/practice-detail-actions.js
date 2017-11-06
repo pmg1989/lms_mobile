@@ -22,6 +22,7 @@ export const getPracticeItem = (categoryId, index) => (
         author: item.audio_key,
         thumb: info.cover,
         source: item.audio_url,
+        type: 'practice',
       })),
       info,
     })).then(({ list, info }) => {

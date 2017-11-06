@@ -48,6 +48,7 @@ export const getRecordList = (userid, avatar) => (
         thumb: avatar,
         source: item.url,
         shareLink: item.sharelink,
+        type: 'record',
       }))
     }).then(list => dispatch(receiveRecordList(list)))
   )

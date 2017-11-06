@@ -1,6 +1,7 @@
 import { createReducer } from 'redux-create-reducer'
 import Immutable from 'immutable'
 import { audioPlayerConstants } from 'constants'
+import zhugeio from 'utils/zhugeio'
 
 const $audioPlayer = Immutable.fromJS({
   list: [],
@@ -17,6 +18,12 @@ const audioPlayer = createReducer($audioPlayer, {
     return state.set('index', action.index).set('playing', false).set('switching', true)
   },
   [audioPlayerConstants.AUDIO_CHANGE_PLAY] (state) {
+    const index = state.get('index')
+    const current = state.getIn(['list', index])
+    zhugeio.playAudioPlayer({
+      title: current.get('title'),
+      type: current.get('type') === 'practice' ? '练习曲' : '录音',
+    })
     return state.set('playing', true).set('switching', false)
   },
   [audioPlayerConstants.AUDIO_CHANGE_PAUSE] (state) {

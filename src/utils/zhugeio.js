@@ -87,16 +87,25 @@ function enterPracticeDetail (params) {
   })
 }
 
-// 展开歌曲详情
-function showAudioPlayerFullScreen (params) {
-  zhuge.track('展开歌曲详情', {
+// 播放歌曲
+function playAudioPlayer (params) {
+  zhuge.track('播放歌曲', {
     歌曲名称: params.title,
+    类别: params.type,
   })
 }
 
 // 展开歌曲详情
+function showAudioPlayerFullScreen (params) {
+  zhuge.track('展开歌曲详情', {
+    歌曲名称: params.title,
+    类别: params.type,
+  })
+}
+
+// 重播歌曲
 function loopAudioPlayer (params) {
-  zhuge.track('重播练习歌曲', {
+  zhuge.track('重播歌曲', {
     歌曲名称: params.title,
     类别: params.type,
   })
@@ -111,6 +120,7 @@ export default {
   review,
   enterPractice,
   enterPracticeDetail,
+  playAudioPlayer,
   showAudioPlayerFullScreen,
   loopAudioPlayer,
 }

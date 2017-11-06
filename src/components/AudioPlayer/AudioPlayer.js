@@ -46,11 +46,14 @@ class AudioPlayer extends Component {
     this.setState({ isFullScreen: true })
     document.body.style.overflow = 'hidden'
 
-    const { audioPlayer } = this.props
+    const { type, audioPlayer } = this.props
     const list = audioPlayer.get('list')
     const index = audioPlayer.get('index')
     const current = list.get(index)
-    zhugeio.showAudioPlayerFullScreen({ title: current.get('title') })
+    zhugeio.showAudioPlayerFullScreen({
+      title: current.get('title'),
+      type: type === 'practice' ? '练习曲' : '录音',
+    })
   }
 
   render () {
