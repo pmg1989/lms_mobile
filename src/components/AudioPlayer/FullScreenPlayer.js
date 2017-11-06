@@ -69,7 +69,7 @@ class FullScreenPlayer extends Component {
       setTimeout(() => { this.props.handlePlayPause() }, 0)
       zhugeio.loopAudioPlayer({
         title: this.props.current.get('title'),
-        type:  this.props.type === 'practice' ? '练习曲': '录音',
+        type: this.props.type === 'practice' ? '练习曲' : '录音',
       })
     } else {
       this.props.handleNext()
