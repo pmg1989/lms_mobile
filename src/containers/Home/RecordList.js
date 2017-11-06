@@ -22,6 +22,7 @@ const RecordList = ({ audioPlayer, onAudioPlayer }) => {
   const switching = audioPlayer.get('switching')
 
   const audioPlayerProps = {
+    type: 'record',
     audioPlayer,
     onAudioPlayer,
     setAudioElement ($el) {

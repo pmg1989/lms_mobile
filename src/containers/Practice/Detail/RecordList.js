@@ -13,6 +13,7 @@ const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   const switching = audioPlayer.get('switching')
 
   const audioPlayerProps = {
+    type: 'practice',
     audioPlayer,
     onAudioPlayer,
     share: false,

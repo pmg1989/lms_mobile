@@ -94,6 +94,14 @@ function showAudioPlayerFullScreen (params) {
   })
 }
 
+// 展开歌曲详情
+function loopAudioPlayer (params) {
+  zhuge.track('重播练习歌曲', {
+    歌曲名称: params.title,
+    类别: params.type,
+  })
+}
+
 export default {
   share,
   login,
@@ -104,4 +112,5 @@ export default {
   enterPractice,
   enterPracticeDetail,
   showAudioPlayerFullScreen,
+  loopAudioPlayer,
 }

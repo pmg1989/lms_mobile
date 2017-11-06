@@ -11,6 +11,7 @@ import styles from './FullScreenPlayer.less'
 
 class FullScreenPlayer extends Component {
   static propTypes = {
+    type: PropTypes.string.isRequired,
     current: PropTypes.instanceOf(Immutable.Map).isRequired,
     loop: PropTypes.bool.isRequired,
     playing: PropTypes.bool.isRequired,
@@ -66,6 +67,10 @@ class FullScreenPlayer extends Component {
     if (this.props.loop) {
       this.props.handleSwitch()
       setTimeout(() => { this.props.handlePlayPause() }, 0)
+      zhugeio.loopAudioPlayer({
+        title: this.props.current.get('title'),
+        type:  this.props.type === 'practice' ? '练习曲': '录音',
+      })
     } else {
       this.props.handleNext()
     }
