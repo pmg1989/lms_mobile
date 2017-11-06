@@ -16,15 +16,15 @@ export default {
   outputPath : `./dist/${version}`,
   // outputPath : `./dist/deploy`,
   proxy: {
-    "/api/v1": {
+    "/api": {
       "target": process.env.PROXY_HOST || 'http://school.newband.com:8083',
       "changeOrigin": true,
-      "pathRewrite": { "^/api/v1": "/v1" }
+      "pathRewrite": { "^/api": "/" }
     },
-    "/share/api/v1": {
+    "/share/api": {
       "target": process.env.PROXY_SHARE_HOST || 'http://staging.web.newband.com:5000',
       "changeOrigin": true,
-      "pathRewrite": { "^/share/api/v1": "/api/v1" }
+      "pathRewrite": { "^/share/api": "/api" }
     },
   },
   autoprefixer : {
