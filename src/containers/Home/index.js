@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Tabs } from 'antd-mobile'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { Header, Notice } from 'components'
 import { isApp, getAppVersion, tools } from 'utils/app'
 import { homeActions } from 'actions/home'

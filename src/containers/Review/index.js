@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import moment from 'moment'
 import { bindActionCreators } from 'redux'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { Header } from 'components'
 import { reviewActions } from 'actions/review'
 import zhugeio from 'utils/zhugeio'

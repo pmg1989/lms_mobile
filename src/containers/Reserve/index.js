@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { Header } from 'components'
 import { reserveActions } from 'actions/reserve'
 import Content from './Content'
@@ -32,7 +32,7 @@ class Reserve extends Component {
     return (
       <div className="content-box">
         <Helmet>
-          <title>{reserve.getIn(['info', 'category_summary'])}</title>  
+          <title>{reserve.getIn(['info', 'category_summary'])}</title>
         </Helmet>
         <Header>{reserve.getIn(['info', 'category_summary'])}</Header>
         <div className="content">

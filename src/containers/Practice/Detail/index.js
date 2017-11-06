@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { Header } from 'components'
 import zhugeio from 'utils/zhugeio'
 import { practiceDetailActions } from 'actions/practice'
