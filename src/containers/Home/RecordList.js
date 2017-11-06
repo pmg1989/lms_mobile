@@ -35,10 +35,13 @@ const RecordList = ({ audioPlayer, onAudioPlayer }) => {
       playing ? $audio.pause() : $audio.play()
     } else if (cur === index - 1) {
       onAudioPlayer.toPrev()
+      $audio.play()
     } else if (cur === index + 1) {
       onAudioPlayer.toNext()
+      $audio.play()
     } else {
       onAudioPlayer.changeIndex(cur)
+      $audio.play()
     }
   }
 
