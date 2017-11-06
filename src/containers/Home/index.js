@@ -37,12 +37,12 @@ class Home extends Component {
     const headerProps = isApp() && getAppVersion() >= 410 ? {
       leftContent: '',
       iconName: `#${require('../../svg/back.svg').default.id}`,
-      onLeftClick() {
+      onLeftClick () {
         tools.returnback()
-      }
+      },
     } : {
       leftContent: '',
-      iconName: null
+      iconName: null,
     }
 
     const userInfoProps = {
