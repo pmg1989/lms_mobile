@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Helmet } from "react-helmet"
 import { Header } from 'components'
 import zhugeio from 'utils/zhugeio'
 import { practiceDetailActions } from 'actions/practice'
@@ -28,6 +29,7 @@ class PracticeDetail extends Component {
   render () {
     const { practiceDetail, audioPlayer, onAudioPlayer, onPracticeDetail } = this.props
 
+    const index = practiceDetail.getIn(['info', 'index']) || ''
     const recordListProps = {
       audioPlayer,
       onAudioPlayer,
@@ -36,7 +38,8 @@ class PracticeDetail extends Component {
 
     return (
       <div className="content-box">
-        <Header>第1课</Header>
+        <Helmet><title>{`第${index}课`}</title></Helmet>
+        <Header>第{index}课</Header>
         <div className="content">
           <Top info={practiceDetail.get('info')} />
           <RecordList {...recordListProps} />

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
+import { Helmet } from "react-helmet"
 import { Header, LinkToken } from 'components'
 import { progressActions } from 'actions/progress'
 import Top from './Top'
@@ -62,6 +63,9 @@ class Progress extends Component {
 
     return (
       <div className="content-box">
+        <Helmet>
+          <title>{dicType[params.type]}-{categorySummary}</title>
+        </Helmet>
         <Header {...headerProps}>
           {categorySummary && <span>{dicType[params.type]}-{categorySummary}</span>}
         </Header>

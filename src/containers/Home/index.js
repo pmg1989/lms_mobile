@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Tabs } from 'antd-mobile'
+import { Helmet } from "react-helmet"
 import { Header, Notice } from 'components'
 import { isApp, getAppVersion, tools } from 'utils/app'
 import { homeActions } from 'actions/home'
@@ -65,6 +66,7 @@ class Home extends Component {
 
     return (
       <div className="content-box">
+        <Helmet><title>牛班音乐学校</title></Helmet>
         <Header {...headerProps}>牛班音乐学校</Header>
         <div className="content">
           <UserInfo {...userInfoProps} />

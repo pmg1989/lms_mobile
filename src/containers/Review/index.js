@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import moment from 'moment'
 import { bindActionCreators } from 'redux'
+import { Helmet } from "react-helmet"
 import { Header } from 'components'
 import { reviewActions } from 'actions/review'
 import zhugeio from 'utils/zhugeio'
@@ -42,6 +43,7 @@ class Review extends Component {
 
     return (
       <div className="content-box">
+        <Helmet><title>查看评语</title></Helmet>
         <Header>查看评语</Header>
         <div className="content">
           <Content {...contentProps} />
