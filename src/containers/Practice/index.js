@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
 import { Header, Empty } from 'components'
 import { practiceListActions } from 'actions/practice'
 import zhugeio from 'utils/zhugeio'
@@ -52,7 +51,6 @@ class Practice extends Component {
 
     return (
       <div className="content-box">
-        <Helmet><title>练习</title></Helmet>
         <Header>练习</Header>
         <div className="content">
           {!history.isEmpty() && <Title title="最近的5个练习" />}

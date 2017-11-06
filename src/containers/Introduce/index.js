@@ -1,7 +1,6 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
 import { isApp, getAppVersion, tools } from 'utils/app'
 import { Header } from 'components'
 import Content from './Content'
@@ -32,7 +31,6 @@ const Introduce = () => {
 
   return (
     <div className="content-box">
-      <Helmet><title>牛班音乐学校</title></Helmet>
       <Header {...headerProps}>牛班音乐学校</Header>
       <Content {...contentProps} />
     </div>

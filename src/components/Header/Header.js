@@ -4,6 +4,7 @@ import { goBack } from 'react-router-redux'
 // import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile'
+import { Helmet } from 'react-helmet'
 import styles from './Header.less'
 
 const Header = ({ dispatch, children, ...headerProps }) => {
@@ -22,6 +23,7 @@ const Header = ({ dispatch, children, ...headerProps }) => {
 
   return (
     <div className={styles['fixed-top']}>
+      <Helmet><title>{children}</title></Helmet>
       <NavBar {...navBarProps}>
         {children.length > 12 ? `${children.substr(0, 12)}...` : children}
       </NavBar>
@@ -31,7 +33,7 @@ const Header = ({ dispatch, children, ...headerProps }) => {
 
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.string.isRequired,
   headerProps: PropTypes.object,
 }
 
