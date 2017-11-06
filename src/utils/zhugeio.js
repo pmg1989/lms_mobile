@@ -59,10 +59,23 @@ function feedback (params) {
   })
 }
 
+// 阅读老师的反馈
+function review (params) {
+  zhuge.track('阅读老师的反馈', {
+    对课程的评价: params.lesson,
+    对学生的评价: params.student,
+    老师名字: params.teacher,
+    课程名称: params.category_summary,
+    课程时间: params.dates,
+    课程类型: getTypeNameFromId(params.categoryId),
+  })
+}
+
 export default {
   share,
   login,
   reserve,
   cancelReserve,
   feedback,
+  review,
 }
