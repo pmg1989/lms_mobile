@@ -5,6 +5,7 @@ import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Tabs } from 'antd-mobile'
 import { Header, Notice } from 'components'
+import { isApp, getAppVersion, tools } from 'utils/app'
 import { homeActions } from 'actions/home'
 import { audioPlayerActions } from 'actions/audio-player'
 import UserInfo from './UserInfo'
@@ -33,9 +34,15 @@ class Home extends Component {
   render () {
     const { app, home, audioPlayer, onAudioPlayer } = this.props
 
-    const headerProps = {
-      leftContent: null,
-      iconName: null,
+    const headerProps = isApp() && getAppVersion() >= 410 ? {
+      leftContent: '',
+      iconName: `#${require('../../svg/back.svg').default.id}`,
+      onLeftClick() {
+        tools.returnback()
+      }
+    } : {
+      leftContent: '',
+      iconName: null
     }
 
     const userInfoProps = {

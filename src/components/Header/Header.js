@@ -3,7 +3,9 @@ import { PropTypes } from 'prop-types'
 import { goBack } from 'react-router-redux'
 // import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
 import { NavBar } from 'antd-mobile'
+import { isIOS, getAppVersion } from 'utils/app'
 import styles from './Header.less'
 
 const Header = ({ dispatch, children, ...headerProps }) => {
@@ -21,7 +23,7 @@ const Header = ({ dispatch, children, ...headerProps }) => {
   }
 
   return (
-    <div className={styles['fixed-top']}>
+    <div className={classnames(styles['fixed-top'], isIOS() && getAppVersion() >= 410 && styles.ios)}>
       <NavBar {...navBarProps}>
         {children.length > 12 ? `${children.substr(0, 12)}...` : children}
       </NavBar>
