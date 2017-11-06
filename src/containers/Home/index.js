@@ -35,14 +35,13 @@ class Home extends Component {
     const { app, home, audioPlayer, onAudioPlayer } = this.props
 
     const headerProps = isApp() && getAppVersion() >= 410 ? {
-      leftContent: '',
-      iconName: `#${require('../../svg/back.svg').default.id}`,
       onLeftClick () {
         tools.returnback()
       },
     } : {
       leftContent: '',
       iconName: null,
+      onLeftClick () {},
     }
 
     const userInfoProps = {

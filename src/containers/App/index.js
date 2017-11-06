@@ -26,7 +26,7 @@ class App extends Component {
         this.setState({ loading: false })
         const isStudent = res.app.get('rolename') === 'student'
         if (!res.app.get('authorized') || !isStudent) {
-          goTo('/introduce')
+          goTo(`/introduce?mobile=${mobile}&token=${token}`)
         }
       })
     } else {
