@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
 import { Icon } from 'components'
+import zhugeio from 'utils/zhugeio'
 import { renderBgImage } from 'utils/tools'
 import FullScreenPlayer from './FullScreenPlayer'
 import styles from './AudioPlayer.less'
@@ -43,6 +44,12 @@ class AudioPlayer extends Component {
   handleShowFullScreen () {
     this.setState({ isFullScreen: true })
     document.body.style.overflow = 'hidden'
+
+    const { audioPlayer } = this.props
+    const list = audioPlayer.get('list')
+    const index = audioPlayer.get('index')
+    const current = list.get(index)
+    zhugeio.showAudioPlayerFullScreen({ title: current.get('title') })
   }
 
   render () {

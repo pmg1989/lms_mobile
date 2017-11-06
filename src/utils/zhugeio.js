@@ -87,6 +87,13 @@ function enterPracticeDetail (params) {
   })
 }
 
+// 展开歌曲详情
+function showAudioPlayerFullScreen (params) {
+  zhuge.track('展开歌曲详情', {
+    歌曲名称: params.title,
+  })
+}
+
 export default {
   share,
   login,
@@ -96,4 +103,5 @@ export default {
   review,
   enterPractice,
   enterPracticeDetail,
+  showAudioPlayerFullScreen,
 }
