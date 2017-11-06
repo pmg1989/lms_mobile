@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Header, Empty } from 'components'
 import { practiceListActions } from 'actions/practice'
+import zhugeio from 'utils/zhugeio'
 import Title from './Title'
 import List from './List'
 import ActionSheet from './ActionSheet'
@@ -24,6 +25,7 @@ class Practice extends Component {
   componentWillMount () {
     const { params: { categoryId }, onPracticeList } = this.props
     onPracticeList.getPracticeList(categoryId)
+    zhugeio.enterPractice({ categoryId })
   }
 
   render () {

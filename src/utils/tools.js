@@ -44,3 +44,14 @@ export function getTypeNameFromId (categoryId) {
   }
   return '专业'
 }
+
+export function getTypeName (type) {
+  return {
+    vocal: '声乐',
+    theory: '乐理',
+    piano: '键盘',
+    guitar: '吉他',
+    eguitar: '电吉他',
+    composition: '作曲',
+  }[type] || '未知'
+}

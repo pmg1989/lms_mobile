@@ -1,5 +1,5 @@
 import { isIOS } from 'utils/app'
-import { getTypeNameFromId } from 'utils/tools'
+import { getTypeNameFromId, getTypeName } from 'utils/tools'
 
 const type = isIOS() ? 'ios' : 'android'
 
@@ -71,6 +71,22 @@ function review (params) {
   })
 }
 
+// 进入练习模块
+function enterPractice (params) {
+  zhuge.track('进入练习模块', {
+    课程名称: params.categoryId,
+    课程类型: getTypeName(params.categoryId.split('-')[0]),
+  })
+}
+
+// 预览练习课程
+function enterPracticeDetail (params) {
+  zhuge.track('预览练习课程', {
+    课程名称: params.categoryId,
+    课程类型: getTypeName(params.categoryId.split('-')[0]),
+  })
+}
+
 export default {
   share,
   login,
@@ -78,4 +94,6 @@ export default {
   cancelReserve,
   feedback,
   review,
+  enterPractice,
+  enterPracticeDetail,
 }

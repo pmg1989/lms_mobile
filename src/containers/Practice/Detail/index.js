@@ -4,6 +4,7 @@ import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Header } from 'components'
+import zhugeio from 'utils/zhugeio'
 import { practiceDetailActions } from 'actions/practice'
 import { audioPlayerActions } from 'actions/audio-player'
 import Top from './Top'
@@ -21,6 +22,7 @@ class PracticeDetail extends Component {
   componentWillMount () {
     const { params: { categoryId, index }, onPracticeDetail } = this.props
     onPracticeDetail.getPracticeItem(categoryId, index)
+    zhugeio.enterPracticeDetail({ categoryId })
   }
 
   render () {
