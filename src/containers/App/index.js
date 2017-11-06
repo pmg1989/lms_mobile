@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
+import { isIOS, getAppVersion } from 'utils/app'
+import classnames from 'classnames'
 import { appActions } from 'actions'
 import { Icon } from 'components'
 import styles from './App.less'
@@ -40,7 +42,7 @@ class App extends Component {
     const { loading } = this.state
 
     return (
-      <div>
+      <div className={classnames(isIOS() && getAppVersion() >= 410 && 'ios')}>
         {loading && <Icon className={styles.loading} type={require('svg/loading.svg')} />}
         {!loading && React.Children.map(children, (child) => {
           return React.cloneElement(child, {})
