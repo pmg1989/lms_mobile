@@ -50,7 +50,7 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
           const isCancel = available - (now.getTime() / 1000) > 60 * 60 * 24
 
           const LinkToReview = (
-            <LinkToken to={`/review/${item.get('id')}`} className={classnames(styles.btn, styles.underline)}>查看评语</LinkToken>
+            <LinkToken to={`/review/${item.get('id')}?curLesson=${lessonsCount - key}`} className={classnames(styles.btn, styles.underline)}>查看评语</LinkToken>
           )
 
           const dicAcronym = {

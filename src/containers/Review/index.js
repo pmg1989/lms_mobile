@@ -15,6 +15,7 @@ class Review extends Component {
     user: PropTypes.object.isRequired,
     review: PropTypes.instanceOf(Immutable.Map).isRequired,
     onReview: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
   }
 
   componentWillMount () {
@@ -33,11 +34,11 @@ class Review extends Component {
   }
 
   render () {
-    const { review } = this.props
-
+    const { review, location: { query: { curLesson } } } = this.props
     const contentProps = {
       info: review.get('info'),
       comment: review.get('comment'),
+      curLesson,
     }
 
     return (

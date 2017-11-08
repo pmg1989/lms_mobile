@@ -4,12 +4,12 @@ import Immutable from 'immutable'
 import moment from 'moment'
 import styles from './Content.less'
 
-const Content = ({ info, comment }) => {
+const Content = ({ info, comment, curLesson }) => {
   const commentText = comment.getIn(['suggestion', 'student'])
   const gradeTime = info.get('gradetime')
   return (
     <div className={styles.box}>
-      <div className={styles.title}>第{info.get('lesson_cnt')}节课评语</div>
+      <div className={styles.title}>第{curLesson}节课评语</div>
       <div className={styles.content}>
         <div className={styles.name}>{info.get('student')}同学：</div>
         <hr />
@@ -33,6 +33,7 @@ const Content = ({ info, comment }) => {
 Content.propTypes = {
   info: PropTypes.instanceOf(Immutable.Map).isRequired,
   comment: PropTypes.instanceOf(Immutable.Map).isRequired,
+  curLesson: PropTypes.string.isRequired,
 }
 
 export default Content
