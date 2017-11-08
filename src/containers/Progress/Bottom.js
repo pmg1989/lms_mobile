@@ -56,6 +56,11 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
     return type === 'profession' && notEnroll
   }
 
+  const isDeadLine = () => {
+    const deadline = info.get('contract_deadline')
+    return now > deadline
+  }
+
   const checkIsLock = (e) => {
     if (isLock()) {
       e.preventDefault()
@@ -65,6 +70,11 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
     if (isFull()) {
       e.preventDefault()
       Toast.info('你的课程已经预约满了哦!')
+      return true
+    }
+    if (isDeadLine()) {
+      e.preventDefault()
+      Toast.info('课程已结课,不能预约了哦!')
       return true
     }
     return false
@@ -84,7 +94,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
   }
 
   const isDisabled = () => {
-    return isLock() || !isVip() || isNotEnroll() || isFull()
+    return isLock() || !isVip() || isNotEnroll() || isFull() || isDeadLine()
   }
 
   return (

@@ -114,8 +114,8 @@ class Content extends Component {
           <span className={styles.duration}>{parseTime(totalTime)}</span>
         </div>
         <div className={styles.bottom}>
-          <span className={styles.tips}>跟明星导师学音乐</span><br />
-          <a className={styles.btn} href="http://a.app.qq.com/o/simple.jsp?pkgname=com.newband">下载牛班APP</a>
+          <span className={styles.tips}>跟明星导师学音</span><br />
+          <a className={styles.btn} href="http://campaign2.newband.com/vshow2?shop=lzm&p=share-recording">想学唱歌点我</a>
         </div>
         <audio {...audioProps}>audio not supported :(</audio>
       </div>
