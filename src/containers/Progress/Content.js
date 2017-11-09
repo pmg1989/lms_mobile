@@ -12,9 +12,10 @@ const alert = Modal.alert
 
 const now = new Date()
 
-const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) => {
+const Content = ({ type, user: { userid, rolename }, category, lessons, onProgress }) => {
   const isVip = category.includes('-vip-')
   const lessonsCount = lessons.size
+  const disabledCancel = type === 'profession' && !isVip // 专业课非VIP课程，不能取消预约
 
   const handleCancel = (title, available, lessonid, index) => {
     alert(
@@ -48,6 +49,7 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
         {lessons.map((item, key) => {
           const available = item.get('available')
           const isCancel = available - (now.getTime() / 1000) > 60 * 60 * 24
+          const afterNow = moment.unix(available).isAfter(now)
 
           const LinkToReview = (
             <LinkToken to={`/review/${item.get('id')}?curLesson=${lessonsCount - key}`} className={classnames(styles.btn, styles.underline)}>查看评语</LinkToken>
@@ -77,22 +79,31 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
             '': {
               Link: (
                 <span>
-                  {moment.unix(available).isAfter(new Date()) && isCancel &&
-                    <span className={classnames(styles.btn, styles.border, styles.blue)} onClick={() => handleCancel(item.get('category_summary'), available, item.get('id'), key)}>
-                      取消预约
+                  {afterNow && isCancel &&
+                    <span>
+                      {disabledCancel &&
+                        <span className={classnames(styles.btn, styles.disabled)}>
+                          等待开课
+                        </span>
+                      }
+                      {!disabledCancel &&
+                        <span className={classnames(styles.btn, styles.border, styles.blue)} onClick={() => handleCancel(item.get('category_summary'), available, item.get('id'), key)}>
+                          取消预约
+                        </span>
+                      }
                     </span>
                   }
-                  {moment.unix(available).isAfter(new Date()) && !isCancel &&
+                  {afterNow && !isCancel &&
                     <span className={classnames(styles.btn, styles.disabled)}>即将开课</span>
                   }
                 </span>
-              ),
+              ), // 未上课未考勤
               Icon: (
                 <span>
-                  {moment.unix(available).isAfter(new Date()) && isCancel &&
-                    <Icon type={require('svg/status_acronym.svg')} />
+                  {afterNow && isCancel &&
+                    <Icon type={disabledCancel ? require('svg/status_acronym_ing.svg') : require('svg/status_acronym.svg')} />
                   }
-                  {moment.unix(available).isAfter(new Date()) && !isCancel &&
+                  {afterNow && !isCancel &&
                     <Icon type={require('svg/status_acronym_ing.svg')} />
                   }
                 </span>
@@ -128,6 +139,7 @@ const Content = ({ user: { userid, rolename }, category, lessons, onProgress }) 
 }
 
 Content.propTypes = {
+  type: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
   category: PropTypes.string.isRequired,
   lessons: PropTypes.instanceOf(Immutable.List).isRequired,

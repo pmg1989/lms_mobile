@@ -5,6 +5,7 @@ import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Header, LinkToken } from 'components'
 import { progressActions } from 'actions/progress'
+import { renderTypeName } from 'utils/tools'
 import Top from './Top'
 import Content from './Content'
 import Bottom from './Bottom'
@@ -28,12 +29,6 @@ class Progress extends Component {
     const lessons = progress.get('lessons')
     const categorySummary = info.get('category_summary')
 
-    const dicType = {
-      profession: '专业课',
-      hd: '互动课',
-      jl: '交流课',
-    }
-
     const topProps = {
       info,
       hasLessons: !!lessons.size,
@@ -48,6 +43,7 @@ class Progress extends Component {
     }
 
     const contentProps = {
+      type: params.type,
       user,
       lessons,
       category: info.get('category_idnumber'),
@@ -63,7 +59,7 @@ class Progress extends Component {
     return (
       <div className="content-box">
         <Header {...headerProps}>
-          {`${dicType[params.type]}-${categorySummary}`}
+          {`${renderTypeName(params.type)}-${categorySummary}`}
         </Header>
         <div className="content">
           <Top {...topProps} />
