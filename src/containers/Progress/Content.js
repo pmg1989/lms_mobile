@@ -51,9 +51,7 @@ const Content = ({ type, user: { userid, rolename }, category, lessons, onProgre
           const isCancel = available - (now.getTime() / 1000) > 60 * 60 * 24
           const afterNow = moment.unix(available).isAfter(now)
 
-          const LinkToReview = (
-            <LinkToken to={`/review/${item.get('id')}?curLesson=${lessonsCount - key}`} className={classnames(styles.btn, styles.underline)}>查看评语</LinkToken>
-          )
+          const LinkToReview = type === 'profession' && <LinkToken to={`/review/${item.get('id')}?curLesson=${lessonsCount - key}`} className={classnames(styles.btn, styles.underline)}>查看评语</LinkToken>
 
           const dicAcronym = {
             E: {
