@@ -34,7 +34,7 @@ const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
     } else {
       onAudioPlayer.changeIndex(cur)
     }
-    if(type === 'practice') {
+    if (type === 'practice') {
       onPracticeDetail.addPracticeHistory(list.getIn([cur, 'author']))
     }
   }
