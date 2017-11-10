@@ -63,7 +63,7 @@ class FeedbackModal extends Component {
 
     return (
       <Modal {...modalProps}>
-        <div className={styles.title}>{item.get('category_summary')}</div>
+        <div className={styles.title}>{item.get('contract_summary')}</div>
         <p>
           {renderTypeName(item.get('lessontype'))} {moment.unix(item.get('available')).format('YYYY-MM-DD HH:mm')}
         </p>
