@@ -27,12 +27,15 @@ const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
     if (index === cur) {
       playing ? onAudioPlayer.changePause() : onAudioPlayer.changePlay()
       playing ? $audio.pause() : $audio.play()
-    } else if (cur === index - 1) {
-      onAudioPlayer.toPrev()
-    } else if (cur === index + 1) {
-      onAudioPlayer.toNext()
     } else {
-      onAudioPlayer.changeIndex(cur)
+      if (cur === index - 1) {
+        onAudioPlayer.toPrev()
+      } else if (cur === index + 1) {
+        onAudioPlayer.toNext()
+      } else {
+        onAudioPlayer.changeIndex(cur)
+      }
+      $audio.play()
     }
     if (type === 'practice') {
       onPracticeDetail.addPracticeHistory(list.getIn([cur, 'author']))
