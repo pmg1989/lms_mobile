@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
-import { Header, LinkToken } from 'components'
+import { Header } from 'components'
 import { progressActions } from 'actions/progress'
 import { renderTypeName } from 'utils/tools'
 import Top from './Top'
@@ -27,19 +27,10 @@ class Progress extends Component {
     const { params, progress, user, onProgress } = this.props
     const info = progress.get('info')
     const lessons = progress.get('lessons')
-    const categorySummary = info.get('category_summary')
 
     const topProps = {
       info,
       hasLessons: !!lessons.size,
-    }
-
-    const headerProps = {
-      rightContent: (
-        <span>
-          {params.type === 'profession' && <LinkToken to={`/practice/${params.categoryId}`}>练习</LinkToken>}
-        </span>
-      ),
     }
 
     const contentProps = {
@@ -58,8 +49,8 @@ class Progress extends Component {
 
     return (
       <div className="content-box">
-        <Header {...headerProps}>
-          {`${renderTypeName(params.type)}-${categorySummary}`}
+        <Header>
+          {renderTypeName(params.type)}
         </Header>
         <div className="content">
           <Top {...topProps} />

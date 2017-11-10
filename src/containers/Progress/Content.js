@@ -116,7 +116,7 @@ const Content = ({ type, user: { userid, rolename }, category, lessons, onProgre
               <div className={styles.left}>
                 {dicAcronym[item.get('acronym')].Icon}
                 <div className={styles.title_box}>
-                  <span>第{lessonsCount - key}课</span> <br />
+                  <span>第{lessonsCount - key}课{type === 'hd' && `（${item.get('category')}课）`}</span> <br />
                   <span className={styles.gray}>{moment.unix(available).format('MM-DD HH:mm')}</span>
                 </div>
               </div>

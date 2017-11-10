@@ -31,8 +31,8 @@ export function parseTime (time) {
 export function renderTypeName (enName = '') {
   return {
     PROFESSION: '专业课',
-    HD: '互动',
-    JL: '交流',
+    HD: '互动课',
+    JL: '交流课',
   }[enName.toUpperCase()] || '未知'
 }
 
