@@ -129,10 +129,10 @@ const CourseList = ({ status, list }) => {
             <PFCourse status={status} item={item.get('profession')} />
             {item.getIn(['hd', 'hdid']) && <HDCourse type={'hd'} title="互动课" status={status} item={item.get('hd')} />}
             {item.getIn(['jl', 'jlid']) && <JLCourse type={'jl'} title="交流课" status={status} item={item.get('jl')} />}
-            {status !== 0 &&
+            {status === 1 &&
               <div className={styles.btn_box}>
                 <LinkToken className={styles.btn} to={`/practice/${item.getIn(['profession', 'category_idnumber'])}`}>
-                  <Icon className={styles.icon} type={require('svg/microphone.svg')} /> 练习歌曲
+                  <Icon className={styles.icon} type={require('svg/microphone.svg')} /> 课后练习
                 </LinkToken>
               </div>
             }

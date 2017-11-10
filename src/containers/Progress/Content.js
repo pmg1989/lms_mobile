@@ -79,11 +79,7 @@ const Content = ({ type, user: { userid, rolename }, category, lessons, onProgre
                 <span>
                   {afterNow && isCancel &&
                     <span>
-                      {disabledCancel &&
-                        <span className={classnames(styles.btn, styles.disabled)}>
-                          等待开课
-                        </span>
-                      }
+                      {disabledCancel && <span className={classnames(styles.btn, styles.disabled)}>已预订</span>}
                       {!disabledCancel &&
                         <span className={classnames(styles.btn, styles.border, styles.blue)} onClick={() => handleCancel(item.get('category_summary'), available, item.get('id'), key)}>
                           取消预约

@@ -104,7 +104,7 @@ class Confirm extends Component {
         <div className={styles.content}>
           <span>{categorySummary}</span><br />
           <span className={styles.red}>{curLesson.get('date')} {curLesson.get('label')}</span><br />
-          <span>即将收取<span className={styles.red}> 1 </span>课时</span>
+          <span>即将扣除<span className={styles.red}> 1 </span>课时</span>
           {isJL &&
             <div className={styles.jl_box}>
               <InputItem
