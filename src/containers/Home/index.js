@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { Tabs } from 'antd-mobile'
-import { Header, Notice } from 'components'
+import { Header, Notice, RecordList } from 'components'
 import { isApp, getAppVersion, tools } from 'utils/app'
 import { homeActions } from 'actions/home'
 import { audioPlayerActions } from 'actions/audio-player'
 import UserInfo from './UserInfo'
 import CourseList from './CourseList'
-import RecordList from './RecordList'
 import FeedbackModal from './FeedbackModal'
 
 const TabPane = Tabs.TabPane
@@ -55,6 +54,7 @@ class Home extends Component {
     }
 
     const recordListProps = {
+      type: 'record',
       audioPlayer,
       onAudioPlayer,
     }

@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
-import { Icon, AudioPlayer } from 'components'
+import { Icon } from 'components'
+import AudioPlayer from './AudioPlayer'
 import styles from './RecordList.less'
 
-const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
+const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   let $audio
   const list = audioPlayer.get('list')
   const index = audioPlayer.get('index')
@@ -13,7 +14,7 @@ const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   const switching = audioPlayer.get('switching')
 
   const audioPlayerProps = {
-    type: 'practice',
+    type,
     audioPlayer,
     onAudioPlayer,
     share: false,
@@ -33,7 +34,9 @@ const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
     } else {
       onAudioPlayer.changeIndex(cur)
     }
-    onPracticeDetail.addPracticeHistory(list.getIn([cur, 'author']))
+    if(type === 'practice') {
+      onPracticeDetail.addPracticeHistory(list.getIn([cur, 'author']))
+    }
   }
 
   return (
@@ -41,14 +44,14 @@ const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
       <div className={classnames(styles.list_box, (playing || switching) && styles.playing)}>
         <ul className={styles.list}>
           {list.map((item, key) => (
-            <li className={styles.item} key={key}>
+            <li className={styles.item} key={key} onClick={() => handlePlayPause(key)}>
               <div className={styles.left}>
                 <span className={styles.title}>{item.get('title')}</span>
               </div>
               <div className={styles.opt_box}>
                 {key === index && playing ?
-                  <Icon className={styles.pause} type={require('svg/pause.svg')} onClick={() => handlePlayPause(key)} /> :
-                  <Icon className={styles.play} type={require('svg/play.svg')} onClick={() => handlePlayPause(key)} />
+                  <Icon className={styles.pause} type={require('svg/pause.svg')} /> :
+                  <Icon className={styles.play} type={require('svg/play.svg')} />
                 }
               </div>
             </li>
@@ -61,9 +64,10 @@ const RecordList = ({ audioPlayer, onAudioPlayer, onPracticeDetail }) => {
 }
 
 RecordList.propTypes = {
+  type: PropTypes.string.isRequired,
   audioPlayer: PropTypes.instanceOf(Immutable.Map).isRequired,
   onAudioPlayer: PropTypes.object.isRequired,
-  onPracticeDetail: PropTypes.object.isRequired,
+  onPracticeDetail: PropTypes.object,
 }
 
 export default RecordList

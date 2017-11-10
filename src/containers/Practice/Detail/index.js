@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Header } from 'components'
+import { Header, RecordList } from 'components'
 import zhugeio from 'utils/zhugeio'
 import { practiceDetailActions } from 'actions/practice'
 import { audioPlayerActions } from 'actions/audio-player'
 import Top from './Top'
-import RecordList from './RecordList'
 
 class PracticeDetail extends Component {
   static propTypes = {
@@ -30,6 +29,7 @@ class PracticeDetail extends Component {
 
     const index = practiceDetail.getIn(['info', 'index']) || ''
     const recordListProps = {
+      type: 'practice',
       audioPlayer,
       onAudioPlayer,
       onPracticeDetail,
