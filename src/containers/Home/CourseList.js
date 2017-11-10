@@ -7,6 +7,8 @@ import { Icon, LinkToken, Empty } from 'components'
 import { renderBgImage } from 'utils/tools'
 import styles from './CourseList.less'
 
+const now = new Date().getTime()
+
 const TitleBanner = ({ title, image, status }) => {
   const dic = {
     0: { css: 'start', text: '待开课' },
@@ -27,7 +29,9 @@ TitleBanner.propTypes = {
 }
 
 const PFCourse = ({ status, item }) => {
-  const hasNext = !!item.get('current_lesson_available')
+  const currentAvailable = item.get('current_lesson_available')
+  const hasNext = !!currentAvailable
+  const isBeginning = hasNext && (currentAvailable - (now / 1000) < 60 * 60 * 24)
   const categoryId = item.get('category_idnumber')
   const isVip = categoryId.includes('-vip-')
   const linkTo = `/progress/${encodeURIComponent(item.get('contractid'))}/${categoryId}?type=profession`
@@ -40,7 +44,10 @@ const PFCourse = ({ status, item }) => {
           {status === 0 && '待开课'}
           {status === 1 && !hasNext && '下节课 未预约'}
           {status === 1 && hasNext &&
-            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)</span>}
+            <span>
+              下节课 {moment.unix(currentAvailable).format('YYYY-MM-DD HH:mm')}{isBeginning && '（即将开课）'}
+            </span>
+          }
           {status === 2 && '已结课'}
         </span>
       </div>
@@ -58,7 +65,9 @@ PFCourse.propTypes = {
 }
 
 const HDCourse = ({ status, item }) => {
-  const hasNext = !!item.get('current_lesson_available')
+  const currentAvailable = item.get('current_lesson_available')
+  const hasNext = !!currentAvailable
+  const isBeginning = hasNext && (currentAvailable - (now / 1000) < 60 * 60 * 24)
   const categoryId = 'hd'
   const linkTo = `/progress/${encodeURIComponent(item.get('hdid'))}/${categoryId}?type=hd`
 
@@ -70,7 +79,10 @@ const HDCourse = ({ status, item }) => {
           {status === 0 && '待开课'}
           {status === 1 && !hasNext && '下节课 未预约'}
           {status === 1 && hasNext &&
-            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)</span>}
+            <span>
+              下节课 {moment.unix(currentAvailable).format('YYYY-MM-DD HH:mm')}{isBeginning && '（即将开课）'}（{item.get('current_lesson_summary')}）
+            </span>
+          }
           {status === 2 && '已结课'}
         </span>
       </div>
@@ -88,7 +100,9 @@ HDCourse.propTypes = {
 }
 
 const JLCourse = ({ status, item }) => {
-  const hasNext = !!item.get('current_lesson_available')
+  const currentAvailable = item.get('current_lesson_available')
+  const hasNext = !!currentAvailable
+  const isBeginning = hasNext && (currentAvailable - (now / 1000) < 60 * 60 * 24)
   const categoryId = item.get('jl_category_idnumber')
   const linkTo = `/progress/${encodeURIComponent(item.get('jlid'))}/${categoryId}?type=jl`
 
@@ -100,7 +114,10 @@ const JLCourse = ({ status, item }) => {
           {status === 0 && '待开课'}
           {status === 1 && !hasNext && '下节课 未预约'}
           {status === 1 && hasNext &&
-            <span>下节课 {moment.unix(item.get('current_lesson_available')).format('YYYY-MM-DD HH:mm')} (即将开课)</span>}
+            <span>
+              下节课 {moment.unix(currentAvailable).format('YYYY-MM-DD HH:mm')}{isBeginning && '（即将开课）'}
+            </span>
+          }
           {status === 2 && '已结课'}
         </span>
       </div>
