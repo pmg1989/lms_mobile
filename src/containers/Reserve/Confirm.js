@@ -46,7 +46,6 @@ class Confirm extends Component {
       onReserve.submitReserve(curLesson.get('lessonId'), contractId, categoryId).then(({ status, message, data }) => {
         if (status === 10000) {
           if (data.isok) {
-            onClose()
             zhugeio.reserve(zhugeParams)
             Toast.info('预约成功!', 2, () => {
               browserHistory.goBack()
@@ -57,6 +56,7 @@ class Confirm extends Component {
         } else {
           Toast.info(message)
         }
+        onClose()
       })
     }
 
