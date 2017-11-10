@@ -6,6 +6,15 @@ import { Icon } from 'components'
 import AudioPlayer from './AudioPlayer'
 import styles from './RecordList.less'
 
+const Title = ({ title }) => (
+  <div className={styles.title_box}>
+    <span className={styles.title}>{title}</span>
+  </div>
+)
+Title.propTypes = {
+  title: PropTypes.string.isRequired,
+}
+
 const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   let $audio
   const list = audioPlayer.get('list')
@@ -17,7 +26,7 @@ const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
     type,
     audioPlayer,
     onAudioPlayer,
-    share: false,
+    share: type === 'record',
     setAudioElement ($el) {
       $audio = $el
     },
@@ -45,6 +54,7 @@ const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   return (
     <div>
       <div className={classnames(styles.list_box, (playing || switching) && styles.playing)}>
+        <Title title="我的录音作品" />
         <ul className={styles.list}>
           {list.map((item, key) => (
             <li className={styles.item} key={key} onClick={() => handlePlayPause(key)}>

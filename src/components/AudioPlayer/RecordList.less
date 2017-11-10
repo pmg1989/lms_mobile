@@ -1,5 +1,25 @@
 @import "../../themes/mixin.less";
 
+.title_box {
+  position: relative;
+  padding: 30px 30px 30px 60px;
+  border-bottom: 2px solid #eee;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    bottom: 30px;
+    width: 8px;
+    background-color: @nb-blue;
+  }
+
+  .title {
+    color: @nb-gray-light;
+  }
+}
+
 .list_box {
   background-color: #fff;
 
