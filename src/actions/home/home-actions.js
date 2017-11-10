@@ -2,6 +2,8 @@ import Immutable from 'immutable'
 import { homeConstants, audioPlayerConstants } from 'constants'
 import { fetchNotice, fetchCourseList, fetchRecordList } from 'services/home'
 
+export const changeTabIndex = index => ({ index, type: homeConstants.CHANGE_TAB_INDEX })
+
 const receiveNotice = data => ({
   data: Immutable.fromJS(data),
   type: homeConstants.FETCH_NOTICE,

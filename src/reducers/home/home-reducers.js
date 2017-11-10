@@ -36,8 +36,15 @@ const feedbackList = createReducer($feedbackList, {
   },
 })
 
+const tabIndex = createReducer('1', {
+  [homeConstants.CHANGE_TAB_INDEX] (state, action) {
+    return action.index
+  },
+})
+
 export default combineReducers({
   notice,
   course,
   feedbackList,
+  tabIndex,
 })

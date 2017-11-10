@@ -30,6 +30,10 @@ class Home extends Component {
     onHome.getRecordList(app.get('userid'), app.get('image'))
   }
 
+  handleTabChange (key) {
+    this.props.onHome.changeTabIndex(key)
+  }
+
   render () {
     const { app, home, audioPlayer, onAudioPlayer } = this.props
 
@@ -69,7 +73,7 @@ class Home extends Component {
         <div className="content">
           <UserInfo {...userInfoProps} />
           <Notice {...noticeProps} />
-          <Tabs defaultActiveKey="1" swipeable={false}>
+          <Tabs activeKey={home.get('tabIndex')} swipeable={false} onChange={::this.handleTabChange}>
             <TabPane tab="正在学习" key="1">
               <CourseList status={1} list={home.getIn(['course', 'studingList'])} />
             </TabPane>
