@@ -1,7 +1,12 @@
-import { isIOS } from 'utils/app'
+import { isApp, isIOS } from 'utils/app'
 import { getTypeNameFromId, getTypeName } from 'utils/tools'
 
-const type = isIOS() ? 'ios' : 'android'
+const getType = () => {
+  if (isApp()) {
+    return isIOS() ? 'ios' : 'android'
+  }
+  return 'web'
+}
 
 // 登录信息采集
 function login (params) {
@@ -12,7 +17,7 @@ function login (params) {
     校区: params.school,
     角色: params.rolename,
     用户名: params.uname,
-    设备平台: type,
+    设备平台: getType(),
   })
 }
 
@@ -21,7 +26,7 @@ function share (title, author) {
   zhuge.track('分享我的录音', {
     歌曲名称: title,
     原唱: author,
-    分享渠道: type,
+    分享渠道: getType(),
   })
 }
 

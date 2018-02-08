@@ -5,7 +5,11 @@ import { queryString } from 'utils/tools'
 
 const LinkToken = ({ children, to, ...props }) => {
   const symbol = to.includes('?') ? '&' : '?'
-  to = `${to}${symbol}mobile=${queryString('mobile')}&token=${queryString('token')}`
+  const mobile = queryString('mobile')
+  const token = queryString('token')
+  if (!!mobile && !!token) {
+    to = `${to}${symbol}mobile=${queryString('mobile')}&token=${queryString('token')}`
+  }
 
   return (
     <Link to={to} {...props}>{children}</Link>

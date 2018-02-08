@@ -37,7 +37,7 @@ class Home extends Component {
   render () {
     const { app, home, audioPlayer, onAudioPlayer } = this.props
 
-    const headerProps = isApp() && getAppVersion() >= 410 ? {
+    const headerProps = isApp() && getAppVersion() >= 410 && getAppVersion() < 412 ? {
       onLeftClick () {
         tools.returnback()
       },

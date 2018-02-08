@@ -94,9 +94,9 @@ class Content extends Component {
         <div className={styles.title}>预约第{info.get('enrolledlesson_cnt') && (info.get('enrolledlesson_cnt') + 1)}课</div>
         <Calendar {...calendarProps} />
         <TimeSelect {...timeSelectProps} />
-        {!!curLesson.lower_limit && showTips &&
+        {!!curLesson.get('lower_limit') && showTips &&
           <div className={styles.tips}>
-            已约课<span>{curLesson.num_student}</span>人 至少{curLesson.lower_limit}人开课
+          已约课<span>{curLesson.get('num_student')}</span>人 至少{curLesson.get('lower_limit')}人开课
           </div>
         }
         <div className={classnames(styles.btn, dayOfLessons.isEmpty() && styles.disabled)} onClick={::this.submit}>预约</div>

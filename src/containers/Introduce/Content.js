@@ -52,7 +52,7 @@ const Intro = () => {
         独创的教学体系，多维一体的互动式教学课程，全方位提升学员音乐综合素质，打造音乐学习生态圈。
       </div>
       <div className={styles.text_2}>
-        上海音乐谷校区、北京三里屯校区、深圳南山校区<br />南京艾尚校区、成都晶融汇校区
+        上海音乐谷校区、北京三里屯校区、深圳南山校区<br />南京艾尚校区、成都晶融汇校区、广州珠江新城校区
       </div>
       <div className={styles.text_3}>
         线下学校咨询电话<br /><span className={styles.phone}>400-888-0717</span>

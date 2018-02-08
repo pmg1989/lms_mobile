@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import classnames from 'classnames'
-import { Icon } from 'components'
+import { Icon, SoundWave } from 'components'
 import AudioPlayer from './AudioPlayer'
 import styles from './RecordList.less'
 
@@ -54,12 +54,12 @@ const RecordList = ({ type, audioPlayer, onAudioPlayer, onPracticeDetail }) => {
   return (
     <div>
       <div className={classnames(styles.list_box, (playing || switching) && styles.playing)}>
-        <Title title="我的录音作品" />
+        {type === 'record' && <Title title="我的录音作品" />}
         <ul className={styles.list}>
           {list.map((item, key) => (
             <li className={styles.item} key={key} onClick={() => handlePlayPause(key)}>
               <div className={styles.left}>
-                <span className={styles.title}>{item.get('title')}</span>
+                <SoundWave show={key === index && playing} /><span className={styles.title}>{item.get('title')}</span>
               </div>
               <div className={styles.opt_box}>
                 {key === index && playing ?

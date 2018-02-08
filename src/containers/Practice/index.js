@@ -62,7 +62,7 @@ class Practice extends Component {
           {listWrap.map((item, key) => {
             const idnumber = item.get('idnumber') || ''
             const listProps = {
-              limit: 3,
+              limit: 10000, // 之前限制显示三条，需求变更后已不限制显示条目
               list: item.get('lessons'),
               info: {
                 title: item.get('title'),

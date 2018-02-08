@@ -21,7 +21,7 @@ const Content = ({ info, comment, curLesson }) => {
         </div>
         {gradeTime &&
         <div className={styles.bottom}>
-          <span>{info.get('teacher')} 老师</span><br />
+          <span>{info.get('teacher_alternatename')} 老师</span><br />
           {moment.unix(gradeTime).format('YYYY-M-D')}
         </div>
         }

@@ -56,14 +56,16 @@
       border-top: @border;
 
       span {
-        flex-basis: 14%; //(100 / 7%) - (2px / 7px);
+        display: block;
+        flex-basis: 13.90%;//(100 / 7%) - (2px / 6px);
         padding: 35px 0;
         border-right: @border;
         border-bottom: @border;
         color: @nb-gray-light;
+        font-size: 28px;
 
         &:nth-child(7n) {
-          border-right: 2px solid @bg-color;
+          border-right: none;//2px solid @bg-color;
         }
 
         &.enable {

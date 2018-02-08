@@ -3,6 +3,7 @@ import Immutable from 'immutable'
 import { appConstants } from 'constants'
 
 const $app = Immutable.fromJS({
+  ...JSON.parse(localStorage.getItem(appConstants.USER_INFO)),
   image: './images/avatar.png',
 })
 

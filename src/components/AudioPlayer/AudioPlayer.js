@@ -24,6 +24,21 @@ class AudioPlayer extends Component {
   state = {
     loop: false,
     isFullScreen: false,
+    loading: true,
+  }
+
+  componentDidMount () {
+    const { $audio } = this
+    $audio.addEventListener('canplay', () => {
+      this.setState({ loading: false })
+    })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { audioPlayer } = this.props
+    if (!audioPlayer.get('switching') && nextProps.audioPlayer.get('switching')) {
+      this.setState({ loading: true })
+    }
   }
 
   handleLoop () {
@@ -58,7 +73,7 @@ class AudioPlayer extends Component {
 
   render () {
     const { type, audioPlayer, setAudioElement, onAudioPlayer, share } = this.props
-    const { loop, isFullScreen } = this.state
+    const { loop, isFullScreen, loading } = this.state
     const list = audioPlayer.get('list')
     const index = audioPlayer.get('index')
     const playing = audioPlayer.get('playing')
@@ -92,7 +107,9 @@ class AudioPlayer extends Component {
       <div className={styles.player_box}>
         <div className={classnames(styles.bottom_box, (playing || switching) && styles.active)} onClick={::this.handleShowFullScreen}>
           <div className={styles.left}>
-            <div className={styles.thumb} style={renderBgImage(current.get('thumb'))} />
+            <div className={styles.thumb} style={renderBgImage(current.get('thumb'))}>
+              {loading && <Icon className={styles.loading} type={require('svg/loading.svg')} />}
+            </div>
             <div className={styles.info}>
               <span className={styles.title}>{current.get('title')}</span>
               <span className={styles.author}>{current.get('author')}</span>

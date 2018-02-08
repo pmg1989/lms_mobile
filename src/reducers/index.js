@@ -2,6 +2,7 @@ import { combineReducers } from 'redux-immutable'
 import routing from './route-reducers'
 
 import app from './app'
+import login from './login'
 import home from './home'
 import progress from './progress'
 import review from './review'
@@ -13,6 +14,7 @@ import audioPlayer from './audio-player'
 export default combineReducers({
   routing,
   app,
+  login,
   home,
   progress,
   feedback,

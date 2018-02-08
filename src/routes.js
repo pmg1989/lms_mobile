@@ -31,14 +31,6 @@ const Routes = [
     },
     childRoutes: [
       {
-        path: 'introduce',
-        getComponent (location, cb) {
-          require.ensure([], (require) => {
-            cb(null, require('./containers/Introduce'))
-          }, 'introduce')
-        },
-      },
-      {
         path: 'progress/:contractId/:categoryId',
         getComponent (location, cb) {
           require.ensure([], (require) => {
@@ -97,6 +89,14 @@ const Routes = [
     ],
   },
   {
+    path: 'introduce',
+    getComponent (location, cb) {
+      require.ensure([], (require) => {
+        cb(null, require('./containers/Introduce'))
+      }, 'introduce')
+    },
+  },
+  {
     path: 'share',
     childRoutes: [
       {
@@ -113,18 +113,18 @@ const Routes = [
     path: 'login',
     getComponent (location, cb) {
       require.ensure([], (require) => {
-        cb(null, require('./containers/Introduce'))
+        cb(null, require('./containers/Login'))
       }, 'login')
     },
   },
-  {
-    path: 'demo/:id/:detail',
-    getComponent (location, cb) {
-      require.ensure([], (require) => {
-        cb(null, require('./containers/Demo'))
-      }, 'demo')
-    },
-  },
+  // {
+  //   path: 'demo/:id/:detail',
+  //   getComponent (location, cb) {
+  //     require.ensure([], (require) => {
+  //       cb(null, require('./containers/Demo'))
+  //     }, 'demo')
+  //   },
+  // },
   {
     path: '*',
     name: 'error',

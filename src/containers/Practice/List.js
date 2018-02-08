@@ -28,7 +28,7 @@ const List = ({ limit, list, info, onChangeActionSheet }) => {
   return (
     <div className={styles.list_box}>
       <ul className={styles.list}>
-        { !!limit && <ThumbTitle {...info} />}
+        {!!limit && <ThumbTitle {...info} />}
         {list.map((item, key) => {
           const idnumber = info ? info.idnumber : item.get('idnumber')
           if (!!limit && key >= limit) {
@@ -45,7 +45,7 @@ const List = ({ limit, list, info, onChangeActionSheet }) => {
             </li>
           )
         })}
-        {!!limit &&
+        {!!limit && list.count() > limit &&
           <li onClick={handleChangeCurLessons}>
             <div className={styles.more}>预览全部（共5课）</div>
           </li>

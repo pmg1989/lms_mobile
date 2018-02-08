@@ -1,1 +1,1 @@
-export { authLogin } from './app-actions'
+export * as appActions from './app-actions'

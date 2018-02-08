@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { isIOS, getAppVersion } from 'utils/app'
 import classnames from 'classnames'
-import { appActions } from 'actions'
+import { appActions } from 'actions/app'
 import { Icon } from 'components'
 import styles from './App.less'
 
@@ -25,15 +25,21 @@ class App extends Component {
     const { location: { query: { mobile, token } }, onApp, goTo } = this.props
     if (!!mobile && !!token) {
       onApp.authLogin(mobile, token).then((res) => {
-        this.setState({ loading: false })
         const isStudent = res.app.get('rolename') === 'student'
-        if (!res.app.get('authorized') || !isStudent) {
+        if (res.app.get('authorized') && isStudent) {
+          this.setState({ loading: false })
+        } else {
           goTo(`/introduce?mobile=${mobile}&token=${token}`)
         }
       })
     } else {
-      this.setState({ loading: false })
-      goTo('/introduce')
+      onApp.getUserInfo().then((res) => {
+        if (res.authorized) {
+          this.setState({ loading: false })
+        } else {
+          goTo('/login')
+        }
+      })
     }
   }
 

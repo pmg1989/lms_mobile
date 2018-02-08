@@ -1,14 +1,18 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { isApp, getAppVersion, tools } from 'utils/app'
+import { browserHistory } from 'react-router'
+import classnames from 'classnames'
+import { isApp, isIOS, getAppVersion, tools } from 'utils/app'
 import { Header } from 'components'
 import Content from './Content'
 
 const Introduce = () => {
-  const headerProps = isApp() && getAppVersion() >= 410 ? {
+  const headerProps = isApp() && getAppVersion() >= 410 && getAppVersion() < 412 ? {
     onLeftClick () {
-      tools.returnback()
+      // 兼容ios 返回bug
+      browserHistory.goBack()
+      setTimeout(() => { tools.returnback() }, 0)
     },
   } : {
     leftContent: '',
@@ -30,7 +34,7 @@ const Introduce = () => {
   }
 
   return (
-    <div className="content-box">
+    <div className={classnames('content-box', isIOS() && getAppVersion() >= 410 && 'ios')}>
       <Header {...headerProps}>牛班音乐学校</Header>
       <Content {...contentProps} />
     </div>

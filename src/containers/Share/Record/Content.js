@@ -115,7 +115,7 @@ class Content extends Component {
         </div>
         <div className={styles.bottom}>
           <span className={styles.tips}>跟明星导师学音</span><br />
-          <a className={styles.btn} href="http://campaign2.newband.com/vshow2?shop=lzm&p=A-share-recording">想学唱歌点我</a>
+          <a className={styles.btn} href="http://E3nhATro.scene.eqxiu.cn/s/E3nhATro">想学唱歌点我</a>
         </div>
         <audio {...audioProps}>audio not supported :(</audio>
       </div>

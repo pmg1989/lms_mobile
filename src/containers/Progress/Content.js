@@ -122,8 +122,8 @@ const Content = ({ type, user: { userid, rolename }, category, lessons, onProgre
         })}
         {lessons.isEmpty() &&
         <li>
-          <Empty type="music">{isVip ?
-            <span>快点预约课程按钮，预约上课吧</span> : <span>正在排课中，<br />如需帮助请联系服务专员</span>}
+          <Empty type="music">
+            <span>开始订课吧<br />点击下方按钮预约课程</span>
           </Empty>
         </li>
         }

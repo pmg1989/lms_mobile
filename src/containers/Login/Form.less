@@ -1,0 +1,26 @@
+@import "../../themes/mixin.less";
+.form {
+    background-color: #fff;
+    padding: 60px 30px;
+    .item {
+        position: relative;
+        .errors {
+            color: #f50;
+            padding-left: 10px;
+            font-size: 28px;
+            height: 28px;
+            margin-top: 10px;
+        }
+        &.btn_box {
+            padding-top: 30px;
+            .btn_submit {
+                background-color: @nb-blue;
+                border-color: @nb-blue;
+            }
+        }
+         :global .am-button-primary.am-button-active {
+            background-color: @nb-blue-light;
+            border-color: @nb-blue-light;
+        }
+    }
+}
