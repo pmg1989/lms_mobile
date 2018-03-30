@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "lms_mobile",
+  "name": "react_student_2.0",
   "version": "3.0.1",
   "scripts": {
     "build:dll": "roadhog buildDll",
