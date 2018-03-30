@@ -1,7 +1,7 @@
-import { request, request2 } from 'utils/request'
+import { request } from 'utils/request'
 
 export function fetchAuthLogin (params) {
-  return request2(`/api/v1/Login/phonelogin/apptoken/${params.token}/phone/${params.mobile}`, params)
+  return request({ wsfunction: 'mod_serviceauthorize_applogin', ...params })
 }
 
 export function fetchUserInfo (params) {

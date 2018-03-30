@@ -9,15 +9,22 @@ import styles from './CourseList.less'
 
 const now = new Date().getTime()
 
-const TitleBanner = ({ title, image, status }) => {
+const TitleBanner = ({ title, image, status, freezeStatus }) => {
   const dic = {
     0: { css: 'start', text: '待开课' },
     2: { css: 'end', text: '已结课' },
   }
 
+  const dicFreeze = {
+    FREEZING: '即将冻结',
+    FROZEN: '已冻结',
+    NORMAL: '', // 正常，但不显示
+  }
+  const freezeLabel = dicFreeze[freezeStatus]
+
   return (
     <div className={styles.title_image_box} style={renderBgImage(image)}>
-      <span>{title}</span>
+      <span>{title}{freezeLabel && `(${freezeLabel})`}</span>
       {status !== 1 && <span className={classnames(styles.tips, styles[dic[status].css])}>{dic[status].text}</span>}
     </div>
   )
@@ -26,6 +33,7 @@ TitleBanner.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   status: PropTypes.number.isRequired,
+  freezeStatus: PropTypes.string.isRequired,
 }
 
 const PFCourse = ({ status, item }) => {
@@ -34,7 +42,7 @@ const PFCourse = ({ status, item }) => {
   const isBeginning = hasNext && (currentAvailable - (now / 1000) < 60 * 60 * 24)
   const categoryId = item.get('category_idnumber')
   const isVip = categoryId.includes('-vip-')
-  const linkTo = `/progress/${encodeURIComponent(item.get('contractid'))}/${categoryId}?type=profession`
+  const linkTo = `/progress/${encodeURIComponent(item.get('contractid'))}/${categoryId}?type=profession&proCategoryId=${item.get('category_idnumber')}`
 
   return (
     <div className={styles.item}>
@@ -69,7 +77,7 @@ const HDCourse = ({ status, item }) => {
   const hasNext = !!currentAvailable
   const isBeginning = hasNext && (currentAvailable - (now / 1000) < 60 * 60 * 24)
   const categoryId = 'hd'
-  const linkTo = `/progress/${encodeURIComponent(item.get('hdid'))}/${categoryId}?type=hd`
+  const linkTo = `/progress/${encodeURIComponent(item.get('hdid'))}/${categoryId}?type=hd&proCategoryId=${item.get('category_idnumber')}`
 
   return (
     <div className={styles.item}>
@@ -104,7 +112,7 @@ const JLCourse = ({ status, item }) => {
   const hasNext = !!currentAvailable
   const isBeginning = hasNext && (currentAvailable - (now / 1000) < 60 * 60 * 24)
   const categoryId = item.get('jl_category_idnumber')
-  const linkTo = `/progress/${encodeURIComponent(item.get('jlid'))}/${categoryId}?type=jl`
+  const linkTo = `/progress/${encodeURIComponent(item.get('jlid'))}/${categoryId}?type=jl&proCategoryId=${item.get('category_idnumber')}`
 
   return (
     <div className={styles.item}>
@@ -142,7 +150,7 @@ const CourseList = ({ status, list }) => {
 
         return (
           <div key={key} className={styles.list}>
-            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} image={`./images/course-type/${categoryId}.png`} />
+            <TitleBanner title={item.getIn(['profession', 'category_summary'])} status={status} freezeStatus={item.getIn(['profession', 'contract_status'])} image={`./images/course-type/${categoryId}.png`} />
             <PFCourse status={status} item={item.get('profession')} />
             {item.getIn(['hd', 'hdid']) && <HDCourse type={'hd'} title="互动课" status={status} item={item.get('hd')} />}
             {item.getIn(['jl', 'jlid']) && <JLCourse type={'jl'} title="交流课" status={status} item={item.get('jl')} />}

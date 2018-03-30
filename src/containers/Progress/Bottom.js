@@ -10,9 +10,9 @@ import { Icon, LinkToken } from 'components'
 import styles from './Bottom.less'
 
 const Item = Popover.Item
-const now = new Date().getTime() / 1000
+const now = +moment().format('X')
 
-const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize }) => {
+const Bottom = ({ info, params: { type, categoryId, contractId, proCategoryId }, lessons }) => {
   const lockStart = info.get('contract_freezestart')
   const lockEnd = info.get('contract_freezeend')
 
@@ -40,11 +40,12 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
 
   const isFull = () => {
     const countCnt = info.get('contractlesson_cnt') || 0
-    return lessonsSize === countCnt
+    return lessons.size === countCnt
   }
 
   const isVip = () => {
     if (type !== 'profession') {
+      // 也可以使用 proCategoryId 作为精确判断
       return true
     }
 
@@ -59,6 +60,25 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
   const isDeadLine = () => {
     const deadline = info.get('contract_deadline')
     return now > deadline
+  }
+
+  const isJLFull = () => {
+    return type === 'jl' && lessons.filter(item => item.get('available') > now).size > 0
+  }
+
+  const isHdFull = () => {
+    if (type === 'hd') {
+      const lessonsFilter = lessons.filter(item => item.get('available') > now)
+      const isHdVip = proCategoryId.includes('-vip-')
+      const isHdJp = proCategoryId.includes('-jp-')
+      if (isHdVip) {
+        return lessonsFilter.size >= 3
+      }
+      if (isHdJp) {
+        return lessonsFilter.size >= 2
+      }
+    }
+    return false
   }
 
   const checkIsLock = (e) => {
@@ -77,6 +97,11 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
       Toast.info('课程已结课,不能预约了哦!')
       return true
     }
+    if (isHdFull()) {
+      e.preventDefault()
+      const isHdVip = proCategoryId.includes('-vip-')
+      Toast.info(`互动${isHdVip ? 'VIP' : '精品'}课程只能同时预约${isHdVip ? '三' : '两'}节哦!`)
+    }
     return false
   }
 
@@ -90,11 +115,15 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
         e.preventDefault()
         Toast.info('该课程暂时无法预约哦!')
       }
+      if (isJLFull()) {
+        e.preventDefault()
+        Toast.info('交流课程只能同时预约一节哦!')
+      }
     }
   }
 
   const isDisabled = () => {
-    return isLock() || !isVip() || isNotEnroll() || isFull() || isDeadLine()
+    return isLock() || !isVip() || isNotEnroll() || isFull() || isDeadLine() || isJLFull() || isHdFull()
   }
 
   return (
@@ -129,7 +158,7 @@ const Bottom = ({ info, params: { type, categoryId, contractId }, lessonsSize })
 Bottom.propTypes = {
   info: PropTypes.instanceOf(Immutable.Map).isRequired,
   params: PropTypes.object.isRequired,
-  lessonsSize: PropTypes.number.isRequired,
+  lessons: PropTypes.object.isRequired,
 }
 
 export default Bottom

@@ -59,7 +59,6 @@ export const smsLogin = ({ phone, smscode, sid }) => (
         if (authorized) {
           zhugeio.login(data)
           localStorage.setItem(appConstants.UTOKEN, data.utoken)
-          localStorage.setItem(appConstants.API_DOMAIN, data.wsurl)
           localStorage.setItem(appConstants.USER_INFO, JSON.stringify(data))
         } else {
           const msg = {
@@ -68,7 +67,6 @@ export const smsLogin = ({ phone, smscode, sid }) => (
           }
           Toast.info(msg[status])
           localStorage.removeItem(appConstants.UTOKEN)
-          localStorage.removeItem(appConstants.API_DOMAIN)
           localStorage.removeItem(appConstants.USER_INFO)
         }
         return data

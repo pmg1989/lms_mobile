@@ -44,7 +44,7 @@ class Progress extends Component {
     const bottomProps = {
       info,
       params,
-      lessonsSize: lessons.size,
+      lessons,
     }
 
     return (
@@ -72,6 +72,7 @@ const mapStateToProps = (state, ownProps) => ({
     ...ownProps.params,
     // contractId: decodeURIComponent(ownProps.params.contractId),
     type: ownProps.location.query.type,
+    proCategoryId: ownProps.location.query.proCategoryId,
   },
 })
 

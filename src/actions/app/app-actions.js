@@ -10,7 +10,7 @@ export const authLoginSuccess = app => ({
 
 export const authLogin = (mobile, token) => (
   dispatch => (
-    fetchAuthLogin({ mobile, token }).then(({ status, data }) => {
+    fetchAuthLogin({ phone: mobile, apptoken: token }).then(({ status, data }) => {
       const authorized = status === 10000
       data.authorized = authorized
       data.mobile = mobile
@@ -20,10 +20,8 @@ export const authLogin = (mobile, token) => (
       if (authorized) {
         zhugeio.login(data)
         localStorage.setItem(appConstants.UTOKEN, data.utoken)
-        localStorage.setItem(appConstants.API_DOMAIN, data.wsurl)
       } else {
         localStorage.removeItem(appConstants.UTOKEN)
-        localStorage.removeItem(appConstants.API_DOMAIN)
       }
       return data
     }).then(data => dispatch(authLoginSuccess(data)))
@@ -32,9 +30,6 @@ export const authLogin = (mobile, token) => (
 
 export const getUserInfo = () => (
   () => {
-    if (!localStorage.getItem(appConstants.API_DOMAIN)) {
-      return new Promise(resolve => (resolve({ authorized: false })))
-    }
     return fetchUserInfo().then(({ status }) => {
       const authorized = status === 10000
       return { authorized }

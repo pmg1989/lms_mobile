@@ -1,9 +1,9 @@
-import { request2 } from 'utils/request'
+import { request } from 'utils/request'
 
 export function fetchSendCode (params) {
-  return request2('/api/v1/Login/sendsmscode', params)
+  return request({ wsfunction: 'mod_serviceauthorize_sendsmscode', ...params })
 }
 
 export function fetchSmsLogin (params) {
-  return request2('/api/v1/Login/smslogin', params)
+  return request({ wsfunction: 'mod_serviceauthorize_phonelogin', ...params })
 }

@@ -34,4 +34,11 @@ export default {
   env: getEnv(),
   logoSrc: 'https://o9u2lnvze.qnssl.com/web/global/brand.png',
   defaultImage: 'https://o9u2lnvze.qnssl.com/appbanner/3bec92be7ea938384408d207cb27c338.png',
+  wstoken: '65b6372750516f21e18d27037edad0e0',
+  baseURL: '/api/moodle/webservice/rest/server.php',
+  wstokenFuncs: [
+    'mod_serviceauthorize_applogin',
+    'mod_serviceauthorize_phonelogin',
+    'mod_serviceauthorize_sendsmscode',
+  ],
 }
